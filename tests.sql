@@ -25,7 +25,7 @@ begin
 	from Estatistica 
 	where idJogador = jogadorId;
 
-	if totalFunc = totalEstatistica then
+	if totalFunc = totalEstatistica and totalFunc = 0 then
 		raise notice 'Teste1: Obter total de pontos de jogador sem partidas: Resultado OK';
 	else
 		raise notice 'Teste1: Obter total de pontos de jogador sem partidas: Resultado FAIL';
@@ -36,7 +36,7 @@ end;
 $$;
 
 
-create or replace procedure test_totalPontosJogador2() --Jogador existente 1 Partida.
+create or replace procedure test_totalPontosJogador2() --Jogador existente mas apenas 1 Partida.
 language plpgSQL as
 $$
 declare 
@@ -85,22 +85,25 @@ language plpgSQL as
 $$
 declare 
 	totalFunc int;
-	totalEstatistica int;
+	invalidIdJogador int default 0;
+	msg text;
+	correctMsg text;
 begin	
-	select totalPontosJogador(0)
-	into totalFunc;
-
-	select totalPontosJogos 
-	into totalEstatistica 
-	from Estatistica 
-	where idJogador = jogadorId;
-
-	if totalFunc = totalEstatistica then
-		raise notice 'Teste1: Obter total de pontos de jogador sem partidas: Resultado OK';
-	else
-		raise notice 'Teste1: Obter total de pontos de jogador sem partidas: Resultado FAIL';
-	end if;
-	
+	begin 
+		select totalPontosJogador(invalidIdJogador)
+		into totalFunc;
+		exception 
+			when others then
+				get stacked diagnostics msg = MESSAGE_TEXT;
+				
+		--correctMsg = cast(('Jogador com o id % não existe.',invalidIdJogador) as text);
+				
+		if msg = 'Jogador com o id 0 não existe.' then
+			raise notice 'Teste1: Obter total de pontos de jogador inexistente: Resultado OK';
+		else
+			raise notice 'Teste1: Obter total de pontos de jogador inexistente: Resultado FAIL';
+		end if;
+	end;
 	rollback;
 end;
 $$;
@@ -108,6 +111,7 @@ $$;
 
 call test_totalPontosJogador1();
 call test_totalPontosJogador2();
+call test_totalPontosJogador3();
 
 --------------------------------------------------------------------------------------------
 
@@ -140,4 +144,5 @@ end;
 $$;
 
 call test_iniciarConversa();
+
 

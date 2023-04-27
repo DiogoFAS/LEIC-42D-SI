@@ -38,37 +38,40 @@ create table Mensagem (
 );
 
 create table Cracha (
-	nome varchar(20) unique, --Ele dá erro se eu não colocar unique.
-	nomeJogo varchar(10) unique, --Ele dá erro se eu não colocar unique.
+	nome varchar(20) primary key, --Ele dá erro se eu não colocar unique.
+	nomeJogo varchar(10), --Ele dá erro se eu não colocar unique.
 	limiteDePontos integer,
 	URL varchar(50),
-	primary key (nome, nomeJogo),
+	unique (nome, nomeJogo), --primary key (nome, nomeJogo)
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
 create table Partida (
-	id serial unique, --Ele dá erro se eu não colocar unique.
+	id integer primary key, --Ele dá erro se eu não colocar unique.
 	nomeJogo varchar(10),
 	dataInicio timestamp default now(),
 	dataFim timestamp check (dataFim > dataInicio),
-	primary key (id, nomeJogo),
+	unique (id, nomeJogo), --primary key (id, nomeJogo)
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
 create table MultiJogador (
-	idPartida integer primary key,
+	idPartida integer,
+	nomeJogo varchar(10),
 	estado varchar(30) check (estado = 'Por Iniciar' or estado = 'A aguardar jogadores' or estado = 'Em curso' or estado = 'Terminada'),
 	nomeRegiao varchar(10),
+	primary key (idPartida, nomeJogo),
 	foreign key (idPartida) references Partida(id),
 	foreign key (nomeRegiao) references Regiao(nome)
 );
 
 create table Normal (
 	idPartida integer,
+	nomeJogo varchar(10),
 	dificuldade integer check ( dificuldade > 0 and dificuldade <= 5),
 	idJogador integer,
 	pontuacao integer,
-	primary key (idPartida, idJogador),
+	primary key (idPartida, nomeJogo),
 	foreign key (idPartida) references Partida(id),
 	foreign key (idJogador) references Jogador(id)
 );
@@ -99,7 +102,7 @@ create table Tem (
 	primary key (idJogador, nomeCracha, nomeJogo),
 	foreign key (idJogador) references Jogador(id),
 	foreign key (nomeCracha) references Cracha(nome),
-	foreign key (nomeJogo) references Cracha(nomeJogo)
+	foreign key (nomeJogo) references Jogo(nome) --foreign key (nomeJogo) references Cracha(nomeJogo)
 );
 
 create table Adicionar (

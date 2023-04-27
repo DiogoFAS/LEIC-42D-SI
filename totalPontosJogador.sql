@@ -8,7 +8,14 @@ declare
 	totalPontos integer;
 	temporario integer;
 begin
-	if not exists(select * from Jogador where id = jogadorId) then
+	--begin
+	--	perform * from Jogador where id = jogadorId;
+	--	exception
+	--		when no_data_found then
+	--			raise exception 'Jogador com o id % não existe.',jogadorId;
+	--end;
+	
+	if not exists (select * from Jogador where id = jogadorId) then
 		raise exception 'Jogador com o id % não existe.',jogadorId;
 	end if;
 	
@@ -36,4 +43,4 @@ begin
 end;
 $$;
 
-select totalPontosJogador(6);
+select totalPontosJogador(7);
