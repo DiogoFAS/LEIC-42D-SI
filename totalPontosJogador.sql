@@ -1,4 +1,6 @@
-create or replace function totalPontosJogador(id int)
+--drop function totalPontosJogador(integer);
+
+create or replace function totalPontosJogador(jogadorId int)
 returns int
 language plpgSQL as
 $$
@@ -6,18 +8,32 @@ declare
 	totalPontos integer;
 	temporario integer;
 begin
+	if not exists(select * from Jogador where id = jogadorId) then
+		raise exception 'Jogador com o id % não existe.',jogadorId;
+	end if;
+	
 	select coalesce(sum(pontuacao),0)
 	into totalPontos
 	from Jogar 
-	where idJogador = id;
+	where idJogador = jogadorId;
 	
 	select coalesce(sum(pontuacao),0)
 	into temporario
 	from Normal
-	where idJogador = id;
+	where idJogador = jogadorId;
+	
+	totalPontos = totalPontos + temporario;
+	
+	insert into Estatistica (idJogador)
+	values (jogadorId)
+	on conflict (idJogador) do nothing;
+	
+	update Estatistica 
+	set totalPontosJogos = totalPontos
+	where idJogador = jogadorId;
 
-	return totalPontos + temporario;
+	return totalPontos;
 end;
 $$;
 
-select totalPontosJogador(1);
+select totalPontosJogador(6);

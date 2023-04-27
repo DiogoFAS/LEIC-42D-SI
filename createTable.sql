@@ -31,7 +31,7 @@ create table Mensagem (
 	idConversa integer,
 	idJogador integer,
 	texto varchar(200),
-	dataDeEnvio timestamp,
+	dataDeEnvio timestamp default now(),
 	primary key (id, idConversa, idJogador),
 	foreign key (idConversa) references Conversa(id),
 	foreign key (idJogador) references Jogador(id)
@@ -108,4 +108,12 @@ create table Adicionar (
 	primary key (idJogador, idJogadorAmigo),
 	foreign key (idJogador) references Jogador(id),
 	foreign key (idJogadorAmigo) references Jogador(id)
+);
+
+create table Estatistica (
+	idJogador integer primary key,
+	nrPartidas integer,
+	nrJogos integer,
+	totalPontosJogos integer,
+	foreign key (idJogador) references Jogador(id)
 );

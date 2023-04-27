@@ -34,16 +34,16 @@ insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SnakeRank2', '
 insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SnakeRank3', 'Snake', 250, 'http://SnakeRank3.jpg');
 insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SnakeRank4', 'Snake', 100, 'http://SnakeRank4.jpg');
 
-insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank1', 'SpaceInvaders', 1000, 'http://SpaceInvadersRank1.jpg');
-insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank2', 'SpaceInvaders', 500, 'http://SpaceInvadersRank2.jpg');
-insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank3', 'SpaceInvaders', 250, 'http://SpaceInvadersRank3.jpg');
-insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank4', 'SpaceInvaders', 100, 'http://SpaceInvadersRank4.jpg');
+insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank1', 'SpaceInv', 1000, 'http://SpaceInvadersRank1.jpg');
+insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank2', 'SpaceInv', 500, 'http://SpaceInvadersRank2.jpg');
+insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank3', 'SpaceInv', 250, 'http://SpaceInvadersRank3.jpg');
+insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank4', 'SpaceInv', 100, 'http://SpaceInvadersRank4.jpg');
 
 --insert Partida
-insert into Partida (id, nomeJogo, dataFim) values (1, 'Tetris', '2023-04-26 19:40:00');
-insert into Partida (id, nomeJogo, dataFim) values (2, 'Pacman', '2023-04-26 19:40:00');
-insert into Partida (id, nomeJogo, dataFim) values (3, 'Snake', '2023-04-26 21:20:00');
-insert into Partida (id, nomeJogo, dataFim) values (4, 'SpaceInv', '2023-04-26 12:30:00');
+insert into Partida (id, nomeJogo, dataFim) values (1, 'Tetris', '2023-04-30 19:40:00');
+insert into Partida (id, nomeJogo, dataFim) values (2, 'Pacman', '2023-04-30 19:40:00');
+insert into Partida (id, nomeJogo, dataFim) values (3, 'Snake', '2023-04-30 21:20:00');
+insert into Partida (id, nomeJogo, dataFim) values (4, 'SpaceInv', '2023-04-30 12:30:00');
 
 --insert MultiJogador
 insert into MultiJogador (idPartida, estado, nomeRegiao) values (1, 'Terminada', 'Chelas');

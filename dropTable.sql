@@ -1,3 +1,4 @@
+drop table if exists Estatistica;
 drop table if exists Adicionar;
 drop table if exists Tem;
 drop table if exists Comprar;
