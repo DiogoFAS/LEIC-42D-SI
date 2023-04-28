@@ -39,7 +39,7 @@ create table Mensagem (
 
 create table Cracha (
 	nome varchar(20) primary key, --Ele dá erro se eu não colocar unique.
-	nomeJogo varchar(10), --Ele dá erro se eu não colocar unique.
+	nomeJogo varchar(20), --Ele dá erro se eu não colocar unique.
 	limiteDePontos integer,
 	URL varchar(50),
 	unique (nome, nomeJogo), --primary key (nome, nomeJogo)
@@ -48,7 +48,7 @@ create table Cracha (
 
 create table Partida (
 	id integer primary key, --Ele dá erro se eu não colocar unique.
-	nomeJogo varchar(10),
+	nomeJogo varchar(20),
 	dataInicio timestamp default now(),
 	dataFim timestamp check (dataFim > dataInicio),
 	unique (id, nomeJogo), --primary key (id, nomeJogo)
@@ -57,7 +57,7 @@ create table Partida (
 
 create table MultiJogador (
 	idPartida integer,
-	nomeJogo varchar(10),
+	nomeJogo varchar(20),
 	estado varchar(30) check (estado = 'Por Iniciar' or estado = 'A aguardar jogadores' or estado = 'Em curso' or estado = 'Terminada'),
 	nomeRegiao varchar(10),
 	primary key (idPartida, nomeJogo),
@@ -67,7 +67,7 @@ create table MultiJogador (
 
 create table Normal (
 	idPartida integer,
-	nomeJogo varchar(10),
+	nomeJogo varchar(20),
 	dificuldade integer check ( dificuldade > 0 and dificuldade <= 5),
 	idJogador integer,
 	pontuacao integer,
@@ -87,7 +87,7 @@ create table Jogar (
 
 create table Comprar (
 	idJogador integer,
-	nomeJogo varchar(10),
+	nomeJogo varchar(20),
 	preco integer,
 	dataCompra timestamp,
 	primary key (idJogador, nomeJogo),
@@ -97,8 +97,8 @@ create table Comprar (
 
 create table Tem (
 	idJogador integer,
-	nomeCracha varchar(10),
-	nomeJogo varchar(10),
+	nomeCracha varchar(20),
+	nomeJogo varchar(20),
 	primary key (idJogador, nomeCracha, nomeJogo),
 	foreign key (idJogador) references Jogador(id),
 	foreign key (nomeCracha) references Cracha(nome),
