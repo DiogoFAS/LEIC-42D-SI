@@ -8,7 +8,7 @@ declare
 	totalJogos integer;
 	nJogosNormais integer;
     nJogosMulti integer;
-    -- c cursor for select SALARY FROM EMPLOYEE;
+	nPartidas integer;
 begin
 	--begin
 	--	perform * from Jogador where id = jogadorId;
@@ -32,9 +32,17 @@ begin
     where id = (select idPartida from Jogar where idJogador = jogadorId);
 	
 	totalJogos = nJogosMulti + nJogosNormais;
+	
+	insert into Estatistica (idJogador)
+	values (jogadorId)
+	on conflict (idJogador) do nothing;
+	
+	update Estatistica 
+	set nrJogos = totalJogos
+	where idJogador = jogadorId;
 
 	return totalJogos;
 end;
 $$;
 
--- select totalJogosJogador(2); -- instruction that tests the function
+select totalJogosJogador(3); -- instruction that tests the function
