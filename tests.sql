@@ -145,4 +145,98 @@ $$;
 
 call test_iniciarConversa();
 
+--------------------------------------------------------------------------------------------
 
+--Testes da função totalJogosJogadores
+
+--tests
+
+create or replace procedure test_totalJogosJogador1() --Jogador existente mas nenhuma partida.
+language plpgSQL as
+$$
+declare 
+	JogadorId int;
+	totalJogosFunc int;
+	totalEstatistica int;
+begin
+	insert into Regiao (nome) 
+	values ('Coimbra');
+	--on conflict (nome) do nothing;
+	
+	insert into Jogador (estado, userName, email, nomeRegiao)
+	values ('Ativo', 'Rodrigo', 'rodrigo23@gmail.com', 'Coimbra')
+	returning id into JogadorId;
+	--on conflict (userName, email) do nothing;
+	
+	select totalJogosJogador(JogadorId)
+	into totalJogosFunc;
+
+	select nrJogos
+	into totalEstatistica 
+	from Estatistica 
+	where idJogador = jogadorId;
+
+	if totalJogosFunc = totalEstatistica and totalJogosFunc = 0 then
+		raise notice 'Teste1: Obter total de jogos de jogador sem partidas: Resultado OK';
+	else
+		raise notice 'Teste1: Obter total de pontos de jogador sem partidas: Resultado FAIL';
+	end if;
+	
+	rollback;
+end;
+$$;
+
+call test_totalJogosJogador1();
+
+/*create or replace procedure test_totalJogosJogador2() --Jogador existente com duas partidas.
+language plpgSQL as
+$$
+declare 
+	JogadorId int;
+	totalJogosFunc int;
+	PartidaId int;
+	totalEstatistica int;
+begin
+	insert into Regiao (nome) 
+	values ('Braga');
+	--on conflict (nome) do nothing;
+	
+	insert into Jogador (estado, userName, email, nomeRegiao)
+	values ('Ativo', 'Afonso', 'afonso443@gmail.com', 'Braga')
+	returning id into JogadorId;
+	--on conflict (userName, email) do nothing;
+	
+	insert into Partida (nomeJogo, dataFim)
+	values ('Tetris', '2023-05-01 22:30:00') 
+	returning id into PartidaId;
+	
+	insert into Normal (idPartida, dificuldade, idJogador, pontuacao)
+	values (PartidaId, 3, JogadorId, 600);
+	
+	insert into Partida (nomeJogo, dataFim)
+	values ('Doom', '2023-04-28 12:34:00') 
+	returning id into PartidaId;
+	
+	insert into Normal (idPartida, dificuldade, idJogador, pontuacao)
+	values (PartidaId, 4, JogadorId, 300);
+	
+	select totalJogosJogador(JogadorId)
+	into totalJogosFunc;
+
+	select nrJogos
+	into totalEstatistica 
+	from Estatistica 
+	where idJogador = jogadorId;
+
+	if totalJogosFunc = totalEstatistica and totalJogosFunc = 0 then
+		raise notice 'Teste1: Obter total de jogos de jogador com duas partidas: Resultado OK';
+	else
+		raise notice 'Teste1: Obter total de pontos de jogador com duas partidas: Resultado FAIL';
+	end if;
+	
+	rollback;
+end;
+$$;
+
+call test_totalJogosJogador2();*/
+--call test_totalJogosJogador3();
