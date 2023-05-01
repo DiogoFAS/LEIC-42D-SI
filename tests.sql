@@ -70,9 +70,9 @@ begin
 	where idJogador = jogadorId;
 
 	if totalFunc = totalEstatistica then
-		raise notice 'Teste1: Obter total de pontos de jogador sem partidas: Resultado OK';
+		raise notice 'Teste2: Obter total de pontos de jogador sem partidas: Resultado OK';
 	else
-		raise notice 'Teste1: Obter total de pontos de jogador sem partidas: Resultado FAIL';
+		raise notice 'Teste2: Obter total de pontos de jogador sem partidas: Resultado FAIL';
 	end if;
 	
 	rollback;
@@ -96,12 +96,12 @@ begin
 			when others then
 				get stacked diagnostics msg = MESSAGE_TEXT;
 				
-		--correctMsg = cast(('Jogador com o id % não existe.',invalidIdJogador) as text);
+		--correctMsg = 'Jogador com o id % não existe.',invalidIdJogador;
 				
 		if msg = 'Jogador com o id 0 não existe.' then
-			raise notice 'Teste1: Obter total de pontos de jogador inexistente: Resultado OK';
+			raise notice 'Teste3: Obter total de pontos de jogador inexistente: Resultado OK';
 		else
-			raise notice 'Teste1: Obter total de pontos de jogador inexistente: Resultado FAIL';
+			raise notice 'Teste3: Obter total de pontos de jogador inexistente: Resultado FAIL';
 		end if;
 	end;
 	rollback;
@@ -113,16 +113,17 @@ call test_totalPontosJogador1();
 call test_totalPontosJogador2();
 call test_totalPontosJogador3();
 
---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
 
 
-create or replace procedure test_iniciarConversa()-- iniciar conversa com um jogador existente.
+create or replace procedure test_iniciarConversa1()-- iniciar conversa com um jogador existente.
 language plpgSQL as
 $$
 declare
 	JogadorId int;
 	idConversa int;
 begin 
+	set transaction isolation level read uncommitted;
 	insert into Regiao (nome) 
 	values ('regiaoTest');
 	--on conflict (nome) do nothing;
@@ -143,6 +144,82 @@ begin
 end;
 $$;
 
-call test_iniciarConversa();
+
+create or replace procedure test_iniciarConversa2()-- iniciar conversa com um jogador inexistente.
+language plpgSQL as
+$$
+declare
+	invalidIdJogador int default 0;
+	idConversa int;
+	msg text;
+begin 
+	set transaction isolation level read uncommitted;
+	call iniciarConversa(invalidIdJogador, 'nomeDaConversa', idConversa);
+	exception 
+		when others then
+			get stacked diagnostics msg = MESSAGE_TEXT;
+				
+	--correctMsg = cast(('Jogador com o id % não existe.',invalidIdJogador) as text);
+	
+	raise notice '%', msg;
+	
+	if msg = 'Jogador com o id 0 não existe.' then
+		raise notice 'Teste1: Iniciar conversa com um jogador inexistente: Resultado OK';
+	else
+		raise notice 'Teste1: Iniciar conversa com um jogador inexistente: Resultado FAIL';
+	end if;
+rollback;
+end;
+$$;
+
+set transaction isolation level read uncommitted;
+call test_iniciarConversa1();
+set transaction isolation level read uncommitted;
+call test_iniciarConversa2();
+
+---------------------------------------------------------------------------------------------------------
+
+
+create or replace procedure test_juntarConversa1() --
+language plpgSQL as
+$$
+declare
+	conversaId Int;
+begin 
+	set transaction isolation level read uncommitted;
+
+	call iniciarConversa()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

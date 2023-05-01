@@ -25,11 +25,14 @@ begin
 	from Cracha
     where nome = crachaNome;
 	
+	raise notice 'pointLimit : %', pointLimit;
+	
     select nome
     into jogoNome
 	from Jogo
     where id = idJogo;
 	
+	raise notice 'jogoNome : %', jogoNome;
 
     if((select totalPontos 
 	from PontosJogoPorJogador(jogoNome)
@@ -41,10 +44,12 @@ begin
 	begin
 		insert into Tem (idJogador, nomeCracha, nomeJogo)
 		values (jogadorId, crachaNome, jogoNome);
+		raise notice 'cracha atribuido';
 		exception
 		when others then
 			NULL;
 	end;
+	commit;
 end;
 $$;
 

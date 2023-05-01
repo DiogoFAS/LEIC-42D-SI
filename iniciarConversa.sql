@@ -4,6 +4,8 @@ create or replace procedure iniciarConversa(idJogador int, nomeConversa varchar(
 language plpgSQL as
 $$
 begin
+	set transaction isolation level read uncommitted;
+
 	if not exists(select * from Jogador where id = idJogador) then
 		raise exception 'Jogador com o id % não existe.',idJogador;
 	end if;
@@ -13,12 +15,13 @@ begin
 end;
 $$;
 
+set transaction isolation level read uncommitted;
 do
 $$
 declare 
 	idConversa int;
 begin 
-	call iniciarConversa(1, 'Chat1', idConversa);
+	call iniciarConversa(0, 'Chat1', idConversa);
 	raise notice 'Conversa criada com o id %', idConversa;
 end;
 $$;
