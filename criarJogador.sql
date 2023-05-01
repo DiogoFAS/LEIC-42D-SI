@@ -14,7 +14,7 @@ begin
 	end if;
 	
 	if not exists (select * from Regiao where nome = regiaoJogador) then
-		raise exception 'Não existe a região %.', regiaoJogador;
+		insert into Regiao (nome) values (regiaoJogador);
 	end if;
 	
 	insert into Jogador (username, email, nomeRegiao) 
@@ -22,4 +22,4 @@ begin
 end;
 $$;
 
-call criarJogador('Alberto', 'albertocorreia420@gmail.com', 'Chelas');
+call criarJogador('Albertina', 'albertinajosefina27@gmail.com', 'Madeira');
