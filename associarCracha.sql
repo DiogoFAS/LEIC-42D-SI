@@ -53,4 +53,4 @@ begin
 end;
 $$;
 
-call associarCracha(1, '1', 'TetrisRank4');
+call associarCracha(1, '1', 'TetrisRank1');
