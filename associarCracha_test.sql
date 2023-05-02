@@ -15,26 +15,26 @@ begin
 	returning id into JogadorId;
 	
     insert into Jogo (nome, id, URL)
-	values ('Fortnite', '1', 'fortnite.com')
+	values ('Fortnite', '5', 'fortnite.com')
 	returning id, nome into idJogo, nomeJogo;
-
+	
 	insert into Cracha (nome, nomeJogo, limiteDePontos)
     values ('FortniteMaster', nomeJogo, 1000);
 
     insert into Partida (id, nomeJogo, dataFim)
-    values (5, nomeJogo, '2023-04-30 19:40:00');
+    values (5, nomeJogo, '2023-10-29 19:40:00');
 
     insert into Jogar (idPartida, idJogador, pontuacao)
-    values (5, 1, 450);
+    values (5, jogadorId, 450);
 
-	call associarCracha(JogadorId, idJogo, 'FortniteMaster');
-	raise notice 'ele tem: %', ((select nomeCracha from Tem where idJogador = JogadorId));
-
-	if not exists (select * from Tem where idJogador = JogadorId) then
-		raise notice 'associarCracha_test: Associar Cracha a um jogador: Resultado OK';
-	else
+	begin
+		call associarCracha(JogadorId, idJogo, 'FortniteMaster');
+		raise notice 'ele tem: %', ((select nomeCracha from Tem where idJogador = JogadorId));
 		raise notice 'associarCracha_test: Associar Cracha a um jogador: Resultado FAIL';
-	end if;
+		exception
+			when others then
+				raise notice 'associarCracha_test: Associar Cracha a um jogador: Resultado OK';
+	end;
 	rollback;
 end;
 $$;

@@ -9,7 +9,7 @@ declare
 	crachaC cursor (jogoNome varchar(20)) for select nome from Cracha where nomeJogo = jogoNome;
 begin
 
-	if (TG_OP <> 'UPDATE') then
+	if (TG_OP <> 'UPDATE' or TG_OP <> 'INSERT') then
 		raise exception 'gatilho inválido';
 	end if;	
 	
@@ -22,11 +22,9 @@ begin
 		for nomeCracha in crachaC(new.nomeJogo) loop -- percorrer todos os crachas daquele jogo.
 			begin 
 				call associarCracha(jogador.idJogador, jogoId, nomeCracha.nome);
-				--commit;
-				raise notice 'retornei do associarCracha com sucesso!';
 				exception
 					when others then
-						raise notice 'dei erro!';
+						null;
 			end;
 		end loop;
 	end loop;
@@ -46,16 +44,4 @@ after insert on Normal
 for each row 
 	execute procedure atribuicaoCrachas();
 
-
-select * from Partida;
-select * from MultiJogador;
-select * from Normal;
-select * from Jogar;
-select * from Tem;
-
-
-insert into Partida (id, nomeJogo, datafim) values (5, 'Tetris', '2023-04-30 19:40:00');
-insert into MultiJogador (idPartida, nomeJogo, estado, nomeRegiao) 
-values (5, 'Tetris', 'Em curso', 'Chelas');
-
-update MultiJogador set estado = 'Terminada' where idPartida = 4;
+update MultiJogador set estado = 'Em curso' where idPartida = 4;

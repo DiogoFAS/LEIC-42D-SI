@@ -36,7 +36,7 @@ end;
 $$;
 
 
-create or replace procedure test_totalPontosJogador2() --Jogador existente mas apenas 1 Partida.
+create or replace procedure test_totalPontosJogador2() --Jogador existente mas apenas 1 Partida Normal.
 language plpgSQL as
 $$
 declare 
@@ -70,9 +70,9 @@ begin
 	where idJogador = jogadorId;
 
 	if totalFunc = totalEstatistica then
-		raise notice 'Teste2: Obter total de pontos de jogador sem partidas: Resultado OK';
+		raise notice 'Teste2: Obter total de pontos de jogador com 1 partida normal: Resultado OK';
 	else
-		raise notice 'Teste2: Obter total de pontos de jogador sem partidas: Resultado FAIL';
+		raise notice 'Teste2: Obter total de pontos de jogador com 1 partida normal: Resultado FAIL';
 	end if;
 	
 	rollback;
@@ -80,7 +80,7 @@ end;
 $$;
 
 
-create or replace procedure test_totalPontosJogador3() --Jogador existente.
+create or replace procedure test_totalPontosJogador3() --Jogador inexistente.
 language plpgSQL as
 $$
 declare 
@@ -178,19 +178,6 @@ set transaction isolation level read uncommitted;
 call test_iniciarConversa2();
 
 ---------------------------------------------------------------------------------------------------------
-
-
-create or replace procedure test_juntarConversa1() --
-language plpgSQL as
-$$
-declare
-	conversaId Int;
-begin 
-	set transaction isolation level read uncommitted;
-
-	call iniciarConversa()
-
-
 
 
 

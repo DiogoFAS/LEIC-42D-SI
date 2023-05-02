@@ -28,4 +28,4 @@ end;
 $$;
 
 set transaction isolation level read uncommitted;
-call juntarConversa(1, 6);
+call juntarConversa(0, 6);

@@ -22,4 +22,4 @@ begin
 end;
 $$;
 
-select * from PontosJogoPorJogador('Tetris');
+select * from PontosJogoPorJogador('SpaceInv');

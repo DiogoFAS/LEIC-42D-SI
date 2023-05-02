@@ -22,7 +22,7 @@ create table Conversa (
 	id serial unique, --Ele dá erro se eu não colocar unique.
 	idJogador integer,
 	nome varchar(20),
-	primary key (id, idJogador),
+	primary key (id, idJogador),	
 	foreign key (idJogador) references Jogador(id)
 );
 

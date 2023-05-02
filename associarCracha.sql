@@ -24,16 +24,12 @@ begin
     into pointLimit
 	from Cracha
     where nome = crachaNome;
-	
-	raise notice 'pointLimit : %', pointLimit;
-	
+		
     select nome
     into jogoNome
 	from Jogo
     where id = idJogo;
 	
-	raise notice 'jogoNome : %', jogoNome;
-
     if((select totalPontos 
 	from PontosJogoPorJogador(jogoNome)
 	where idJogador = jogadorId
@@ -46,11 +42,10 @@ begin
 		values (jogadorId, crachaNome, jogoNome);
 		raise notice 'cracha atribuido';
 		exception
-		when others then
-			NULL;
+			when others then
+				NULL;
 	end;
-	commit;
 end;
 $$;
 
-call associarCracha(1, '1', 'TetrisRank1');
+call associarCracha(1, '1', 'TetrisRank4');
