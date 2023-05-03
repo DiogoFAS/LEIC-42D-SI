@@ -8,7 +8,6 @@ declare
 	totalJogos integer;
 	nJogosNormais integer;
     nJogosMulti integer;
-	nPartidas integer;
 begin
 	--begin
 	--	perform * from Jogador where id = jogadorId;
