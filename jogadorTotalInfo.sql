@@ -6,3 +6,5 @@ select Jogador.id, Jogador.estado,
 	Estatistica.totalPontosJogos
 from Jogador, Estatistica
 where Jogador.id = Estatistica.idJogador and Jogador.estado != 'Banido'
+
+select * from jogadorTotalInfo
