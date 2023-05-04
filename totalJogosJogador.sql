@@ -32,11 +32,11 @@ begin
 	
 	totalJogos = nJogosMulti + nJogosNormais;
 	
-	insert into Estatistica (idJogador)
+	insert into EstatisticaJogador (idJogador)
 	values (jogadorId)
 	on conflict (idJogador) do nothing;
 	
-	update Estatistica 
+	update EstatisticaJogador
 	set nrJogos = totalJogos
 	where idJogador = jogadorId;
 

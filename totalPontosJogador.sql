@@ -31,11 +31,11 @@ begin
 	
 	totalPontos = totalPontos + temporario;
 	
-	insert into Estatistica (idJogador)
+	insert into EstatisticaJogador (idJogador)
 	values (jogadorId)
 	on conflict (idJogador) do nothing;
 	
-	update Estatistica 
+	update EstatisticaJogador
 	set totalPontosJogos = totalPontos
 	where idJogador = jogadorId;
 
