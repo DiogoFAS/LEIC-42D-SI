@@ -122,9 +122,9 @@ create table EstatisticaJogador (
 );
 
 create table EstatisticaJogo (
-	idJogo integer primary key,
+	nomeJogo varchar(20) primary key,
 	nrPartidas integer,
 	nrJogadores integer,
 	totalPontos integer,
-	foreign key (idJogador) references Jogador(id)
+	foreign key (nomejogo) references Jogo(nome)
 );
