@@ -113,10 +113,18 @@ create table Adicionar (
 	foreign key (idJogadorAmigo) references Jogador(id)
 );
 
-create table Estatistica (
+create table EstatisticaJogador (
 	idJogador integer primary key,
 	nrPartidas integer,
 	nrJogos integer,
 	totalPontosJogos integer,
+	foreign key (idJogador) references Jogador(id)
+);
+
+create table EstatisticaJogo (
+	idJogo integer primary key,
+	nrPartidas integer,
+	nrJogadores integer,
+	totalPontos integer,
 	foreign key (idJogador) references Jogador(id)
 );
