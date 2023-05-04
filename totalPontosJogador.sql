@@ -43,4 +43,4 @@ begin
 end;
 $$;
 
-select totalPontosJogador(7);
+select totalPontosJogador(6);

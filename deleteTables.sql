@@ -1,0 +1,15 @@
+DELETE FROM EstatisticaJogador;
+DELETE FROM EstatisticaJogo;
+DELETE FROM Adicionar;
+DELETE FROM Tem;
+DELETE FROM Comprar;
+DELETE FROM Jogar;
+DELETE FROM Normal;
+DELETE FROM MultiJogador;
+DELETE FROM Partida;
+DELETE FROM Cracha;
+DELETE FROM Mensagem;
+DELETE FROM Conversa;
+DELETE FROM Jogo;
+DELETE FROM Jogador;
+DELETE FROM Regiao;

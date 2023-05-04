@@ -1,3 +1,5 @@
+--drop function totalPartidasJogador(integer)
+
 create or replace function totalPartidasJogador(jogadorId int)
 returns int
 language plpgSQL as
