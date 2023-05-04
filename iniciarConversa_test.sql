@@ -17,6 +17,7 @@ begin
 	else
 		raise notice 'Teste1: iniciar conversa com um jogador existente: Resultado OK';
 	end if;
+	
 	rollback;
 end;
 $$;
@@ -30,7 +31,6 @@ declare
 	idConversa int;
 	msg text;
 begin 
-	set transaction isolation level read uncommitted;
 	call iniciarConversa(invalidIdJogador, 'nomeDaConversa', idConversa);
 	exception 
 		when others then
@@ -47,7 +47,5 @@ rollback;
 end;
 $$;
 
-set transaction isolation level read uncommitted;
 call iniciarConversa_test1();
-set transaction isolation level read uncommitted;
 call iniciarConversa_test2();

@@ -1,6 +1,6 @@
 --drop procedure iniciarConversa(int, varchar(20), out int);
 
-create or replace procedure iniciarConversa(idJogador int, nomeConversa varchar(20), out res int)
+create or replace procedure iniciarConversaLogic(idJogador int, nomeConversa varchar(20), out res int)
 language plpgSQL as
 $$
 begin
@@ -15,7 +15,33 @@ begin
 end;
 $$;
 
-set transaction isolation level read uncommitted;
+create or replace procedure iniciarConversaTrans(idJogador int, nomeConversa varchar(20), out res int)
+language plpgSQL as 
+$$
+declare 
+	msg text;
+begin 
+	call iniciarConversaLogic(idJogador, nomeConversa, res);
+	exception
+		when others then
+			get stacked diagnostics msg = MESSAGE_TEXT;
+			raise exception '%',msg;
+			rollback;
+end;
+$$;
+
+create or replace procedure iniciarConversa(idJogador int, nomeConversa varchar(20), out res int)
+language plpgSQL as
+$$
+declare
+	msg text;
+begin 
+	commit;
+		set transaction isolation level read uncommitted;
+		call iniciarConversaTrans(idJogador, nomeConversa, res);
+end;
+$$;
+
 do
 $$
 declare 
