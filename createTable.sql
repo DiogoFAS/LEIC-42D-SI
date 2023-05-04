@@ -23,7 +23,7 @@ create table Conversa (
 	idJogador integer,
 	nome varchar(20),
 	primary key (id, idJogador),	
-	foreign key (idJogador) references Jogador(id)
+	foreign key (idJogador) references Jogador(id) 
 );
 
 create table Mensagem (
@@ -34,7 +34,7 @@ create table Mensagem (
 	dataDeEnvio timestamp default now(),
 	primary key (id, idConversa, idJogador),
 	foreign key (idConversa) references Conversa(id),
-	foreign key (idJogador) references Jogador(id)
+	foreign key (idJogador) references Jogador(id) 
 );
 
 create table Cracha (
@@ -73,7 +73,7 @@ create table Normal (
 	pontuacao integer,
 	primary key (idPartida, nomeJogo),
 	foreign key (idPartida) references Partida(id),
-	foreign key (idJogador) references Jogador(id)
+	foreign key (idJogador) references Jogador(id) 
 );
 
 create table Jogar (
@@ -82,7 +82,7 @@ create table Jogar (
 	pontuacao integer,
 	primary key (idPartida, idJogador),
 	foreign key (idPartida) references Partida(id),
-	foreign key (idJogador) references Jogador(id)
+	foreign key (idJogador) references Jogador(id) 
 );
 
 create table Comprar (

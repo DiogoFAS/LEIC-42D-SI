@@ -1,5 +1,5 @@
---drop view jogadorTotalInfo
---drop function banirJogadores()
+--drop view jogadorTotalInfo;
+--drop function banirJogadores();
 
 create or replace function banirJogadores() returns trigger
 language plpgSQL as
@@ -10,11 +10,8 @@ begin
 		raise exception 'gatilho inválido';
 	end if;
 
-	begin 
+	begin
 		call banirJogador(old.id);
-		exception
-		when others then
-			null;
 	end;
 	
 	raise notice 'gatilho acionado';
@@ -26,5 +23,6 @@ create trigger banirJogadores
 INSTEAD OF delete on jogadorTotalInfo
 for each row
 	execute procedure banirJogadores();
-
-delete from jogadorTotalInfo where id = 6;
+	
+--Execute Trigger
+--delete from jogadorTotalInfo where id = 6;

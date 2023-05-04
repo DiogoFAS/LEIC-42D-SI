@@ -40,10 +40,10 @@ insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersR
 insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('SpaceInvadersRank4', 'SpaceInv', 100, 'http://SpaceInvadersRank4.jpg');
 
 --insert Partida
-insert into Partida (id, nomeJogo, dataFim) values (1, 'Tetris', '2023-04-30 19:40:00');
-insert into Partida (id, nomeJogo, dataFim) values (2, 'Pacman', '2023-04-30 19:40:00');
-insert into Partida (id, nomeJogo, dataFim) values (3, 'Snake', '2023-04-30 21:20:00');
-insert into Partida (id, nomeJogo, dataFim) values (4, 'SpaceInv', '2023-04-30 12:30:00');
+insert into Partida (id, nomeJogo, dataFim) values (1, 'Tetris', '2024-04-30 19:40:00');
+insert into Partida (id, nomeJogo, dataFim) values (2, 'Pacman', '2024-04-30 19:40:00');
+insert into Partida (id, nomeJogo, dataFim) values (3, 'Snake', '2024-04-30 21:20:00');
+insert into Partida (id, nomeJogo, dataFim) values (4, 'SpaceInv', '2024-04-30 12:30:00');
 
 --insert MultiJogador
 insert into MultiJogador (idPartida, nomeJogo, estado, nomeRegiao) values (1, 'Tetris', 'Terminada', 'Chelas');
