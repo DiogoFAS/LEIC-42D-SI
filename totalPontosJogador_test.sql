@@ -6,7 +6,6 @@ declare
 	totalFunc int;
 	totalEstatistica int;
 begin
-	
 	call criarJogador('Test', 'Test123@gmail.com', 'regiaoTest');
 	
 	select id into JogadorId from Jogador where email = 'Test123@gmail.com';
@@ -16,7 +15,7 @@ begin
 
 	select totalPontosJogos 
 	into totalEstatistica 
-	from Estatistica 
+	from EstatisticaJogador 
 	where idJogador = jogadorId;
 
 	if totalFunc = totalEstatistica and totalFunc = 0 then
@@ -56,7 +55,7 @@ begin
 
 	select totalPontosJogos 
 	into totalEstatistica 
-	from Estatistica 
+	from EstatisticaJogador
 	where idJogador = jogadorId;
 
 	if totalFunc = totalEstatistica then
@@ -97,17 +96,17 @@ begin
 	returning id into PartidaIdMulti;
 	
 	insert into multiJogador (idPartida, nomeJogo, estado, nomeRegiao)
-	values (PartidaIdMulti, 'Tetris', 'Terminada', 'regiaoTest');
+	values (PartidaIdMulti, 'Pacman', 'Terminada', 'regiaoTest');
 	
-	insert into Jogar (idPartida, idJogador, pontuacao)
-	values (PartidaIdMulti, JogadorId, 300);
+	insert into Jogar (idPartida, nomeJogo, idJogador, pontuacao)
+	values (PartidaIdMulti, 'Pacman', JogadorId, 300);
 	
 	select totalPontosJogador(JogadorId)
 	into totalFunc;
 	
 	select totalPontosJogos 
 	into totalEstatistica 
-	from Estatistica 
+	from EstatisticaJogador
 	where idJogador = jogadorId;
 
 	if totalFunc = totalEstatistica then
@@ -151,7 +150,17 @@ end;
 $$;
 
 
+begin transaction;
 call totalPontosJogador_test1();
 call totalPontosJogador_test2();
-call totalPontosJogador_test3();
-call totalPontosJogador_test4();
+rollback;
+
+do
+$$ 
+begin 
+	call totalPontosJogador_test1();
+	call totalPontosJogador_test2();
+	call totalPontosJogador_test3();
+	call totalPontosJogador_test4();
+end;
+$$;

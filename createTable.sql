@@ -19,7 +19,7 @@ create table Jogo (
 );
 
 create table Conversa (
-	id serial unique, --Ele dá erro se eu não colocar unique.
+	id serial,
 	idJogador integer,
 	nome varchar(20),
 	primary key (id, idJogador),	
@@ -33,25 +33,24 @@ create table Mensagem (
 	texto varchar(200),
 	dataDeEnvio timestamp default now(),
 	primary key (id, idConversa, idJogador),
-	foreign key (idConversa) references Conversa(id),
-	foreign key (idJogador) references Jogador(id) 
+	foreign key (idConversa, idJogador) references Conversa(id, idJogador)
 );
 
 create table Cracha (
-	nome varchar(20) primary key, --Ele dá erro se eu não colocar unique.
+	nome varchar(20), --Ele dá erro se eu não colocar unique.
 	nomeJogo varchar(20), --Ele dá erro se eu não colocar unique.
 	limiteDePontos integer,
 	URL varchar(50),
-	unique (nome, nomeJogo), --primary key (nome, nomeJogo)
+	primary key (nome, nomeJogo), --primary key (nome, nomeJogo)
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
 create table Partida (
-	id integer primary key, --Ele dá erro se eu não colocar unique.
+	id integer,
 	nomeJogo varchar(20),
 	dataInicio timestamp default now(),
 	dataFim timestamp check (dataFim > dataInicio),
-	unique (id, nomeJogo), --primary key (id, nomeJogo)
+	primary key (id, nomeJogo),
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
@@ -61,7 +60,7 @@ create table MultiJogador (
 	estado varchar(30) check (estado = 'Por Iniciar' or estado = 'A aguardar jogadores' or estado = 'Em curso' or estado = 'Terminada'),
 	nomeRegiao varchar(10),
 	primary key (idPartida, nomeJogo),
-	foreign key (idPartida) references Partida(id),
+	foreign key (idPartida, nomeJogo) references Partida(id, nomeJogo),
 	foreign key (nomeRegiao) references Regiao(nome)
 );
 
@@ -72,16 +71,17 @@ create table Normal (
 	idJogador integer,
 	pontuacao integer,
 	primary key (idPartida, nomeJogo),
-	foreign key (idPartida) references Partida(id),
+	foreign key (idPartida, nomeJogo) references Partida(id, nomeJogo),
 	foreign key (idJogador) references Jogador(id) 
 );
 
 create table Jogar (
 	idPartida integer,
+	nomeJogo varchar(20),
 	idJogador integer,
 	pontuacao integer,
-	primary key (idPartida, idJogador),
-	foreign key (idPartida) references Partida(id),
+	primary key (idPartida, nomeJogo, idJogador),
+	foreign key (idPartida, nomeJogo) references Partida(id, nomeJogo),
 	foreign key (idJogador) references Jogador(id) 
 );
 
@@ -101,8 +101,7 @@ create table Tem (
 	nomeJogo varchar(20),
 	primary key (idJogador, nomeCracha, nomeJogo),
 	foreign key (idJogador) references Jogador(id),
-	foreign key (nomeCracha) references Cracha(nome),
-	foreign key (nomeJogo) references Jogo(nome) --foreign key (nomeJogo) references Cracha(nomeJogo)
+	foreign key (nomeCracha, nomeJogo) references Cracha(nome, nomeJogo)
 );
 
 create table Adicionar (

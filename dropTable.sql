@@ -1,4 +1,5 @@
-drop table if exists Estatistica;
+drop table if exists EstatisticaJogo;
+drop table if exists EstatisticaJogador;
 drop table if exists Adicionar;
 drop table if exists Tem;
 drop table if exists Comprar;

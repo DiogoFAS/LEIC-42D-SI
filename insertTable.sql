@@ -54,7 +54,7 @@ insert into Normal (idPartida, nomeJogo, dificuldade, idJogador, pontuacao) valu
 insert into Normal (idPartida, nomeJogo, dificuldade, idJogador, pontuacao) values (3, 'Snake', 3, 2, 450);
 
 --insert Jogar
-insert into Jogar (idPartida, idJogador, pontuacao) values (1, 1, 450);
-insert into Jogar (idPartida, idJogador, pontuacao) values (1, 6, 500);
-insert into Jogar (idPartida, idJogador, pontuacao) values (4, 3, 700);
-insert into Jogar (idPartida, idJogador, pontuacao) values (4, 5, 650);
+insert into Jogar (idPartida, nomeJogo, idJogador, pontuacao) values (1, 'Tetris', 1, 450);
+insert into Jogar (idPartida, nomeJogo, idJogador, pontuacao) values (1, 'Tetris', 6, 500);
+insert into Jogar (idPartida, nomeJogo, idJogador, pontuacao) values (4, 'SpaceInv', 3, 700);
+insert into Jogar (idPartida, nomeJogo, idJogador, pontuacao) values (4, 'SpaceInv', 5, 650);
