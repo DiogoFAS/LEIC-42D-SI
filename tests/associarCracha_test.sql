@@ -6,7 +6,8 @@ declare
 	idConversa int;
 	idJogo varchar(10);
 	nomeJogo varchar(20);
-begin 
+begin
+	
 	insert into Regiao (nome) 
 	values ('regiaoTest');
 	
@@ -31,6 +32,8 @@ begin
     values (5, jogadorId, 450);
 
 	begin
+		set transaction isolation level repeatable read;
+		
 		call associarCracha(JogadorId, idJogo, 'FortniteMaster');
 		raise notice 'ele tem: %', ((select nomeCracha from Tem where idJogador = JogadorId));
 		raise notice 'associarCracha_test: Associar Cracha a um jogador: Resultado FAIL';
@@ -54,7 +57,6 @@ $$;
 do
 $$ 
 begin
-	set transaction isolation level repeatable read;
 	call associarCracha_test();
 end;
 $$;

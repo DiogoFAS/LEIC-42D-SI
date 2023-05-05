@@ -3,8 +3,8 @@ language plpgSQL as
 $$
 declare
 	jogadorId int;
-begin 
-	
+begin
+
 	insert into Regiao (nome)
 	values ('Africa');
 
@@ -27,7 +27,6 @@ $$;
 do
 $$ 
 begin
-	set transaction isolation level repeatable read;
 	call banirJogadores_test();
 end;
 $$;
