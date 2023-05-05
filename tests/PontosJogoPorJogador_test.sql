@@ -31,4 +31,9 @@ begin
 end;
 $$;
 
+do
+$$ 
+begin 
 call PontosJogoPorJogador_test();
+end;
+$$;

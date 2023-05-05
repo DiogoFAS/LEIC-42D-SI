@@ -7,6 +7,8 @@ declare
 	totalPoints int;
 	jogoNome varchar(20);
 begin
+	set transaction isolation level repeatable read;
+
 	if not exists(select * from Jogador where id = jogadorId) then
 		raise exception 'Jogador com o id % não existe.',jogadorId;
 	end if;
@@ -46,5 +48,3 @@ begin
 	end;
 end;
 $$;
-
-call associarCracha(1, '1', 'TetrisRank4');

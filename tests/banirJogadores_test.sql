@@ -24,4 +24,10 @@ begin
 end;
 $$;
 
-call banirJogadores_test();
+do
+$$ 
+begin
+	set transaction isolation level repeatable read;
+	call banirJogadores_test();
+end;
+$$;

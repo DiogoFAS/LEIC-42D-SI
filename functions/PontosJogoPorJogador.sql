@@ -5,7 +5,7 @@ returns table(idJogador int, totalPontos int)
 language plpgSQL as
 $$
 begin
-	
+
 	if not exists (select * from Jogo where nome = jogoNome) then
 		raise exception 'Jogo % não existe.', jogoNome;
 	end if;

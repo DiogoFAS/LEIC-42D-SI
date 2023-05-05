@@ -51,4 +51,10 @@ begin
 end;
 $$;
 
-call associarCracha_test();
+do
+$$ 
+begin
+	set transaction isolation level repeatable read;
+	call associarCracha_test();
+end;
+$$;
