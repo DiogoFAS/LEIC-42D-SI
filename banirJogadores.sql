@@ -23,6 +23,3 @@ create trigger banirJogadores
 INSTEAD OF delete on jogadorTotalInfo
 for each row
 	execute procedure banirJogadores();
-	
---Execute Trigger
---delete from jogadorTotalInfo where id = 6;

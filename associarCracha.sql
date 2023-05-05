@@ -4,7 +4,6 @@ create or replace procedure associarCracha(jogadorId int, idJogo varchar(10), cr
 language plpgSQL as
 $$
 declare 
-	pointLimit int;
 	totalPoints int;
 	jogoNome varchar(20);
 begin

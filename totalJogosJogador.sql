@@ -1,4 +1,4 @@
---drop function totalPontosJogador(integer);
+--drop function totalJogosJogador(integer);
 
 create or replace function totalJogosJogador(jogadorId int)
 returns int
