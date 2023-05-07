@@ -44,6 +44,8 @@ insert into Partida (id, nomeJogo, dataFim) values (1, 'Tetris', '2024-04-30 19:
 insert into Partida (id, nomeJogo, dataFim) values (2, 'Pacman', '2024-04-30 19:40:00');
 insert into Partida (id, nomeJogo, dataFim) values (3, 'Snake', '2024-04-30 21:20:00');
 insert into Partida (id, nomeJogo, dataFim) values (4, 'SpaceInv', '2024-04-30 12:30:00');
+insert into Partida (id, nomeJogo, dataFim) values (5, 'SpaceInv', '2024-04-23 21:30:00');
+
 
 --insert MultiJogador
 insert into MultiJogador (idPartida, nomeJogo, estado, nomeRegiao) values (1, 'Tetris', 'Terminada', 'Chelas');
@@ -52,6 +54,8 @@ insert into MultiJogador (idPartida, nomeJogo, estado, nomeRegiao) values (4, 'S
 --insert Normal
 insert into Normal (idPartida, nomeJogo, dificuldade, idJogador, pontuacao) values (2, 'Pacman', 4, 3, 350);
 insert into Normal (idPartida, nomeJogo, dificuldade, idJogador, pontuacao) values (3, 'Snake', 3, 2, 450);
+insert into Normal (idPartida, nomeJogo, dificuldade, idJogador, pontuacao) values (5, 'SpaceInv', 3, 3, 500);
+
 
 --insert Jogar
 insert into Jogar (idPartida, nomeJogo, idJogador, pontuacao) values (1, 'Tetris', 1, 450);
