@@ -1,6 +1,6 @@
 -- Procedimento armazenado enviarMensagem
 
-create or replace procedure enviarMensagem(jogadorId int, conversaId int, textoConversa varchar(200))
+create or replace procedure enviarMensagem(jogadorId int, conversaId int, textoMensagem varchar(200))
 language plpgSQL as
 $$
 begin
@@ -14,7 +14,7 @@ begin
 	
 	if exists(select * from Conversa where id = conversaId and idJogador = jogadorId) then
 		insert into Mensagem (idConversa, idJogador, texto)
-		values (conversaId, jogadorId, textoConversa);
+		values (conversaId, jogadorId, textoMensagem);
 	else 
 		raise exception 'Conversa com o id do jogador % não existe.',jogadorId;
 	end if;
