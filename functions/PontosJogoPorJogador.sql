@@ -21,5 +21,3 @@ begin
 
 end;
 $$;
-
-select * from PontosJogoPorJogador('SpaceInv');
