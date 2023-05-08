@@ -8,13 +8,6 @@ declare
 	totalPontos integer;
 	temporario integer;
 begin
-	--begin
-	--	perform * from Jogador where id = jogadorId;
-	--	exception
-	--		when no_data_found then
-	--			raise exception 'Jogador com o id % não existe.',jogadorId;
-	--end;
-	
 	if not exists (select * from Jogador where id = jogadorId) then
 		raise exception 'Jogador com o id % não existe.',jogadorId;
 	end if;

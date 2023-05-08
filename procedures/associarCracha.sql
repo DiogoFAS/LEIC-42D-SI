@@ -7,7 +7,7 @@ declare
 	totalPoints int;
 	jogoNome varchar(20);
 begin
-	set transaction isolation level repeatable read;
+	--set transaction isolation level repeatable read;
 
 	if not exists(select * from Jogador where id = jogadorId) then
 		raise exception 'Jogador com o id % não existe.',jogadorId;
@@ -22,7 +22,7 @@ begin
 	end if;
      
     select limiteDePontos
-    into pointLimit
+    into totalPoints
 	from Cracha
     where nome = crachaNome;
 		
@@ -34,7 +34,7 @@ begin
     if((select totalPontos 
 	from PontosJogoPorJogador(jogoNome)
 	where idJogador = jogadorId
-	) < pointLimit) then
+	) < totalPoints) then
         raise exception 'Jogador com id % nao tem pontos suficientes para o rank %', jogadorId, crachaNome;
     end if;
 
@@ -48,3 +48,7 @@ begin
 	end;
 end;
 $$;
+
+select * from tem;
+
+call associarCracha(1, '1', 'TetrisRank4');

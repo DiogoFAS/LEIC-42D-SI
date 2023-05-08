@@ -4,7 +4,7 @@ create or replace procedure iniciarConversaLogic(idJogador int, nomeConversa var
 language plpgSQL as
 $$
 begin
-	set transaction isolation level read uncommitted;
+	set transaction isolation level repeatable read;
 
 	if not exists(select * from Jogador where id = idJogador) then
 		raise exception 'Jogador com o id % não existe.',idJogador;
