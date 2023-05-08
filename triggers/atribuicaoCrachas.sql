@@ -1,16 +1,14 @@
---drop
+--drop atribuicaoCrachas();
 
 create or replace function atribuicaoCrachas() returns trigger
 language plpgSQL as
 $$
 declare
-	msg text;
 	jogoId varchar(10);
-	jogadorC cursor (PartidaId int) for select idJogador from Jogar where idPartida = PartidaId;
-	crachaC cursor (jogoNome varchar(20)) for select nome from Cracha where nomeJogo = jogoNome;
+	jogador RECORD;
+	cracha RECORD;
 begin
-
-	if (TG_OP <> 'UPDATE') then -- or TG_OP <> 'INSERT'
+	if (TG_OP <> 'UPDATE' and TG_OP <> 'INSERT') then
 		raise exception 'gatilho inválido';
 	end if;	
 	
@@ -19,18 +17,34 @@ begin
 	from Jogo
 	where nome = new.nomeJogo;
 	
-	for jogador in jogadorC(new.idPartida) loop -- percorrer todos os jogadores daquela partida.
-		for nomeCracha in crachaC(new.nomeJogo) loop -- percorrer todos os crachas daquele jogo.
-			begin 
-				call associarCracha(jogador.idJogador, jogoId, nomeCracha.nome);
-				exception
-					when others then
-						null;
-			end;
+	if (TG_TABLE_NAME = 'multijogador') then
+		for jogador in select * from Jogar where idPartida = new.idPartida loop -- percorrer todos os jogadores daquela partida.
+			for cracha in select * from Cracha where nomeJogo = new.nomeJogo loop-- percorrer todos os crachas daquele jogo.
+				begin 
+					--set transaction isolation level repeatable read;
+					call associarCracha(jogador.idJogador, jogoId, cracha.nome);
+					exception
+						when others then
+							null;
+				end;
+			end loop;
 		end loop;
-	end loop;
+	end if;
 	
-	raise notice 'gatilho acionado';
+	if (TG_TABLE_NAME = 'normal') then
+		for jogador in select * from Normal where idPartida = new.idPartida loop -- percorrer todos os jogadores daquela partida.
+			for cracha in select * from Cracha where nomeJogo = new.nomeJogo loop-- percorrer todos os crachas daquele jogo.
+				begin 
+					--set transaction isolation level repeatable read;
+					call associarCracha(jogador.idJogador, jogoId, cracha.nome);
+					exception
+						when others then
+							null;
+				end;
+			end loop;
+		end loop;
+	end if;
+	
 	return null;
 end;
 $$;
@@ -38,16 +52,10 @@ $$;
 create trigger atribuicaoCrachas
 after update of estado on MultiJogador
 for each row 
+when (new.estado = 'Terminada')
 	execute procedure atribuicaoCrachas();
 	
 create trigger atribuicaoCrachas
 after insert on Normal
 for each row 
 	execute procedure atribuicaoCrachas();
-	
---when new.estado = 'Terminada'
-select * from MultiJogador;
-select * from Jogar;
-select * from Tem;
-
-update MultiJogador set estado = 'Terminada' where idPartida = 4;

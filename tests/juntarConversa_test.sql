@@ -14,6 +14,8 @@ begin
 		exception
 			when others then 
 				get stacked diagnostics msg = MESSAGE_TEXT;
+				
+		raise notice '%',msg;
 			
 		if msg = 'Conversa com o id 0 não existe.' then 
 			raise notice 'Teste1: Jogador existente junta-se a uma conversa inexistente: Resultado OK';
@@ -21,7 +23,6 @@ begin
 			raise notice 'Teste1: Jogador existente junta-se a uma conversa inexistente: Resultado FAIL';
 		end if;
 	end;
-	rollback;
 end;
 $$;
 
@@ -34,7 +35,7 @@ declare
 	jogadorId2 int;
 	conversaId int;
 begin
-	set transaction isolation level read uncommitted;
+	set transaction isolation level repeatable read;
 	call criarJogador('Test1', 'Test1@gmail.com', 'regiaoTest');
 	
 	call criarJogador('Test2', 'Test2@gmail.com', 'regiaoTest');
@@ -45,13 +46,12 @@ begin
 	call iniciarConversa(jogadorId1, 'ConversaTest', conversaId);
 
 	call juntarConversa(jogadorId2, conversaId);
-
+	
 	if not exists (select * from Conversa where idJogador = jogadorId2) then
 		raise notice 'Teste2: Jogador existente junta-se a uma conversa existente: Resultado FAIL';
 	else
 		raise notice 'Teste2: Jogador existente junta-se a uma conversa existente: Resultado OK';
 	end if;
-	rollback;
 end;
 $$;
 
@@ -64,13 +64,13 @@ declare
 	jogadorId2 int;
 	conversaId int;
 begin 
-	call criarJogador('Test1', 'Test1@gmail.com', 'regiaoTest');
+	call criarJogador('Test3', 'Test3@gmail.com', 'regiaoTest');
 	 
-	call criarJogador('Test2', 'Test2@gmail.com', 'regiaoTest');
+	call criarJogador('Test4', 'Test4@gmail.com', 'regiaoTest');
 	
 	select id into jogadorId1 from Jogador where email = 'Test1@gmail.com';
 	select id into jogadorId2 from Jogador where email = 'Test2@gmail.com';
-	
+		
 	call iniciarConversa(jogadorId1, 'ConversaTest', conversaId);
 
 	call juntarConversa(jogadorId2, conversaId);
@@ -78,11 +78,10 @@ begin
 	call juntarConversa(jogadorId2, conversaId);
 	
 	if not exists (select * from Conversa where idJogador = jogadorId2) then
-		raise notice 'Teste2: Jogador existente junta-se a uma conversa existente: Resultado FAIL';
+		raise notice 'Teste3: Jogador existente junta-se a uma conversa existente: Resultado FAIL';
 	else
-		raise notice 'Teste2: Jogador existente junta-se a uma conversa existente: Resultado OK';
+		raise notice 'Teste3: Jogador existente junta-se a uma conversa existente: Resultado OK';
 	end if;
-	rollback;
 end;
 $$;
 
@@ -96,10 +95,10 @@ declare
 	conversaId int;
 	msg text;
 begin
-	call criarJogador('Test1', 'Test1@gmail.com', 'regiaoTest');
+	call criarJogador('Test5', 'Test5@gmail.com', 'regiaoTest');
 	
 	select id into jogadorId from Jogador where email = 'Test1@gmail.com';
-	
+
 	call iniciarConversa(jogadorId, 'ConversaTest', conversaId);
 
 	begin
@@ -109,20 +108,24 @@ begin
 				get stacked diagnostics msg = MESSAGE_TEXT;
 	
 		if msg = 'Jogador com o id 0 não existe.' then 
-			raise notice 'Teste1: Jogador existente junta-se a uma conversa inexistente: Resultado OK';
+			raise notice 'Teste4: Jogador existente junta-se a uma conversa inexistente: Resultado OK';
 		else
-			raise notice 'Teste1: Jogador existente junta-se a uma conversa inexistente: Resultado FAIL';
+			raise notice 'Teste4: Jogador existente junta-se a uma conversa inexistente: Resultado FAIL';
 		end if;
 	end;
-	rollback;
 end;
 $$;
 
-set transaction isolation level read uncommitted;
-call juntarConversa_test1();
-set transaction isolation level read uncommitted;
-call juntarConversa_test2();
-set transaction isolation level read uncommitted;
-call juntarConversa_test3();
-set transaction isolation level read uncommitted;
-call juntarConversa_test4();
+select * from Jogador;
+
+set transaction isolation level repeatable read;
+do
+$$
+begin
+	call juntarConversa_test1();
+	call juntarConversa_test2();
+	call juntarConversa_test3();
+	call juntarConversa_test4();
+	rollback;
+end;
+$$;

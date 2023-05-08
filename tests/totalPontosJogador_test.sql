@@ -149,12 +149,6 @@ begin
 end;
 $$;
 
-
-begin transaction;
-call totalPontosJogador_test1();
-call totalPontosJogador_test2();
-rollback;
-
 do
 $$ 
 begin 
