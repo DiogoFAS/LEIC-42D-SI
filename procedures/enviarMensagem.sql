@@ -4,6 +4,8 @@ create or replace procedure enviarMensagem(jogadorId int, conversaId int, textoM
 language plpgSQL as
 $$
 begin
+	set transaction isolation level serializable
+
 	if not exists(select * from Jogador where id = jogadorId) then
 		raise exception 'Jogador com o id % não existe.',jogadorId;
 	end if;

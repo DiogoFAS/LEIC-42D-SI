@@ -5,6 +5,8 @@ create or replace procedure criarJogador(nomeJogador varchar(20), emailJogador v
 language plpgSQL as
 $$
 begin
+	set transaction isolation level read committed;
+	
 	if exists (select * from Jogador where userName = nomeJogador) then
 		raise exception 'Já existe um jogador com o nome %.', nomeJogador;
 	end if;

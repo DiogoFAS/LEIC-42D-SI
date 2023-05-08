@@ -5,6 +5,8 @@ create or replace procedure desativarJogador(jogadorId int)
 language plpgSQL as
 $$
 begin
+	set transaction isolation level repeatable read;
+
 	if not exists (select * from Jogador where id = jogadorId) then
 		raise exception 'Não existe um jogador com o id %.', jogadorId;
 	end if;
