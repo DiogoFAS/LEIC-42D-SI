@@ -30,6 +30,7 @@ language plpgSQL as
 $$
 declare 
     jogadorId int;
+	partidaId int default 0;
 begin 
 
     call criarJogador('test', 'test@gmail.com', 'regiaoTest');
@@ -37,15 +38,15 @@ begin
 	select id from Jogador where userName = 'test' into jogadorId;
 
     insert into Partida(id, nomeJogo, dataFim)
-    values (0, 'Tetris', '2023-10-8 14:30');
+    values (partidaId, 'Tetris', '2023-10-8 14:30');
 	
     insert into MultiJogador(idPartida, nomeJogo, estado, nomeRegiao)
-    values (0, 'Tetris', 'Por Iniciar', 'regiaoTest');
+    values (partidaId, 'Tetris', 'Por Iniciar', 'regiaoTest');
 
     insert into Jogar(idPartida, nomeJogo, idJogador, pontuacao)
-    values (0, 'Tetris', jogadorId, 150);
+    values (partidaId, 'Tetris', jogadorId, 150);
 	
-	update MultiJogador set estado = 'Terminada' where idPartida = 4;
+	update MultiJogador set estado = 'Terminada' where idPartida = partidaId;
 	
     if not exists (select * from Tem where idJogador = jogadorId) then
         raise notice 'Test2: Atribuição do cracha com menor pontos requeridos com uma partida MultiJogador: Resultado FAIL';

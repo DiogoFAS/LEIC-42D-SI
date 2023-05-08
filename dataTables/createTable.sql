@@ -37,11 +37,11 @@ create table Mensagem (
 );
 
 create table Cracha (
-	nome varchar(20), --Ele dá erro se eu não colocar unique.
-	nomeJogo varchar(20), --Ele dá erro se eu não colocar unique.
+	nome varchar(20),
+	nomeJogo varchar(20),
 	limiteDePontos integer,
 	URL varchar(50),
-	primary key (nome, nomeJogo), --primary key (nome, nomeJogo)
+	primary key (nome, nomeJogo),
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
