@@ -3,7 +3,7 @@ create table Regiao (
 	nome varchar(10) primary key
 );
 
-create table Jogador (
+create table Jogador (	
 	id serial primary key,
 	estado varchar(10) check (estado = 'Ativo' or estado = 'Inativo' or estado = 'Banido'),
 	userName varchar(20) unique,
