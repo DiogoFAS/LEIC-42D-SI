@@ -37,6 +37,7 @@ public class App
         //read user input
         //clear console
         //get function to execute 2d...2l
+        //int option = System.in.read();
         Utils.clearConsole();
     }
 }

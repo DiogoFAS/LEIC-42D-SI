@@ -13,10 +13,13 @@ acarretar problemas vários, em particular, no que respeita à consistência dos da
 
 package businessLogic;
 
-import java.util.List;
 import jakarta.persistence.*;
 
-import model.*;
+import utils.DataScope;
+import utils.FunctionParameter;
+import utils.Utils;
+
+import static utils.Utils.arrayToArgs;
 
 /**
  * Hello world!
@@ -28,11 +31,40 @@ public class BLService
     @SuppressWarnings("unchecked")
 	public void test() throws Exception
     { //
-    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAExemplo");
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("SI");
         EntityManager em = emf.createEntityManager();
         try 
         {
-            
+            /*System.out.println("criarJogador procedure");
+
+            String procedureName = "criarJogador";
+
+            String nome = "Diogo";
+            String email = "Diogo@gmail.com";
+            String regiao = "Sintra";
+
+            Object[] args1 = { nome, email, regiao};
+
+            Utils.executeProcedure(procedureName, args1, em);*/
+
+
+            System.out.println("totalJogosJogador function");
+
+            String functionName = "totalJogosJogador";
+
+            FunctionParameter idJogador = new FunctionParameter(Integer.class, ParameterMode.IN);
+            FunctionParameter totalJogosPar = new FunctionParameter(Integer.class, ParameterMode.OUT);
+
+            FunctionParameter[] argsJogador = {idJogador, totalJogosPar};
+
+            Object[] args2 = { 3 }; // idJogador
+
+            System.out.println("totalJogosJogador function registered!");
+            Utils.registerFunction(functionName, argsJogador, em);
+
+            System.out.println("totalJogosJogador function executed!");
+            Integer totalJogos = (Integer) Utils.executeFunction(functionName, args2);
+            System.out.println(totalJogos);
         } 
         catch(Exception e)
         {
@@ -46,96 +78,3 @@ public class BLService
         }
     }
 }
-/*
- Aluno al = new Aluno();
-            al.setNumal(111L);
-            al.setNomeal("Diogo");
-
-            Aluno.IMapper<Aluno, Long> map = new Aluno.AlunoDataMapperImpl(); // static
-
-            //map.Create(al,em);
-            al.setNomeal("André");
-            map.Update(al, em);
-            Aluno aluno = map.Read(al.getNumal(), em);
-            System.out.println(aluno);
-
-            //map.Delete(al, em);
-
-//            em.flush(); //Send changes to database
-            em.clear();
- */
-
-/*
- //Criar um aluno
-            System.out.println("Criar um aluno");
-            em.getTransaction().begin();
-
-            Aluno a = new Aluno();
-
-            a.setNumal(555);
-            a.setNomeal("rui silva");
-            em.persist(a);
-            em.getTransaction().commit();
-
-
-            //ler um aluno
-            //String sql = "SELECT a.numal FROM Aluno a";
-            //Query query = em.createQuery(sql);
-
-            //List<Long> la1 = query.getResultList();
-            //for (long ax : la1)
-            //{
-            //    System.out.printf("%d ", ax);
-            //}
-
-            String sql = "SELECT a FROM Aluno a";
-            Query query = em.createQuery(sql);
-
-            List<Aluno> la = query.getResultList();
-
-            for (Aluno ax : la)
-            {
-                System.out.printf("%d ", ax.getNumal());
-                System.out.printf("%s \n", ax.getNomeal());
-            }
-
-
-            // Criar CACIFO
-            System.out.println("Criar um Cacifo");
-            em.getTransaction().begin();
-
-            Cacifo c = new Cacifo();
-
-            c.setDescrcac("Primeiro Cacifo");
-            em.persist(c);
-            em.getTransaction().commit();
-
-            System.out.printf("Numero de cacifo %d\n", c.getNumcac());
-
-
-            // Criar Hobby
-            System.out.println("Criar um Hobby");
-            em.getTransaction().begin();
-
-            HobbyPK pk = new HobbyPK();
-
-            pk.setNumal(555);
-            pk.setNumhb(1);
-
-            Hobby h = new Hobby();
-
-            h.setDescr("hobby 1");
-            h.setId(pk);
-            em.persist(h);
-            em.getTransaction().commit();
-
-
-            //DELETE
-            em.getTransaction().begin();
-            em.remove(em.find(Aluno.class,555L));
-            em.flush(); //Send changes to database
-            em.getTransaction().commit();
-            em.clear();
-            System.out.println("\n--# Removed!!");
-
- */

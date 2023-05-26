@@ -13,10 +13,12 @@ begin
 	
 	select coalesce(count(distinct nomeJogo), 0)
 	into totalJogos
-	from Jogar
-	inner join Normal
-	on Jogar.idJogador = Normal.idJogador
-	where Jogar.idJogador = jogadorId and Normal.idJogador = jogadorId;
+	from (select nomeJogo from Jogar
+	where Jogar.idJogador = jogadorId
+	union
+	select nomeJogo from Normal
+	where Normal.idJogador = jogadorId
+	) as A;
 	
 	insert into EstatisticaJogador (idJogador)
 	values (jogadorId)
@@ -30,4 +32,4 @@ begin
 end;
 $$;
 
-select totalJogosJogador(3); -- instruction that tests the function
+select totalJogosJogador(6); -- instruction that tests the function

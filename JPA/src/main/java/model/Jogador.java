@@ -26,26 +26,26 @@ public class Jogador {
     @JoinColumn(name = "nomeregiao")
     private Regiao nomeregiao;
 
-    @ManyToMany(mappedBy = "idjogador")
-    private Set<Jogador> jogadors = new LinkedHashSet<>();
+    //@ManyToMany(mappedBy = "idjogador")
+    //private Set<Jogador> jogadors = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "jogador")
-    private Set<Comprar> comprars = new LinkedHashSet<>();
+    //@OneToMany(mappedBy = "jogador")
+    //private Set<Comprar> comprars = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "jogador")
-    private Set<Conversa> conversas = new LinkedHashSet<>();
+    //@OneToMany(mappedBy = "jogador")
+    //private Set<Conversa> conversas = new LinkedHashSet<>();
 
     @OneToOne(mappedBy = "jogador")
     private Estatisticajogador estatisticajogador;
 
-    @OneToMany(mappedBy = "jogador")
-    private Set<Jogar> jogars = new LinkedHashSet<>();
+    //@OneToMany(mappedBy = "jogador")
+    //private Set<Jogar> jogars = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idjogador")
-    private Set<Normal> normals = new LinkedHashSet<>();
+    //@OneToMany(mappedBy = "idjogador")
+    //private Set<Normal> normals = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "idjogador")
-    private Set<Cracha> crachas = new LinkedHashSet<>();
+    //@ManyToMany(mappedBy = "idjogador")
+    //private Set<Cracha> crachas = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -87,29 +87,29 @@ public class Jogador {
         this.nomeregiao = nomeregiao;
     }
 
-    public Set<Jogador> getJogadors() {
-        return jogadors;
-    }
+    //public Set<Jogador> getJogadors() {
+    //    return jogadors;
+    //}
 
-    public void setJogadors(Set<Jogador> jogadors) {
-        this.jogadors = jogadors;
-    }
+    //public void setJogadors(Set<Jogador> jogadors) {
+    //    this.jogadors = jogadors;
+    //}
 
-    public Set<Comprar> getComprars() {
-        return comprars;
-    }
+    //public Set<Comprar> getComprars() {
+    //    return comprars;
+    //}
 
-    public void setComprars(Set<Comprar> comprars) {
-        this.comprars = comprars;
-    }
+    //public void setComprars(Set<Comprar> comprars) {
+    //    this.comprars = comprars;
+    //}
 
-    public Set<Conversa> getConversas() {
-        return conversas;
-    }
+    //public Set<Conversa> getConversas() {
+    //    return conversas;
+    //}
 
-    public void setConversas(Set<Conversa> conversas) {
-        this.conversas = conversas;
-    }
+    //public void setConversas(Set<Conversa> conversas) {
+    //    this.conversas = conversas;
+    //}
 
     public Estatisticajogador getEstatisticajogador() {
         return estatisticajogador;
@@ -119,28 +119,28 @@ public class Jogador {
         this.estatisticajogador = estatisticajogador;
     }
 
-    public Set<Jogar> getJogars() {
-        return jogars;
-    }
+    //public Set<Jogar> getJogars() {
+    //    return jogars;
+    //}
 
-    public void setJogars(Set<Jogar> jogars) {
-        this.jogars = jogars;
-    }
+    //public void setJogars(Set<Jogar> jogars) {
+    //    this.jogars = jogars;
+    //}
 
-    public Set<Normal> getNormals() {
-        return normals;
-    }
+    //public Set<Normal> getNormals() {
+    //    return normals;
+    //}
 
-    public void setNormals(Set<Normal> normals) {
-        this.normals = normals;
-    }
+    //public void setNormals(Set<Normal> normals) {
+    //    this.normals = normals;
+    //}
 
-    public Set<Cracha> getCrachas() {
-        return crachas;
-    }
+    //public Set<Cracha> getCrachas() {
+    //    return crachas;
+    //}
 
-    public void setCrachas(Set<Cracha> crachas) {
-        this.crachas = crachas;
-    }
+    //public void setCrachas(Set<Cracha> crachas) {
+    //    this.crachas = crachas;
+    //}
 
 }
