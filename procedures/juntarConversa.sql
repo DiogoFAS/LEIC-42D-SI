@@ -29,6 +29,3 @@ begin
 	end if;
 end;
 $$;
-
-set transaction isolation level repeatable read;
-call juntarConversa(3, 8);

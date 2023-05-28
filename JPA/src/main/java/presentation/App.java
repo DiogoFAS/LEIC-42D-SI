@@ -1,29 +1,23 @@
 /*
  Walter Vieira (2022-04-22)
- Sistemas de Informação - projeto JPAAulas_ex1
- Código desenvolvido para iulustração dos conceitos sobre acesso a dados, concretizados com base na especificação JPA.
- Todos os exemplos foram desenvolvidos com EclipseLinlk (3.1.0-M1), usando o ambientre Eclipse IDE versão 2022-03 (4.23.0).
+ Sistemas de Informaï¿½ï¿½o - projeto JPAAulas_ex1
+ Cï¿½digo desenvolvido para iulustraï¿½ï¿½o dos conceitos sobre acesso a dados, concretizados com base na especificaï¿½ï¿½o JPA.
+ Todos os exemplos foram desenvolvidos com EclipseLinlk (3.1.0-M1), usando o ambientre Eclipse IDE versï¿½o 2022-03 (4.23.0).
  
-Não existe a pretensão de que o código estaja completo.
+Nï¿½o existe a pretensï¿½o de que o cï¿½digo estaja completo.
 
-Embora tenha sido colocado um esforço significativo na correção do código, não há garantias de que ele não contenha erros que possam 
-acarretar problemas vários, em particular, no que respeita à consistência dos dados.  
+Embora tenha sido colocado um esforï¿½o significativo na correï¿½ï¿½o do cï¿½digo, nï¿½o hï¿½ garantias de que ele nï¿½o contenha erros que possam 
+acarretar problemas vï¿½rios, em particular, no que respeita ï¿½ consistï¿½ncia dos dados.  
  
 */
 
 package presentation;
 
-import java.util.List;
 
 import businessLogic.*;
-import model.*;
 import utils.Utils;
 
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     @SuppressWarnings("unchecked")

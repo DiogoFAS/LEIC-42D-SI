@@ -14,14 +14,3 @@ begin
 	values (idJogador, nomeConversa) returning id into res;
 end;
 $$;
-
-set transaction isolation level read uncommitted;
-do
-$$
-declare 
-	idConversa int;
-begin 
-	call iniciarConversa(0, 'Chat1', idConversa);
-	raise notice 'Conversa criada com o id %', idConversa;
-end;
-$$;

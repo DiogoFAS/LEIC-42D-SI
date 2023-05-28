@@ -18,8 +18,6 @@ public class Utils {
     }
 
     public static void executeProcedure(String procName, Object[] args, EntityManager em) throws Exception {
-        //try (DataScope ds = new DataScope()) {
-        //EntityManager em = ds.getEntityManager();
         em.getTransaction().begin();
         Query q = em.createNativeQuery("call " + procName + arrayToArgs(args));
         for (int i = 0; i < args.length; i++) {
@@ -27,29 +25,19 @@ public class Utils {
         }
         q.executeUpdate();
         em.getTransaction().commit();
-        //} catch (Exception e) {
-        //    System.out.println(e.getMessage());
-        //    throw e;
-        //}
     }
 
-    public static void registerFunction(String funName, FunctionParameter[] funArgs, EntityManager em) throws Exception {
-        //try (DataScope ds = new DataScope()) {
-        //    EntityManager em = ds.getEntityManager();
-        StoredProcedureQuery q = em.createStoredProcedureQuery(funName);
+    public static void registerFunction(String funName, FunctionParameter[] params, EntityManager em) throws Exception {
+        StoredProcedureQuery f = em.createStoredProcedureQuery(funName);
         if(functionMap.get(funName) == null) {
-            for (int i = 0; i < funArgs.length; i++) {
-                q.registerStoredProcedureParameter(i + 1, funArgs[i].parameterClass(), funArgs[i].mode());
+            for (int i = 0; i < params.length; i++) {
+                f.registerStoredProcedureParameter(i + 1, params[i].clazz(), params[i].mode());
             }
-            functionMap.put(funName, q);
+            functionMap.put(funName, f);
         }
-        //} catch (Exception e) {
-        //    System.out.println(e.getMessage());
-        //    throw e;
-        //}
     }
 
-    public static Object executeFunction(String funName, Object[] args) {
+    public static Object executeFunction(String funName, Object... args) {
         StoredProcedureQuery q = functionMap.get(funName);
         for (int i = 0; i < args.length; i++) {
             q.setParameter(i + 1, args[i]);

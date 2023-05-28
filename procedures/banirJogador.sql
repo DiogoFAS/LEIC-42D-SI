@@ -20,5 +20,3 @@ begin
 	where id = jogadorId;
 end;
 $$;
-
-call banirJogador(2);

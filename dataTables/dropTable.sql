@@ -1,3 +1,4 @@
+drop view if exists jogadorTotalInfo;
 drop table if exists EstatisticaJogo;
 drop table if exists EstatisticaJogador;
 drop table if exists Adicionar;

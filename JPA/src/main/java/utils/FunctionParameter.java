@@ -2,7 +2,5 @@ package utils;
 
 import jakarta.persistence.ParameterMode;
 
-public record FunctionParameter(
-        Class<?> parameterClass,
-        ParameterMode mode
-) {}
+public record FunctionParameter(Class<?> clazz, ParameterMode mode) {
+}

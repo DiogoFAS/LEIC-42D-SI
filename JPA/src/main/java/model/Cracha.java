@@ -5,67 +5,67 @@ import jakarta.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-//@Entity
-//@Table(name = "cracha", schema = "public")
-//public class Cracha {
-//    @EmbeddedId
-//    private CrachaId id;
-//
-//    @MapsId("nomejogo")
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "nomejogo", nullable = false)
-//    private Jogo nomejogo;
-//
-//    @Column(name = "limitedepontos")
-//    private Integer limitedepontos;
-//
-//    @Column(name = "url", length = 50)
-//    private String url;
-//
-//    @ManyToMany
-//    @JoinTable(name = "tem",
-//            joinColumns = @JoinColumn(name = "nomecracha"),
-//            inverseJoinColumns = @JoinColumn(name = "idjogador"))
-//    private Set<Jogador> jogadors = new LinkedHashSet<>();
-//
-//    public CrachaId getId() {
-//        return id;
-//    }
-//
-//    public void setId(CrachaId id) {
-//        this.id = id;
-//    }
-//
-//    public Jogo getNomejogo() {
-//        return nomejogo;
-//    }
-//
-//    public void setNomejogo(Jogo nomejogo) {
-//        this.nomejogo = nomejogo;
-//    }
-//
-//    public Integer getLimitedepontos() {
-//        return limitedepontos;
-//    }
-//
-//    public void setLimitedepontos(Integer limitedepontos) {
-//        this.limitedepontos = limitedepontos;
-//    }
-//
-//    public String getUrl() {
-//        return url;
-//    }
-//
-//    public void setUrl(String url) {
-//        this.url = url;
-//    }
-//
-//    public Set<Jogador> getJogadors() {
-//        return jogadors;
-//    }
-//
-//    public void setJogadors(Set<Jogador> jogadors) {
-//        this.jogadors = jogadors;
-//    }
-//
-//}
+@Entity
+@Table(name = "cracha", schema = "public")
+public class Cracha {
+    @EmbeddedId
+    private CrachaId id;
+
+    @MapsId("nomejogo")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "nomejogo", nullable = false)
+    private Jogo nomejogo;
+
+    @Column(name = "limitedepontos")
+    private Integer limitedepontos;
+
+    @Column(name = "url", length = 50)
+    private String url;
+
+    @ManyToMany
+    @JoinTable(name = "tem",
+            joinColumns = @JoinColumn(name = "nomecracha"),
+            inverseJoinColumns = @JoinColumn(name = "idjogador"))
+    private Set<Jogador> jogadors = new LinkedHashSet<>();
+
+    public CrachaId getId() {
+        return id;
+    }
+
+    public void setId(CrachaId id) {
+        this.id = id;
+    }
+
+    public Jogo getNomejogo() {
+        return nomejogo;
+    }
+
+    public void setNomejogo(Jogo nomejogo) {
+        this.nomejogo = nomejogo;
+    }
+
+    public Integer getLimitedepontos() {
+        return limitedepontos;
+    }
+
+    public void setLimitedepontos(Integer limitedepontos) {
+        this.limitedepontos = limitedepontos;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Set<Jogador> getJogadors() {
+        return jogadors;
+    }
+
+    public void setJogadors(Set<Jogador> jogadors) {
+        this.jogadors = jogadors;
+    }
+
+}

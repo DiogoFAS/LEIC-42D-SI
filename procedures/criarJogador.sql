@@ -23,5 +23,3 @@ begin
 	values (nomeJogador, emailJogador, regiaoJogador);
 end;
 $$;
-
-call criarJogador('Albertina', 'albertinajosefina27@gmail.com', 'Madeira');

@@ -20,5 +20,3 @@ begin
 	where id = jogadorId;
 end;
 $$
-
-call desativarJogador(1);
