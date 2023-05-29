@@ -2,12 +2,12 @@ import dataManagement.Mapper;
 import model.Cracha;
 import model.Jogador;
 import model.Jogo;
-import utils.Utils;
+import routine_manager.functions.FunctionManager;
 
 import java.sql.ResultSet;
 import java.util.NoSuchElementException;
 
-public class associarCrachaClass {
+public class associarCrachaProc {
 
     public static void associarCracha(Integer idJogador, String idJogo, String crachaNome) {
         try {
@@ -26,7 +26,7 @@ public class associarCrachaClass {
             String nomeJogo = jogo.getNome();
             Integer limitePontos = c.getLimitedepontos();
 
-            ResultSet res = (ResultSet) Utils.executeFunction("PontosJogoPorJogador", nomeJogo);
+            ResultSet res = (ResultSet) FunctionManager.executeFunction("PontosJogoPorJogador", nomeJogo);
 
             if (res.getInt("totalPontos") < limitePontos)
                 throw new IllegalArgumentException("Jogador sem pontos suficientes.");

@@ -2,7 +2,7 @@ package dataManagement;
 
 import interfaces.IMapper;
 import jakarta.persistence.EntityManager;
-import utils.DataScope;
+
 import java.lang.reflect.Method;
 
 public class Mapper<T, TId> implements IMapper<T, TId> {

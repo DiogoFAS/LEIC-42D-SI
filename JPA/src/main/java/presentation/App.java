@@ -15,23 +15,24 @@ package presentation;
 
 
 import businessLogic.*;
+import jdk.jshell.execution.Util;
+import routine_manager.functions.FunctionControllers;
 import utils.Utils;
 
+import java.util.Scanner;
 
-public class App 
-{
-    @SuppressWarnings("unchecked")
-	public static void main( String[] args ) throws Exception
-    {
-        //put instances in an init/setup function.
-        BLService srv = new BLService();
-    	srv.test();
 
-        //2d...2l in console
-        //read user input
-        //clear console
-        //get function to execute 2d...2l
-        //int option = System.in.read();
+public class App {
+    public static void main(String[] args) throws Exception {
+        BLService services = null;
+        services = new BLService();
+        FunctionControllers fc = new FunctionControllers(services);
+        Scanner scanner = new Scanner(System.in);
+
         Utils.clearConsole();
+        System.out.println("Welcome to GameOn's DB Management\n");
+        System.out.println("Select operation:");
+        fc.printOptions();
+        String option = scanner.nextLine();
     }
 }
