@@ -38,8 +38,8 @@ public class FunctionRegisters {
     }
 
     private static void pontosJogoPorJogador(EntityManager em) throws Exception {
-        FunctionParameter jogoNome = new FunctionParameter(String.class, ParameterMode.IN);
-        FunctionParameter tabela = new FunctionParameter(Query.class, ParameterMode.OUT);
+        FunctionParameter jogoNome = new FunctionParameter("jogoNome", String.class, ParameterMode.IN);
+        FunctionParameter tabela = new FunctionParameter("tabela", Query.class, ParameterMode.OUT);
 
         FunctionParameter[] args = {jogoNome, tabela};
         FunctionManager.registerFunction("PontosJogoPorJogador", args, em);
