@@ -11,9 +11,9 @@ public class Conversa {
     @EmbeddedId
     private ConversaId id;
 
-    @MapsId("idjogador")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idjogador", nullable = false)
+    //@MapsId("idjogador")
+    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idjogador", insertable=false, updatable=false)
     private Jogador idjogador;
 
     @Column(name = "nome", length = 20)

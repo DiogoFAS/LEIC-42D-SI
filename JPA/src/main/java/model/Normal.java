@@ -8,20 +8,20 @@ public class Normal {
     @EmbeddedId
     private NormalId id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    //@MapsId
+    @OneToOne// (fetch = FetchType.LAZY, optional = false)
     @JoinColumns({
-            @JoinColumn(name = "idpartida", referencedColumnName = "id", nullable = false),
-            @JoinColumn(name = "nomejogo", referencedColumnName = "nomejogo", nullable = false)
+            @JoinColumn(name = "idpartida", referencedColumnName = "id", insertable=false, updatable=false),
+            @JoinColumn(name = "nomejogo", referencedColumnName = "nomejogo", insertable=false, updatable=false)
     })
     private Partida partida;
 
     @Column(name = "dificuldade")
     private Integer dificuldade;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "idjogador")
-    private Jogador idjogador;
+    private Jogador jogador;
 
     @Column(name = "pontuacao")
     private Integer pontuacao;
@@ -51,11 +51,11 @@ public class Normal {
     }
 
     public Jogador getIdjogador() {
-        return idjogador;
+        return jogador;
     }
 
-    public void setIdjogador(Jogador idjogador) {
-        this.idjogador = idjogador;
+    public void setIdjogador(Jogador jogador) {
+        this.jogador = jogador;
     }
 
     public Integer getPontuacao() {

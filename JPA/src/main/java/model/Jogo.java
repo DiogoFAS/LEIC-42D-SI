@@ -3,6 +3,7 @@ package model;
 import jakarta.persistence.*;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,17 +19,20 @@ public class Jogo {
     @Column(name = "url", length = 50)
     private String url;
 
-    @OneToMany(mappedBy = "jogo")
-    private Set<Comprar> comprars = new LinkedHashSet<>();
+    //@OneToMany//(mappedBy = "jogo")
+    //private List<Comprar> comprars; //= new LinkedHashSet<>(); // deveria ser list?
 
-    @OneToMany(mappedBy = "jogo")
-    private Set<Cracha> crachas = new LinkedHashSet<>();
+    @ManyToMany
+    private Set<Jogador> jogadors = new LinkedHashSet<>();
 
-    @OneToOne(mappedBy = "jogo")
-    private Estatisticajogo estatisticajogo;
+    @OneToMany//(mappedBy = "jogo")
+    private List<Cracha> crachas;// = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "jogo")
-    private Set<Partida> partidas = new LinkedHashSet<>();
+    //@OneToOne(mappedBy = "jogo")
+    //private Estatisticajogo estatisticajogo;
+
+    @OneToMany//(mappedBy = "jogo")
+    private List<Partida> partidas;// = new LinkedHashSet<>();
 
     public String getNome() {
         return nome;
@@ -54,35 +58,43 @@ public class Jogo {
         this.url = url;
     }
 
-    public Set<Comprar> getComprars() {
+    /*public List<Comprar> getComprars() {
         return comprars;
+    }*/
+
+    public Set<Jogador> getJogadors () {
+        return jogadors;
     }
 
-    public void setComprars(Set<Comprar> comprars) {
+    /*public void setComprars(List<Comprar> comprars) {
         this.comprars = comprars;
+    }*/
+
+    public void setJogadors(Set<Jogador> jogadors) {
+        this.jogadors = jogadors;
     }
 
-    public Set<Cracha> getCrachas() {
+    public List<Cracha> getCrachas() {
         return crachas;
     }
 
-    public void setCrachas(Set<Cracha> crachas) {
+    public void setCrachas(List<Cracha> crachas) {
         this.crachas = crachas;
     }
 
-    public Estatisticajogo getEstatisticajogo() {
+    /*public Estatisticajogo getEstatisticajogo() {
         return estatisticajogo;
     }
 
     public void setEstatisticajogo(Estatisticajogo estatisticajogo) {
         this.estatisticajogo = estatisticajogo;
-    }
+    }*/
 
-    public Set<Partida> getPartidas() {
+    public List<Partida> getPartidas() {
         return partidas;
     }
 
-    public void setPartidas(Set<Partida> partidas) {
+    public void setPartidas(List<Partida> partidas) {
         this.partidas = partidas;
     }
 

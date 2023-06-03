@@ -11,9 +11,9 @@ public class Cracha {
     @EmbeddedId
     private CrachaId id;
 
-    @MapsId("nomejogo")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "nomejogo", nullable = false)
+    //@MapsId("nomejogo")
+    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "nomejogo",insertable=false, updatable=false)
     private Jogo nomejogo;
 
     @Column(name = "limitedepontos")
@@ -23,9 +23,10 @@ public class Cracha {
     private String url;
 
     @ManyToMany
-    @JoinTable(name = "tem",
-            joinColumns = @JoinColumn(name = "nomecracha"),
-            inverseJoinColumns = @JoinColumn(name = "idjogador"))
+    // isto está comentado porque dá erro e não sei corrigir.
+    /*@JoinTable(name = "tem",
+            joinColumns = @JoinColumn(name = "crachaId", referencedColumnName = "nomecracha"),
+            inverseJoinColumns = @JoinColumn(name = "idjogador", referencedColumnName = "idjogador"))*/
     private Set<Jogador> jogadors = new LinkedHashSet<>();
 
     public CrachaId getId() {

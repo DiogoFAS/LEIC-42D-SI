@@ -10,11 +10,11 @@ public class Mensagem {
     @EmbeddedId
     private MensagemId id;
 
-    @MapsId
+    //@MapsId
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumns({
-            @JoinColumn(name = "idconversa", referencedColumnName = "id", nullable = false),
-            @JoinColumn(name = "idjogador", referencedColumnName = "idjogador", nullable = false)
+            @JoinColumn(name = "idconversa", referencedColumnName = "id", insertable=false, updatable=false),
+            @JoinColumn(name = "idjogador", referencedColumnName = "idjogador", insertable=false, updatable=false)
     })
     private Conversa conversa;
 

@@ -14,25 +14,29 @@ acarretar problemas v�rios, em particular, no que respeita � consist�ncia 
 package presentation;
 
 
-import businessLogic.*;
-import jdk.jshell.execution.Util;
-import routine_manager.functions.FunctionControllers;
+import businessLogic.BLService;
+import jakarta.persistence.ParameterMode;
+import routine_manager.functions.FunctionParameter;
+import routine_manager.functions.Functions;
 import utils.Utils;
+//import utils.associarCrachaProc;
 
 import java.util.Scanner;
 
 
 public class App {
     public static void main(String[] args) throws Exception {
-        BLService services = null;
-        services = new BLService();
-        FunctionControllers fc = new FunctionControllers(services);
+        BLService services = new BLService();
         Scanner scanner = new Scanner(System.in);
 
-        Utils.clearConsole();
-        System.out.println("Welcome to GameOn's DB Management\n");
-        System.out.println("Select operation:");
-        fc.printOptions();
-        String option = scanner.nextLine();
+        while (true) {
+            Utils.clearConsole();
+            System.out.println("Welcome to GameOn's DB Management\n");
+            services.showMenu();
+            String option = scanner.nextLine();
+            //Utils.clearConsole();
+            services.showFunction(option);
+            scanner.nextLine();
+        }
     }
 }

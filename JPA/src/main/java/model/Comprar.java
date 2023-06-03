@@ -10,14 +10,14 @@ public class Comprar {
     @EmbeddedId
     private ComprarId id;
 
-    @MapsId("idjogador")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idjogador", nullable = false)
+    //@MapsId("idjogador")
+    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idjogador", insertable=false, updatable=false)
     private Jogador idjogador;
 
-    @MapsId("nomejogo")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "nomejogo", nullable = false)
+    //@MapsId("nomejogo")
+    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "nomejogo", insertable=false, updatable=false)
     private Jogo nomejogo;
 
     @Column(name = "preco")

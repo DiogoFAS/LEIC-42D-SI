@@ -8,18 +8,18 @@ public class Jogar {
     @EmbeddedId
     private JogarId id;
 
-    @MapsId
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    //@MapsId
+    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
     @JoinColumns({
-            @JoinColumn(name = "idpartida", referencedColumnName = "id", nullable = false),
-            @JoinColumn(name = "nomejogo", referencedColumnName = "nomejogo", nullable = false)
+            @JoinColumn(name = "idpartida", referencedColumnName = "id", insertable=false, updatable=false),
+            @JoinColumn(name = "nomejogo", referencedColumnName = "nomejogo", insertable=false, updatable=false)
     })
-    private Partida partida;
+    private Multijogador multiJogador; // private Partida partida;
 
-    @MapsId("idjogador")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idjogador", nullable = false)
-    private Jogador idjogador;
+    //@MapsId("idjogador")
+    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idjogador", insertable=false, updatable=false)
+    private Jogador jogador;
 
     @Column(name = "pontuacao")
     private Integer pontuacao;
@@ -32,20 +32,20 @@ public class Jogar {
         this.id = id;
     }
 
-    public Partida getPartida() {
-        return partida;
+    public Multijogador getPartida() {
+        return multiJogador;
     }
 
-    public void setPartida(Partida partida) {
-        this.partida = partida;
+    public void setPartida(Multijogador multijogador) {
+        this.multiJogador = multijogador;
     }
 
     public Jogador getIdjogador() {
-        return idjogador;
+        return jogador;
     }
 
-    public void setIdjogador(Jogador idjogador) {
-        this.idjogador = idjogador;
+    public void setIdjogador(Jogador jogador) {
+        this.jogador = jogador;
     }
 
     public Integer getPontuacao() {

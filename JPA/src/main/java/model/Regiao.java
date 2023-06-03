@@ -19,6 +19,4 @@ public class Regiao {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    //TODO [JPA Buddy] generate columns from DB
 }

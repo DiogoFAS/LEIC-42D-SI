@@ -18,16 +18,32 @@ public class FunctionRegisters {
         }
     }
 
-    private static void totalJogosJogador(EntityManager em) throws Exception {
-        FunctionParameter idJogador = new FunctionParameter(Integer.class, ParameterMode.IN);
-        FunctionParameter totalJogosPar = new FunctionParameter(Integer.class, ParameterMode.OUT);
+    /** 2e) totalPontosJogador **/
+    private static void totalPontosJogador(EntityManager em) throws Exception {
+        FunctionParameter idJogador = new FunctionParameter("idJogador", Integer.class, ParameterMode.IN);
+        FunctionParameter totalPontos =  new FunctionParameter("totalPontos", Integer.class, ParameterMode.OUT);
 
-        FunctionParameter[] args = {idJogador, totalJogosPar};
+        FunctionParameter[] args = {idJogador, totalPontos};
+        FunctionManager.registerFunction("totalPontosJogador", args, em);
+    }
+
+    /** 2f) totalJogosJogador **/
+    private static void totalJogosJogador(EntityManager em) throws Exception {
+        FunctionParameter idJogador = new FunctionParameter("idJogador", Integer.class, ParameterMode.IN);
+        FunctionParameter totalJogos = new FunctionParameter("totalJogos", Integer.class, ParameterMode.OUT);
+
+        FunctionParameter[] args = {idJogador, totalJogos};
         FunctionManager.registerFunction("totalJogosJogador", args, em);
     }
 
-    private static void PontosJogoPorJogador() throws Exception {
-        // TODO
+    /** 2g) PontosJogoPorJogador **/
+    private static void PontosJogoPorJogador(EntityManager em) throws Exception {
+        FunctionParameter nomeJogo = new FunctionParameter("nomeJogo", String.class, ParameterMode.IN);
+        /* this function returns a table */
+        FunctionParameter pontosPorJogador = new FunctionParameter("pontosPorJogador", Integer.class, ParameterMode.OUT);
+
+        FunctionParameter[] args = {nomeJogo, pontosPorJogador};
+        FunctionManager.registerFunction("PontosJogoPorJogador", args, em);
     }
 
 }
