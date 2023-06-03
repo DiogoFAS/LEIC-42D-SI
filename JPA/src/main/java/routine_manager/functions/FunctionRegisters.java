@@ -2,6 +2,7 @@ package routine_manager.functions;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
+import jakarta.persistence.Query;
 
 import java.lang.reflect.Method;
 
@@ -26,8 +27,12 @@ public class FunctionRegisters {
         FunctionManager.registerFunction("totalJogosJogador", args, em);
     }
 
-    private static void PontosJogoPorJogador() throws Exception {
-        // TODO
+    private static void pontosJogoPorJogador(EntityManager em) throws Exception {
+        FunctionParameter jogoNome = new FunctionParameter(String.class, ParameterMode.IN);
+        FunctionParameter tabela = new FunctionParameter(Query.class, ParameterMode.OUT);
+
+        FunctionParameter[] args = {jogoNome, tabela};
+        FunctionManager.registerFunction("PontosJogoPorJogador", args, em);
     }
 
 }
