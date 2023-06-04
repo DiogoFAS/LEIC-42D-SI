@@ -15,11 +15,7 @@ package presentation;
 
 
 import businessLogic.BLService;
-import jakarta.persistence.ParameterMode;
-import routine_manager.functions.FunctionParameter;
-import routine_manager.functions.Functions;
 import utils.Utils;
-//import utils.associarCrachaProc;
 
 import java.util.Scanner;
 
@@ -38,5 +34,20 @@ public class App {
             services.showFunction(option);
             scanner.nextLine();
         }
+
+        /*while (true) {
+            System.out.println(":: Testing associarCrachaProc ::");
+            System.out.println("idJogador:");
+            Integer idJogador = Integer.parseInt(scanner.nextLine());
+            System.out.println("idJogo:");
+            String idJogo = scanner.nextLine();
+            System.out.println("crachaNome:");
+            String crachaNome = scanner.nextLine();
+            //associarCrachaProc.associarCrachaJPA(idJogador, idJogo, crachaNome);
+            associarCrachaProc.associarCracha(idJogador, idJogo, crachaNome);
+            System.out.println(":: end ::");
+            break;
+        }*/
+
     }
 }

@@ -6,8 +6,10 @@ import routine_manager.ProcedureManager;
 import routine_manager.functions.FunctionManager;
 import routine_manager.functions.FunctionParameter;
 import routine_manager.functions.Functions;
+import routine_manager.functions.FunctionsAux;
 import utils.Utils;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -29,7 +31,6 @@ public class BLService {
 
     @Description("Get the total score of a certain player.")
     public Integer totalPontosJogador() {
-        FunctionParameter.parametersMap.get("totalPontosJogador");
         return (Integer) FunctionManager.executeFunction("totalPontosJogador");
     }
 
@@ -44,10 +45,10 @@ public class BLService {
     }
 
     private static Object callMethod(String funName) throws Exception {
-        FunctionParameter[] functionParameters = FunctionParameter.parametersMap.get(funName);
+        FunctionParameter[] functionParameters = Functions.getFunctionParam(funName);
         if (functionParameters == null) throw new NoSuchMethodException("Register the function before calling it.");
         Scanner scanner = new Scanner(System.in);
-        Object[] args = new Object[functionParameters.length];
+        Object[] args = new Object[(int) Arrays.stream(functionParameters).filter(it -> it.mode() == ParameterMode.IN).count()];
         for (int i = 0; i < functionParameters.length; i++) {
             FunctionParameter curr = functionParameters[i];
             if (curr.mode() == ParameterMode.IN) {
@@ -55,9 +56,11 @@ public class BLService {
                 args[i] = Utils.parseObject(curr.clazz(), scanner.nextLine());
             }
         }
-        if(funName.equals("totalPontosJogador") ||  funName.equals("totalJogosJogador") || funName.equals("PontosJogoPorJogador")) {
-            return Functions.executeFunction(funName, args);
+        if(Functions.isFunction(funName)) {
+            System.out.println("Function");
+            return FunctionsAux.executeFunction(funName, args);
         } else {
+            System.out.println("Procedure");
             ProcedureManager.executeProcedure(funName, args);
             return null;
         }

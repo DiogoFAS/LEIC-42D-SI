@@ -7,10 +7,10 @@ import java.lang.reflect.Method;
 
 public class Mapper<T, TId> implements IMapper<T, TId> {
 
-    private final Class<?> tClass;
-    private final Class<?> tIdClass;
+    private final Class<T> tClass;
+    private final Class<TId> tIdClass;
 
-    public Mapper(Class<?> tClass, Class<?> tIdClass) {
+    public Mapper(Class<T> tClass, Class<TId> tIdClass) {
         this.tClass = tClass;
         this.tIdClass = tIdClass;
     }
@@ -19,6 +19,7 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
     public TId create(T e) throws Exception {
         try (DataScope scope = new DataScope()) {
             scope.getEntityManager().persist(e);
+            scope.validateWork();
             return getPK(e);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -29,7 +30,7 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
     @Override
     public T read(TId id) throws Exception {
         try (DataScope scope = new DataScope()) {
-            return (T) scope.getEntityManager().find(tClass, id);
+            return scope.getEntityManager().find(tClass, id);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             throw ex;
