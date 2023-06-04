@@ -14,7 +14,7 @@ acarretar problemas v�rios, em particular, no que respeita � consist�ncia 
 package presentation;
 
 
-import businessLogic.BLService;
+import businessLogic.*;
 import jakarta.persistence.ParameterMode;
 import routine_manager.functions.FunctionParameter;
 import routine_manager.functions.Functions;
@@ -25,7 +25,11 @@ import java.util.Scanner;
 
 
 public class App {
-    public static void main(String[] args) throws Exception {
+
+    protected interface ITest {
+        void test();
+    }
+    /*public static void main(String[] args) throws Exception {
         BLService services = new BLService();
         Scanner scanner = new Scanner(System.in);
 
@@ -38,5 +42,38 @@ public class App {
             services.showFunction(option);
             scanner.nextLine();
         }
+    }*/
+
+    private static void teste8() throws Exception{
+        Scanner imp = new Scanner(System.in );
+        System.out.printf("Número de repetições para teste 8? ");
+        int nreps = imp.nextInt();
+        BLServiceTests srv = new BLServiceTests();
+        srv.teste8(nreps);
+
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void main( String[] args ) throws Exception
+    {   BLServiceTests srv = new BLServiceTests();
+        ITest tests[] = new ITest[] {
+                () -> {try { srv.teste1(); } catch(Exception e) {}} ,
+                () -> {try { srv.teste2(); } catch(Exception e) {}} ,
+                () -> {try { srv.teste3(); } catch(Exception e) {}} ,
+                () -> {try { srv.teste4(); } catch(Exception e) {}} ,
+                () -> {try { srv.teste5(); } catch(Exception e) {}} ,
+                () -> {try { srv.teste6(); } catch(Exception e) {}} ,
+                () -> {try { srv.teste7(); } catch(Exception e) {}} ,
+                () -> {try { teste8(); } catch(Exception e) {}}
+        };
+
+        Scanner imp = new Scanner(System.in );
+        System.out.printf("Escolha um teste (1-%d)? ",tests.length);
+        int option = imp.nextInt();
+        if (option >= 1 && option <= tests.length)
+            tests[--option].test();
+
+
+
     }
 }
