@@ -1,42 +1,72 @@
 package dataManagement;
 
-import interfaces.IMapper;
 import interfaces.IRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.LockModeType;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
 public class Repository<T, TId> implements IRepository<T, TId> {
 
-   private final Mapper<T, TId> mapper;
+    private final Mapper<T, TId> mapper;
 
-    public Repository(Mapper<T, TId> mapper) {
-        this.mapper = mapper;
+    public Repository(Class<T> entityClass, Class<TId> entityPKClass) {
+        this.mapper = new Mapper<>(entityClass, entityPKClass);
     }
 
     @Override
-    public List<T> getAll() throws Exception {
-        return null;
+    public List<T> getAll(String Statement, Class<T> entityClass) throws Exception {
+        try (DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
+            TypedQuery<T> query = em.createNamedQuery(Statement, entityClass);
+            scope.validateWork();
+            return query.getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public T find(TId k) throws Exception {
-        return mapper.read(k);
+        try (DataScope scope = new DataScope()) {
+            scope.validateWork();
+            return mapper.read(k);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
     @Override
     public void add(T entity) throws Exception {
-        // TODO
+        try (DataScope scope = new DataScope()) {
+            mapper.create(entity);
+            scope.validateWork();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
-    public void delete(T e) throws Exception {
-        // TODO
+    public void delete(T entity) throws Exception {
+        try (DataScope scope = new DataScope()) {
+            mapper.delete(entity);
+            scope.validateWork();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
     @Override
-    public void save(Object e) throws Exception {
-        // TODO
+    public void save(T entity) throws Exception {
+        try (DataScope scope = new DataScope()) {
+            mapper.update(entity);
+            scope.validateWork();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 }

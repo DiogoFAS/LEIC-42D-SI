@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "partida", schema = "public")
+@NamedQuery(name = "pontosJogoPorJogador", query = "select n.jogador.id, n.pontuacao from Normal n where :jogoNome = n.id.nomejogo union all select j.id.idjogador, j.pontuacao from Jogar j inner join Partida p where :jogoNome = p.id.nomejogo")
 public class Partida {
     @EmbeddedId
     private PartidaId id;
@@ -86,6 +87,11 @@ public class Partida {
 
     public void setNormal(Normal normal) {
         this.normal = normal;
+    }
+
+    @Override
+    public String toString() {
+        return "PartidaId: " + this.id + "\nPartidaNomeJogo: " + this.nomejogo;
     }
 
 }

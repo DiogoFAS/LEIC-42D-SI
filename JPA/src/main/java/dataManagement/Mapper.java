@@ -56,7 +56,6 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
             if (em.contains(e)) throw new java.lang.IllegalAccessException("Entity not found.");
             em.remove(e);
             em.getTransaction().commit();
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             throw ex;

@@ -1,13 +1,22 @@
 package utils;
 
+import dataManagement.DataScope;
 import dataManagement.Mapper;
+import jakarta.persistence.EntityManager;
 import model.*;
 import routine_manager.functions.FunctionsAux;
 
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class associarCrachaProc {
+
+    private record JogadorPontos(int idJogador, int pontos) {
+        @Override
+        public String toString() {
+            return "Jogador: " + this.idJogador + "\npontos: " + this.pontos;
+        }
+    }
 
     public static void associarCrachaJPA(Integer idJogador, String nomeJogo, String crachaNome) throws Exception {
         //try(DataScope scope = new DataScope()) {
@@ -77,12 +86,13 @@ public class associarCrachaProc {
 
         Object[] args = {nomeJogo};
 
-        List<Object[]> res = PontosJogoPorJogador(args);
+        List<JogadorPontos> res = PontosJogoPorJogador(args);
+        JogadorPontos jp = res.get(0);
+        String jpString = jp.toString();
+        System.out.println(jpString);
 
-        int pontos = find(res, idJogador);
-
-        if (pontos < limitePontos)
-            throw new IllegalArgumentException("Jogador sem pontos suficientes.");
+        //if (pontos < limitePontos)
+        //    throw new IllegalArgumentException("Jogador sem pontos suficientes.");
 
         TemId temPK = new TemId();
         temPK.setIdjogador(idJogador);
@@ -103,11 +113,17 @@ public class associarCrachaProc {
         //}
     }
 
-    private static List<Object[]> PontosJogoPorJogador(Object[] args) {
-        Mapper<Normal, NormalId> Normal = new Mapper<>(Normal.class, NormalId.class);
-        //Normal.read()
-        //TODO("not yet implemented")
-        return null;
+    private static List PontosJogoPorJogador(Object[] args) throws Exception {
+        try (DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
+            return em.createNamedQuery("pontosJogoPorJogador", JogadorPontos.class)
+                    .setParameter("jogoNome", args[0])
+                    .setParameter("jogoNome", args[0]) // I don't know if its necessary.
+                    .getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
 

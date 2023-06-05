@@ -16,6 +16,7 @@ package presentation;
 
 import businessLogic.BLService;
 import utils.Utils;
+import utils.associarCrachaProc;
 
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class App {
         BLService services = new BLService();
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        /*while (true) {
             Utils.clearConsole();
             System.out.println("Welcome to GameOn's DB Management\n");
             services.showMenu();
@@ -33,13 +34,13 @@ public class App {
             //Utils.clearConsole();
             services.showFunction(option);
             scanner.nextLine();
-        }
+        }*/
 
-        /*while (true) {
+        while (true) {
             System.out.println(":: Testing associarCrachaProc ::");
             System.out.println("idJogador:");
             Integer idJogador = Integer.parseInt(scanner.nextLine());
-            System.out.println("idJogo:");
+            System.out.println("nomeJogo:");
             String idJogo = scanner.nextLine();
             System.out.println("crachaNome:");
             String crachaNome = scanner.nextLine();
@@ -47,7 +48,6 @@ public class App {
             associarCrachaProc.associarCracha(idJogador, idJogo, crachaNome);
             System.out.println(":: end ::");
             break;
-        }*/
-
+        }
     }
 }
