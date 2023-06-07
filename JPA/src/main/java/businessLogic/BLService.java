@@ -1,81 +1,68 @@
 package businessLogic;
 
 import annotations.Description;
-import jakarta.persistence.ParameterMode;
-import routine_manager.ProcedureManager;
-import routine_manager.functions.FunctionManager;
-import routine_manager.functions.FunctionParameter;
-import routine_manager.functions.Functions;
-import routine_manager.functions.FunctionsAux;
-import utils.Utils;
+import annotations.Function;
+import annotations.ReturnsTable;
+import routine_manager.routine.RoutineRegisters;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Scanner;
 
+import static routine_manager.routine.RoutineControllers.callRoutine;
 
 public class BLService {
 
-    public Map<String, String> optionMap1 = Map.of(
-            "1", "criarJogador",
-            "2", "desativarJogador",
-            "3", "banirJogador",
-            "4", "totalPontosJogador",
-            "5", "totalJogosJogador",
-            "6", "PontosJogoPorJogador",
-            "7", "associarCracha",
-            "8", "iniciarConversa",
-            "9", "juntarConversa",
-            "10","enviarMensagem"
-    );
-
-    @Description("Get the total score of a certain player.")
-    public Integer totalPontosJogador() {
-        return (Integer) FunctionManager.executeFunction("totalPontosJogador");
+    public BLService() throws Exception {
+        RoutineRegisters.registerAllRoutines();
     }
 
-    @Description("Get the total games of a certain player.")
-    public Integer totalJogosJogador(Integer idJogador) {
-        return (Integer) FunctionManager.executeFunction("totalJogosJogador", idJogador);
+
+    @Description("Create new player")
+    public void criarJogador(String nomeJogador, String emailJogador, String regiaoJogador) throws Exception {
+        callRoutine("criarJogador", nomeJogador, emailJogador, regiaoJogador);
     }
 
-    @Description("Get the table with the score for each player from a certain game.")
-    public Integer PontosJogoPorJogador(String nomeJogo) {
-        return (Integer) FunctionManager.executeFunction("PontosJogoPorJogador", nomeJogo);
+    @Description("Deactivate player")
+    public void desativarJogador(int jogadorId) throws Exception {
+        callRoutine("desativarJogador", jogadorId);
     }
 
-    private static Object callMethod(String funName) throws Exception {
-        FunctionParameter[] functionParameters = Functions.getFunctionParam(funName);
-        if (functionParameters == null) throw new NoSuchMethodException("Register the function before calling it.");
-        Scanner scanner = new Scanner(System.in);
-        Object[] args = new Object[(int) Arrays.stream(functionParameters).filter(it -> it.mode() == ParameterMode.IN).count()];
-        for (int i = 0; i < functionParameters.length; i++) {
-            FunctionParameter curr = functionParameters[i];
-            if (curr.mode() == ParameterMode.IN) {
-                System.out.println(curr.paramName() + ":");
-                args[i] = Utils.parseObject(curr.clazz(), scanner.nextLine());
-            }
-        }
-        if(Functions.isFunction(funName)) {
-            System.out.println("Function");
-            return FunctionsAux.executeFunction(funName, args);
-        } else {
-            System.out.println("Procedure");
-            ProcedureManager.executeProcedure(funName, args);
-            return null;
-        }
+    @Description("Ban player")
+    public void banirJogador(int jogadorId) throws Exception {
+        callRoutine("banirJogador", jogadorId);
     }
 
-    public void showFunction(String option) throws Exception {
-        String funName = optionMap1.get(option);
-        System.out.println("You selected " + funName);
-        Object result = BLService.callMethod(funName);
-        System.out.println(funName + ": " + result);
+    @Description("Give a badge to player")
+    public void associarCracha(int jogadorId, String idJogo, String crachaNome) throws Exception {
+        callRoutine("associarCracha", jogadorId, idJogo, crachaNome);
     }
 
-    public void showMenu() {
-        for (int i = 1; i <= optionMap1.size(); i++) {
-            System.out.println(i + " -> " + optionMap1.get(String.valueOf(i)));
-        }
+    @Description("Start a conversation")
+    public int iniciarConversa(int idjogador, String nomeconversa) throws Exception {
+        // TODO: return from procedure, will have to make a SQL function using alternative 2
+        int res = (int) callRoutine("iniciarConversa", idjogador, nomeconversa);
+        System.out.println("my res is " + res);
+        return res;
+    }
+
+    @Description("Join a player into a conversation.")
+    public void juntarConversa(int idJogador, int idConversa) throws Exception {
+        callRoutine("juntarConversa", idJogador, idConversa);
+    }
+
+    @Description("Send a message")
+    public void enviarMensagem(int jogadorId, int conversaId, String textoMensagem) throws Exception {
+        callRoutine("enviarMensagem", jogadorId, conversaId, textoMensagem);
+    }
+
+    @Function
+    public void totalPontosJogador() {
+    }
+
+    @Function
+    public void totalJogosJogador() {
+    }
+
+    @Function
+    @ReturnsTable
+    public void PontosJogoPorJogador() {
     }
 }

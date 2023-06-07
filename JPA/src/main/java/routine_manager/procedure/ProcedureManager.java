@@ -1,12 +1,13 @@
-package routine_manager;
+package routine_manager.procedure;
 
 import dataManagement.DataScope;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.ParameterMode;
 import jakarta.persistence.Query;
-import jakarta.persistence.StoredProcedureQuery;
+import routine_manager.routine.RoutineParameter;
+import routine_manager.routine.RoutineRegisters;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public class ProcedureManager {
 

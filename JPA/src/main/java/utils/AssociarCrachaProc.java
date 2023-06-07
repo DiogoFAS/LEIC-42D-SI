@@ -2,21 +2,13 @@ package utils;
 
 import dataManagement.DataScope;
 import dataManagement.Mapper;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
 import model.*;
-import routine_manager.functions.FunctionsAux;
+import routine_manager.function.FunctionManager;
 
 import java.util.*;
-import java.util.stream.Stream;
 
-public class associarCrachaProc {
-
-    private record JogadorPontos(int idJogador, int pontos) {
-        @Override
-        public String toString() {
-            return "Jogador: " + this.idJogador + "\npontos: " + this.pontos;
-        }
-    }
+public class AssociarCrachaProc {
 
     public static void associarCrachaJPA(Integer idJogador, String nomeJogo, String crachaNome) throws Exception {
         //try(DataScope scope = new DataScope()) {
@@ -39,7 +31,7 @@ public class associarCrachaProc {
 
         Object[] args = {nomeJogo};
 
-        List<Object[]> res = (List<Object[]>) FunctionsAux.executeFunction("PontosJogoPorJogador", args);
+        List<Object[]> res = (List<Object[]>) FunctionManager.executeFunction("PontosJogoPorJogador", args);
 
         int pontos = find(res, idJogador);
 
@@ -65,7 +57,7 @@ public class associarCrachaProc {
         //}
     }
 
-    public static void associarCracha(Integer idJogador, String nomeJogo, String crachaNome) throws Exception {
+    public void associarCracha(Integer idJogador, String nomeJogo, String crachaNome) throws Exception {
         //try (DataScope scope = new DataScope()) {
         Mapper<Jogador, Integer> m1 = new Mapper<>(Jogador.class, Integer.class);
         Jogador j = m1.read(idJogador);
@@ -86,8 +78,9 @@ public class associarCrachaProc {
 
         Object[] args = {nomeJogo};
 
-        List<JogadorPontos> res = PontosJogoPorJogador(args);
-        JogadorPontos jp = res.get(0);
+        JogadorPontos[] res = PontosJogoPorJogador(args).toArray(JogadorPontos[]::new);
+        System.out.println(res);
+        JogadorPontos jp = res[0];
         String jpString = jp.toString();
         System.out.println(jpString);
 
@@ -113,19 +106,18 @@ public class associarCrachaProc {
         //}
     }
 
-    private static List PontosJogoPorJogador(Object[] args) throws Exception {
+    private List<JogadorPontos> PontosJogoPorJogador(Object[] args) throws Exception {
         try (DataScope scope = new DataScope()) {
             EntityManager em = scope.getEntityManager();
-            return em.createNamedQuery("pontosJogoPorJogador", JogadorPontos.class)
-                    .setParameter("jogoNome", args[0])
-                    .setParameter("jogoNome", args[0]) // I don't know if its necessary.
-                    .getResultList();
+            Query res = em.createNamedQuery("pontosJogoPorJogador", JogadorPontos.class)
+                    .setParameter("jogoNome", args[0]);
+            List<JogadorPontos> resultList = res.getResultList();
+            return resultList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
         }
     }
-
 
     private static int find(List<Object[]> table, int idJogador) {
         for (Object[] x : table) {

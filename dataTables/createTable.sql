@@ -1,9 +1,9 @@
 
-create table Regiao (
+create table if not exists Regiao (
 	nome varchar(10) primary key
 );
 
-create table Jogador (	
+create table if not exists Jogador (
 	id serial primary key,
 	estado varchar(10) check (estado = 'Ativo' or estado = 'Inativo' or estado = 'Banido'),
 	userName varchar(20) unique,
@@ -12,21 +12,21 @@ create table Jogador (
 	foreign key (nomeRegiao) references Regiao(nome)
 );
 
-create table Jogo (
+create table if not exists Jogo (
 	nome varchar(20) primary key,
 	id varchar(10),
 	URL varchar(50)
 );
 
-create table Conversa (
+create table if not exists Conversa (
 	id serial,
 	idJogador integer,
 	nome varchar(20),
-	primary key (id, idJogador),	
-	foreign key (idJogador) references Jogador(id) 
+	primary key (id, idJogador),
+	foreign key (idJogador) references Jogador(id)
 );
 
-create table Mensagem (
+create table if not exists Mensagem (
 	id serial,
 	idConversa integer,
 	idJogador integer,
@@ -36,7 +36,7 @@ create table Mensagem (
 	foreign key (idConversa, idJogador) references Conversa(id, idJogador)
 );
 
-create table Cracha (
+create table if not exists Cracha (
 	nome varchar(20),
 	nomeJogo varchar(20),
 	limiteDePontos integer,
@@ -45,7 +45,7 @@ create table Cracha (
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
-create table Partida (
+create table if not exists Partida (
 	id integer,
 	nomeJogo varchar(20),
 	dataInicio timestamp default now(),
@@ -54,7 +54,7 @@ create table Partida (
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
-create table MultiJogador (
+create table if not exists MultiJogador (
 	idPartida integer,
 	nomeJogo varchar(20),
 	estado varchar(30) check (estado = 'Por Iniciar' or estado = 'A aguardar jogadores' or estado = 'Em curso' or estado = 'Terminada'),
@@ -64,7 +64,7 @@ create table MultiJogador (
 	foreign key (nomeRegiao) references Regiao(nome)
 );
 
-create table Normal (
+create table if not exists Normal (
 	idPartida integer,
 	nomeJogo varchar(20),
 	dificuldade integer check ( dificuldade > 0 and dificuldade <= 5),
@@ -72,20 +72,20 @@ create table Normal (
 	pontuacao integer,
 	primary key (idPartida, nomeJogo),
 	foreign key (idPartida, nomeJogo) references Partida(id, nomeJogo),
-	foreign key (idJogador) references Jogador(id) 
+	foreign key (idJogador) references Jogador(id)
 );
 
-create table Jogar (
+create table if not exists Jogar (
 	idPartida integer,
 	nomeJogo varchar(20),
 	idJogador integer,
 	pontuacao integer,
 	primary key (idPartida, nomeJogo, idJogador),
 	foreign key (idPartida, nomeJogo) references Partida(id, nomeJogo),
-	foreign key (idJogador) references Jogador(id) 
+	foreign key (idJogador) references Jogador(id)
 );
 
-create table Comprar (
+create table if not exists Comprar (
 	idJogador integer,
 	nomeJogo varchar(20),
 	preco integer,
@@ -95,7 +95,7 @@ create table Comprar (
 	foreign key (nomeJogo) references Jogo(nome)
 );
 
-create table Tem (
+create table if not exists Tem (
 	idJogador integer,
 	nomeCracha varchar(20),
 	nomeJogo varchar(20),
@@ -104,7 +104,7 @@ create table Tem (
 	foreign key (nomeCracha, nomeJogo) references Cracha(nome, nomeJogo)
 );
 
-create table Adicionar (
+create table if not exists Adicionar (
 	idJogador integer,
 	idJogadorAmigo integer,
 	primary key (idJogador, idJogadorAmigo),
@@ -112,7 +112,7 @@ create table Adicionar (
 	foreign key (idJogadorAmigo) references Jogador(id)
 );
 
-create table EstatisticaJogador (
+create table if not exists EstatisticaJogador (
 	idJogador integer primary key,
 	nrPartidas integer,
 	nrJogos integer,
@@ -120,7 +120,7 @@ create table EstatisticaJogador (
 	foreign key (idJogador) references Jogador(id)
 );
 
-create table EstatisticaJogo (
+create table if not exists EstatisticaJogo (
 	nomeJogo varchar(20) primary key,
 	nrPartidas integer,
 	nrJogadores integer,

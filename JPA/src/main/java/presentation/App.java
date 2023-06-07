@@ -15,39 +15,36 @@ package presentation;
 
 
 import businessLogic.BLService;
+import routine_manager.routine.RoutineControllers;
 import utils.Utils;
-import utils.associarCrachaProc;
 
 import java.util.Scanner;
 
+/**
+ * The program needs to be compiled using "-parameters" java compiling option, so it can preserve the params' names.
+ * Otherwise, the input parameters will be unrecognizable
+ */
 
 public class App {
     public static void main(String[] args) throws Exception {
         BLService services = new BLService();
+        RoutineControllers controllers = new RoutineControllers(services);
         Scanner scanner = new Scanner(System.in);
 
-        /*while (true) {
+        while (true) {
             Utils.clearConsole();
             System.out.println("Welcome to GameOn's DB Management\n");
-            services.showMenu();
+            controllers.printOptions();
+            System.out.print("Your option: ");
             String option = scanner.nextLine();
-            //Utils.clearConsole();
-            services.showFunction(option);
+            if(option.isBlank() || !Utils.isNumeric(option)) continue;
+            controllers.chooseRoutine(Integer.parseInt(option));
             scanner.nextLine();
-        }*/
-
-        while (true) {
-            System.out.println(":: Testing associarCrachaProc ::");
-            System.out.println("idJogador:");
-            Integer idJogador = Integer.parseInt(scanner.nextLine());
-            System.out.println("nomeJogo:");
-            String idJogo = scanner.nextLine();
-            System.out.println("crachaNome:");
-            String crachaNome = scanner.nextLine();
-            //associarCrachaProc.associarCrachaJPA(idJogador, idJogo, crachaNome);
-            associarCrachaProc.associarCracha(idJogador, idJogo, crachaNome);
-            System.out.println(":: end ::");
-            break;
         }
+
+       /*System.out.println(":: Testing associarCrachaProc ::");
+        associarCrachaProc s = new associarCrachaProc();
+        s.associarCracha(1, "Tetris", "TetrisRank4");
+        System.out.println(":: end ::");*/
     }
 }
