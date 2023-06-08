@@ -16,6 +16,7 @@ package presentation;
 
 import businessLogic.BLService;
 import routine_manager.routine.RoutineControllers;
+import utils.AssociarCrachaProc;
 import utils.Utils;
 
 import java.util.Scanner;
@@ -37,14 +38,16 @@ public class App {
             controllers.printOptions();
             System.out.print("Your option: ");
             String option = scanner.nextLine();
-            if(option.isBlank() || !Utils.isNumeric(option)) continue;
+            if (option.isBlank() || !Utils.isNumeric(option)) continue;
             controllers.chooseRoutine(Integer.parseInt(option));
             scanner.nextLine();
         }
 
-       /*System.out.println(":: Testing associarCrachaProc ::");
-        associarCrachaProc s = new associarCrachaProc();
-        s.associarCracha(1, "Tetris", "TetrisRank4");
-        System.out.println(":: end ::");*/
+
+        /*System.out.println(":: Testing associarCrachaProc ::");
+        AssociarCrachaProc s = new AssociarCrachaProc();
+        s.associarCracha(1, "Xadrez", "XadrezRank4");
+        System.out.println(":: end ::");
+        */
     }
 }

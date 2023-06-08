@@ -7,15 +7,23 @@ import jakarta.persistence.Id;
 @Entity
 public class JogadorPontos {
 
+    public JogadorPontos(Integer idJogador, Integer totalPontos) {
+        this.totalPontos = totalPontos;
+        this.idJogador = idJogador;
+    }
+
+    public JogadorPontos() {
+    }
+
     @Id
     @Column(name = "idjogador", nullable = false)
-    int idJogador;
+    public Integer idJogador;
 
     @Column(name = "totalpontos", nullable = false)
-    int pontos;
+    public Integer totalPontos;
 
     @Override
     public String toString() {
-        return "Jogador: " + this.idJogador + "\npontos: " + this.pontos;
+        return "Jogador: " + this.idJogador + "\npontos: " + this.totalPontos;
     }
 }

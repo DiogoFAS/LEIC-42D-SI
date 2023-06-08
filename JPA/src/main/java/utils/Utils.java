@@ -1,7 +1,10 @@
 package utils;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.lang.reflect.Field;
+
 
 public class Utils {
 
@@ -41,6 +44,35 @@ public class Utils {
             return false;
         }
         return true;
+    }
+
+    public static <T> void printTable(List<T> table, Class<?> clazz) {
+        Field[] fields = clazz.getDeclaredFields();
+
+        System.out.println();
+        // Print column headers
+        for (Field field : fields) {
+            System.out.print(field.getName() + "\t\t"); // Add extra tab space
+        }
+        System.out.println();
+
+        // Print rows
+        for (T instance : table) {
+            for (Field field : fields) {
+                try {
+                    // Set accessible to true to access non-public fields
+                    field.setAccessible(true);
+                    Object value = field.get(clazz.cast(instance));
+
+                    // Format the output with a fixed width of 10 characters
+                    String formattedValue = String.format("%-10s", value);
+                    System.out.print(formattedValue);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println();
+        }
     }
 }
 

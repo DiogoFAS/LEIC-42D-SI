@@ -4,7 +4,10 @@ import annotations.Description;
 import annotations.Function;
 import annotations.ReturnsTable;
 import routine_manager.routine.RoutineRegisters;
+import utils.JogadorPontos;
 
+
+import java.util.List;
 
 import static routine_manager.routine.RoutineControllers.callRoutine;
 
@@ -48,7 +51,7 @@ public class BLService {
         callRoutine("juntarConversa", idJogador, idConversa);
     }
 
-    @Description("Send a message")
+    @Description("Send a message to a chat")
     public void enviarMensagem(int jogadorId, int conversaId, String textoMensagem) throws Exception {
         callRoutine("enviarMensagem", jogadorId, conversaId, textoMensagem);
     }
@@ -67,7 +70,8 @@ public class BLService {
 
     @Function
     @ReturnsTable
-    public void PontosJogoPorJogador() {
-        // TODO
+    @Description("Retrieve a table containing the points of all players in a specific game")
+    public List<JogadorPontos> PontosJogoPorJogador(String jogoNome) throws Exception {
+        return (List<JogadorPontos>) callRoutine("PontosJogoPorJogador", jogoNome);
     }
 }

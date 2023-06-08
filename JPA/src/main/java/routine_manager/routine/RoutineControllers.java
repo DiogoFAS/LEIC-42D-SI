@@ -1,17 +1,21 @@
 package routine_manager.routine;
 
 import annotations.Description;
+import annotations.ReturnsTable;
 import businessLogic.BLService;
 import routine_manager.procedure.ProcedureManager;
 import routine_manager.function.FunctionManager;
+import utils.JogadorPontos;
 import utils.Utils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.*;
+
+import static utils.Utils.parseObject;
+import static utils.Utils.printTable;
 
 public class RoutineControllers {
 
@@ -24,12 +28,14 @@ public class RoutineControllers {
     }
 
     public void registerControllers() {
-        Arrays.stream(srv.getClass().getDeclaredMethods()).forEach(method -> {
-            if (!method.isAnnotationPresent(Description.class)) return;
-            controllers.put(controllers.size() + 1,
-                    new FunctionController(method, method.getAnnotation(Description.class).value())
-            );
-        });
+        Arrays.stream(srv.getClass().getDeclaredMethods())
+                .filter(method -> method.isAnnotationPresent(Description.class))
+                .sorted(Comparator.comparing(method -> method.getName()))
+                .forEach(method -> {
+                    controllers.put(controllers.size() + 1,
+                            new FunctionController(method, method.getAnnotation(Description.class).value())
+                    );
+                });
     }
 
     public void printOptions() {
@@ -62,12 +68,17 @@ public class RoutineControllers {
 
         for (int i = 0; i < params.length; i++) {
             System.out.println(params[i].getName() + ":");
-            args[i] = Utils.parseObject(params[i].getType(), scanner.nextLine());
+            args[i] = parseObject(params[i].getType(), scanner.nextLine());
         }
 
         Object result = method.invoke(srv, args);
-        if (method.getReturnType() == void.class) return;
-        System.out.println(name + ": " + result);
+        Type returnType = method.getGenericReturnType();
+        if (returnType == void.class) return;
+        if(method.isAnnotationPresent(ReturnsTable.class)) {
+            Class<?> tableClass = (Class<?>) ((ParameterizedType) returnType).getActualTypeArguments()[0];
+            printTable((List<JogadorPontos>) result, tableClass);
+        }
+        else System.out.println(name + ": " + result);
     }
 
     private record FunctionController(Method method, String description) {
