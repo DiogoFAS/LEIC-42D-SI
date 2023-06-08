@@ -43,7 +43,7 @@ public class BLService {
         return res;
     }
 
-    @Description("Join a player into a conversation.")
+    @Description("Join a player into a conversation")
     public void juntarConversa(int idJogador, int idConversa) throws Exception {
         callRoutine("juntarConversa", idJogador, idConversa);
     }
@@ -54,15 +54,20 @@ public class BLService {
     }
 
     @Function
-    public void totalPontosJogador() {
+    @Description("Get the total points of a player")
+    public int totalPontosJogador(int jogadorId) throws Exception {
+        return (int) callRoutine("totalPontosJogador", jogadorId);
     }
 
     @Function
-    public void totalJogosJogador() {
+    @Description("Retrieve the total number of games played by a specific player")
+    public int totalJogosJogador(int jogadorId) throws Exception {
+        return (int) callRoutine("totalJogosJogador", jogadorId);
     }
 
     @Function
     @ReturnsTable
     public void PontosJogoPorJogador() {
+        // TODO
     }
 }

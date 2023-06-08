@@ -45,6 +45,10 @@ public class FunctionManager {
     }
 
     private static Boolean returnsTable(String funName) throws NoSuchMethodException {
-        return BLService.class.getDeclaredMethod(funName).isAnnotationPresent(ReturnsTable.class);
+        for (Method method : BLService.class.getDeclaredMethods()) {
+            String methodName = method.getName();
+            if (methodName.equals(funName)) return method.isAnnotationPresent(ReturnsTable.class);
+        }
+        return false;
     }
 }
