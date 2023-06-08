@@ -1,10 +1,10 @@
-package businessLogic;
+package business_logic;
 
 import annotations.Description;
 import annotations.Function;
 import annotations.ReturnsTable;
 import routine_manager.routine.RoutineRegisters;
-import utils.JogadorPontos;
+import table_returns.JogadorPontos;
 
 
 import java.util.List;

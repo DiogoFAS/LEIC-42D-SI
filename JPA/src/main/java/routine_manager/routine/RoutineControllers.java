@@ -2,11 +2,10 @@ package routine_manager.routine;
 
 import annotations.Description;
 import annotations.ReturnsTable;
-import businessLogic.BLService;
+import business_logic.BLService;
 import routine_manager.procedure.ProcedureManager;
 import routine_manager.function.FunctionManager;
-import utils.JogadorPontos;
-import utils.Utils;
+import table_returns.JogadorPontos;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;

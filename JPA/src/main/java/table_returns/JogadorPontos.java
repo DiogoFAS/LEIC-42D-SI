@@ -1,4 +1,4 @@
-package utils;
+package table_returns;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

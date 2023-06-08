@@ -1,10 +1,11 @@
-package utils;
+package jpa_routines;
 
 import dataManagement.DataScope;
 import dataManagement.Mapper;
 import jakarta.persistence.*;
 import model.*;
 import routine_manager.function.FunctionManager;
+import table_returns.JogadorPontos;
 
 import java.util.*;
 

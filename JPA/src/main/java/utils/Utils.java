@@ -47,6 +47,7 @@ public class Utils {
     }
 
     public static <T> void printTable(List<T> table, Class<?> clazz) {
+        // TODO: horizontally align content
         Field[] fields = clazz.getDeclaredFields();
 
         System.out.println();
@@ -58,6 +59,7 @@ public class Utils {
 
         // Print rows
         for (T instance : table) {
+            // instance = (T) new JogadorPontos(1, 200); // With this there is no problem whatsoever
             for (Field field : fields) {
                 try {
                     // Set accessible to true to access non-public fields
@@ -75,4 +77,3 @@ public class Utils {
         }
     }
 }
-

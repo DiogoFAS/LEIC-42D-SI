@@ -3,7 +3,7 @@ package routine_manager.function;
 
 import annotations.Function;
 import annotations.ReturnsTable;
-import businessLogic.BLService;
+import business_logic.BLService;
 import dataManagement.DataScope;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.StoredProcedureQuery;
