@@ -3,22 +3,26 @@ package routine_manager.procedure;
 import dataManagement.DataScope;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
-import jakarta.persistence.Query;
+import org.eclipse.persistence.asm.Type;
 import routine_manager.routine.RoutineParameter;
 import routine_manager.routine.RoutineRegisters;
 
-import java.util.Arrays;
+import java.sql.CallableStatement;
+import java.sql.Connection;
 
 public class ProcedureManager {
 
     public static void executeProcedure(String procName, Object[] args) throws Exception {
         try (DataScope scope = new DataScope()) {
             EntityManager em = scope.getEntityManager();
-            Query q = em.createNativeQuery("call " + procName + arrayToArgs(args));
-            for (int i = 0; i < args.length; i++) {
-                q.setParameter(i + 1, args[i]);
+            Connection cn = em.unwrap(Connection.class);
+            RoutineParameter[] params = RoutineRegisters.getRoutineParams(procName);
+            CallableStatement q = cn.prepareCall("call " + procName + arrayToArgs(args));
+            for (int i = 0; i < params.length; i++) {
+                if(params[i].mode() == ParameterMode.IN) q.setObject(i+1,args[i]);
+                else q.registerOutParameter(i+1, );
             }
-            q.executeUpdate();
+            q.execute();
             scope.validateWork();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

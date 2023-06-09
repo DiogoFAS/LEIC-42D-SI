@@ -11,7 +11,7 @@ public class RoutineRegisters {
 
     public static Map<String, RoutineParameter[]> routinesParams = new HashMap<>();
 
-    public static RoutineParameter[] getFunctionParams(String name) throws Exception {
+    public static RoutineParameter[] getRoutineParams(String name) throws Exception {
         if (routinesParams.get(name) == null)
             throw new NoSuchMethodException("Function " + name + "doesn't have registered parameters.");
         return routinesParams.get(name);

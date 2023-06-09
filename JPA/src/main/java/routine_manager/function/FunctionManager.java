@@ -19,7 +19,7 @@ public class FunctionManager {
         try (DataScope scope = new DataScope()) {
             EntityManager em = scope.getEntityManager();
             StoredProcedureQuery f = em.createStoredProcedureQuery(funName);
-            RoutineParameter[] params = RoutineRegisters.getFunctionParams(funName);
+            RoutineParameter[] params = RoutineRegisters.getRoutineParams(funName);
             for (int i = 0; i < params.length; i++) {
                 f.registerStoredProcedureParameter(i + 1, params[i].clazz(), params[i].mode());
                 if(i < args.length) f.setParameter(i + 1, args[i]);
