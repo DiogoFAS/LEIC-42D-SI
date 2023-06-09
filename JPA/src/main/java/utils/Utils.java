@@ -61,7 +61,6 @@ public class Utils {
 
         // Print rows
         for (T instance : table) {
-            // instance = (T) new JogadorPontos(1, 200); // With this there is no problem whatsoever
             for (Field field : fields) {
                 try {
                     // Set accessible to true to access non-public fields

@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.StoredProcedureQuery;
 import routine_manager.routine.RoutineParameter;
 import routine_manager.routine.RoutineRegisters;
+import table_returns.JogadorPontos;
 
 import java.lang.reflect.Method;
 
@@ -18,7 +19,7 @@ public class FunctionManager {
     public static Object executeFunction(String funName, Object[] args) {
         try (DataScope scope = new DataScope()) {
             EntityManager em = scope.getEntityManager();
-            StoredProcedureQuery f = em.createStoredProcedureQuery(funName);
+            StoredProcedureQuery f = em.createStoredProcedureQuery(funName, JogadorPontos.class);
             RoutineParameter[] params = RoutineRegisters.getRoutineParams(funName);
             for (int i = 0; i < params.length; i++) {
                 f.registerStoredProcedureParameter(i + 1, params[i].clazz(), params[i].mode());

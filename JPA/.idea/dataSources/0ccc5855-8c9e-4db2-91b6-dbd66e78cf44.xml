@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.45">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>4102</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4381</IntrospectionStateNumber>
       <ServerVersion>15.2</ServerVersion>
       <StartupTime>1683794059</StartupTime>
       <TimeZones>true ACDT
@@ -814,7 +814,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>4102</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4381</IntrospectionStateNumber>
       <ObjectId>16867</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -9270,7 +9270,7 @@ false Zulu
     <schema id="508" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>4102</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4381</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -9445,8 +9445,8 @@ false Zulu
       <ObjectId>21611</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
-      <SourceTextLength>296</SourceTextLength>
-      <StateNumber>4071</StateNumber>
+      <SourceTextLength>298</SourceTextLength>
+      <StateNumber>4380</StateNumber>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>

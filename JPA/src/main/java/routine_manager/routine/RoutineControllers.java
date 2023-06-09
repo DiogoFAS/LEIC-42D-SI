@@ -51,8 +51,7 @@ public class RoutineControllers {
             return FunctionManager.executeFunction(funName, args);
         } else {
             System.out.println("Procedure");
-            ProcedureManager.executeProcedure(funName, args);
-            return null;
+            return ProcedureManager.executeProcedure(funName, args);
         }
     }
 

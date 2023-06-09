@@ -20,7 +20,7 @@ public class RoutineRegisters {
     public static void registerAllRoutines() throws Exception {
         for (Method method : RoutineRegisters.class.getDeclaredMethods()) {
             String methodName = method.getName();
-            if (methodName.equals("registerAllRoutines") || methodName.equals("getFunctionParams")) continue;
+            if (methodName.equals("registerAllRoutines") || methodName.equals("getRoutineParams")) continue;
             System.out.println("Registering: " + methodName);
             method.invoke(null);
         }
