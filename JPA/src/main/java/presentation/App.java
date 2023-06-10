@@ -25,6 +25,7 @@ public class App {
             controllers.printOptions();
             System.out.print("Your option: ");
             String option = scanner.nextLine();
+            if(option.equalsIgnoreCase("exit")) break;
             if (option.isBlank() || !Utils.isNumeric(option)) continue;
             controllers.chooseRoutine(Integer.parseInt(option));
             scanner.nextLine();
@@ -35,6 +36,9 @@ public class App {
         // s.associarCrachaJPA(6, "Xadrez", "XadrezRank4"); // AssociarCrachJPA
         // s.associarCrachaBaseline(6, "Xadrez", "XadrezRank4");   // AssociarCrachaBaseline
 
-  //      System.out.println(":: end ::");
+        for (int i = 0; i < 3; i++) {
+            Thread.sleep(100 * (i+1));
+            System.out.print("BYE!!\t\t");
+        }
     }
 }

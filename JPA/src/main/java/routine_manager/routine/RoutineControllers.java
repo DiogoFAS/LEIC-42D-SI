@@ -41,11 +41,10 @@ public class RoutineControllers {
         for (Map.Entry<Integer, FunctionController> c : controllers.entrySet()) {
             System.out.println(c.getKey() + " -> " + c.getValue().description);
         }
-        System.out.println();
+        System.out.println("exit -> Close the app\n");
     }
 
     public static<T> T callRoutine(String funName, Object... args) throws Exception {
-        // Call Routine
         if (FunctionManager.isFunction(funName)) {
             System.out.println("Function");
             Class<?> returnType = FunctionManager.getReturnType(funName);
