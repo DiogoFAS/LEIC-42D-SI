@@ -17,7 +17,6 @@ public class BLService {
         RoutineRegisters.registerAllRoutines();
     }
 
-
     @Description("Create new player")
     public void criarJogador(String nomeJogador, String emailJogador, String regiaoJogador) throws Exception {
         callRoutine("criarJogador", nomeJogador, emailJogador, regiaoJogador);
@@ -41,7 +40,7 @@ public class BLService {
     @Description("Start a conversation")
     public int iniciarConversa(int idjogador, String nomeconversa) throws Exception {
         // TODO: return from procedure, will have to make a SQL function using alternative 2
-        int res = (int) callRoutine("iniciarConversa", idjogador, nomeconversa);
+        int res = callRoutine("iniciarConversa", idjogador, nomeconversa);
         System.out.println("my res is " + res);
         return res;
     }
@@ -59,19 +58,19 @@ public class BLService {
     @Function
     @Description("Get the total points of a player")
     public int totalPontosJogador(int jogadorId) throws Exception {
-        return (int) callRoutine("totalPontosJogador", jogadorId);
+        return callRoutine("totalPontosJogador", jogadorId);
     }
 
     @Function
     @Description("Retrieve the total number of games played by a specific player")
     public int totalJogosJogador(int jogadorId) throws Exception {
-        return (int) callRoutine("totalJogosJogador", jogadorId);
+        return callRoutine("totalJogosJogador", jogadorId);
     }
 
     @Function
     @ReturnsTable
     @Description("Retrieve a table containing the points of all players in a specific game")
     public List<JogadorPontos> PontosJogoPorJogador(String jogoNome) throws Exception {
-        return (List<JogadorPontos>) callRoutine("PontosJogoPorJogador", jogoNome);
+        return callRoutine("PontosJogoPorJogador", jogoNome);
     }
 }

@@ -49,7 +49,7 @@ public class Utils {
     }
 
     public static <T> void printTable(List<T> table, Class<?> clazz) {
-        // TODO: horizontally align content
+        // TODO: horizontally align content (Andre)
         Field[] fields = clazz.getDeclaredFields();
 
         System.out.println();

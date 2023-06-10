@@ -7,14 +7,6 @@ import jakarta.persistence.Id;
 @Entity
 public class JogadorPontos {
 
-    public JogadorPontos(Integer idJogador, Integer totalPontos) {
-        this.totalPontos = totalPontos;
-        this.idJogador = idJogador;
-    }
-
-    public JogadorPontos() {
-    }
-
     @Id
     @Column(name = "idjogador", nullable = false)
     public Integer idJogador;

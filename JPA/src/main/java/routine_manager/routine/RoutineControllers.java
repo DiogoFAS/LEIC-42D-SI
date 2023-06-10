@@ -44,11 +44,12 @@ public class RoutineControllers {
         System.out.println();
     }
 
-    public static Object callRoutine(String funName, Object... args) throws Exception {
+    public static<T> T callRoutine(String funName, Object... args) throws Exception {
         // Call Routine
         if (FunctionManager.isFunction(funName)) {
             System.out.println("Function");
-            return FunctionManager.executeFunction(funName, args);
+            Class<?> returnType = FunctionManager.getReturnType(funName);
+            return FunctionManager.executeFunction(funName, returnType, args);
         } else {
             System.out.println("Procedure");
             return ProcedureManager.executeProcedure(funName, args);

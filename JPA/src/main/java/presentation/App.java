@@ -2,6 +2,7 @@ package presentation;
 
 
 import business_logic.BLService;
+import jpa_routines.AssociarCracha;
 import routine_manager.routine.RoutineControllers;
 import utils.Utils;
 
@@ -29,11 +30,11 @@ public class App {
             scanner.nextLine();
         }
 
-        // AssociarCracha
-        /*System.out.println(":: Testing associarCrachaProc ::");
-        AssociarCrachaProc s = new AssociarCrachaProc();
-        s.associarCracha(1, "Xadrez", "XadrezRank4");
-        System.out.println(":: end ::");
-        */
+        // AssociarCracha s = new AssociarCracha();
+
+        // s.associarCrachaJPA(6, "Xadrez", "XadrezRank4"); // AssociarCrachJPA
+        // s.associarCrachaBaseline(6, "Xadrez", "XadrezRank4");   // AssociarCrachaBaseline
+
+  //      System.out.println(":: end ::");
     }
 }

@@ -8,8 +8,8 @@ import routine_manager.routine.RoutineRegisters;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.SQLType;
 import java.sql.Types;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,19 +19,27 @@ public class ProcedureManager {
             String.class, Types.VARCHAR
     ));
 
-    public static Object executeProcedure(String procName, Object[] args) throws Exception {
+    /**
+     Executes a stored procedure with the given procedure name and arguments.
+     @param procName The name of the stored procedure to execute.
+     @param args The arguments to pass to the stored procedure.
+     @return The result of the stored procedure's out param or null if none provided.
+     @throws Exception if there is an error executing the stored procedure.
+     */
+    public static<T> T executeProcedure(String procName, Object[] args) throws Exception {
         try (DataScope scope = new DataScope()) {
             EntityManager em = scope.getEntityManager();
             Connection cn = em.unwrap(Connection.class);
             RoutineParameter[] params = RoutineRegisters.getRoutineParams(procName);
             CallableStatement q = cn.prepareCall("call " + procName + arrayToArgs(params));
             for (int i = 0; i < params.length; i++) {
-                if(params[i].mode() == ParameterMode.IN) q.setObject(i+1,args[i]);
-                else q.registerOutParameter(i+1, SQLmap.get(params[i].clazz()));
+                if (params[i].mode() == ParameterMode.IN) q.setObject(i + 1, args[i]);
+                else q.registerOutParameter(i + 1, SQLmap.get(params[i].clazz()));
             }
             q.execute();
             scope.validateWork();
-            return q.getObject(args.length + 1);
+            if (Arrays.stream(params).noneMatch(p -> p.mode() == ParameterMode.OUT)) return null;
+            return (T) q.getObject(args.length + 1);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             throw ex;
