@@ -18,18 +18,18 @@ public class BLService_Tests {
     public void teste1() throws Exception {
         // ****************** Teste 1 ****************
 
-
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
         EntityManager em = emf.createEntityManager();
 
         try {
             CrachaId crachaKeys = new CrachaId();
-            //insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('XadrezRank1', 'Xadrez', 1000, 'http:/XadrezRank1.jpg');
-            crachaKeys.setNome("XadrezRank1");
-            crachaKeys.setNomejogo("Xadrez");
+            //insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('TetrisRank1', 'Tetris', 1000, 'http:/XadrezRank1.jpg');
+            crachaKeys.setNome("TetrisRank1");
+            crachaKeys.setNomejogo("Tetris");
 
             Cracha c = em.find(Cracha.class, crachaKeys);
             if (c == null) throw new Exception("Count find cracha.");
+            System.out.println("teste1 success!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
@@ -45,14 +45,14 @@ public class BLService_Tests {
     public void teste2() throws Exception {
         // ****************** Teste 2 ****************
 
-        //Verificar iníocio e fim de transações na BD
+        //Verificar início e fim de transações na BD
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             CrachaId crachaKeys = new CrachaId();
-            crachaKeys.setNome("XadrezRank1");
-            crachaKeys.setNomejogo("Xadrez");
+            crachaKeys.setNome("TetrisRank1");
+            crachaKeys.setNomejogo("Tetris");
             //acquire unit of work
             //Conta a = em.find(Conta.class, Long.valueOf(1111),LockModeType.PESSIMISTIC_WRITE);
 
@@ -82,8 +82,8 @@ public class BLService_Tests {
             em.flush();
 
             CrachaId crachaKeys = new CrachaId();
-            crachaKeys.setNome("XadrezRank1");
-            crachaKeys.setNomejogo("Xadrez");
+            crachaKeys.setNome("TetrisRank1");
+            crachaKeys.setNomejogo("Tetris");
 
             //acquire unit of work
             //Conta a = em.find(Conta.class, Long.valueOf(1111),LockModeType.PESSIMISTIC_WRITE);
@@ -236,8 +236,8 @@ public class BLService_Tests {
                     --nreps;
                     em.getTransaction().begin();
                     CrachaId crachaKeys = new CrachaId();
-                    crachaKeys.setNome("XadrezRank1");
-                    crachaKeys.setNomejogo("Xadrez");
+                    crachaKeys.setNome("TetrisRank1");
+                    crachaKeys.setNomejogo("Tetris");
                     c = em.find(CrachaOpt.class, crachaKeys, LockModeType.OPTIMISTIC);
                     if (c == null)
                         throw new GameOnAppExc("conta inexistente");

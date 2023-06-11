@@ -72,7 +72,10 @@ public class RoutineControllers {
 
         Object result = method.invoke(srv, args);
         Type returnType = method.getGenericReturnType();
-        if (returnType == void.class) return;
+        if (returnType == void.class){
+            System.out.println(name + " success!");
+            return;
+        }
         if(method.isAnnotationPresent(ReturnsTable.class)) {
             Class<?> tableClass = (Class<?>) ((ParameterizedType) returnType).getActualTypeArguments()[0];
             printTable((List<JogadorPontos>) result, tableClass);

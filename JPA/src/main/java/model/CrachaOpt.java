@@ -1,6 +1,8 @@
 package model;
 
 import jakarta.persistence.*;
+import org.eclipse.persistence.annotations.OptimisticLocking;
+import org.eclipse.persistence.annotations.OptimisticLockingType;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,7 +12,7 @@ import java.util.Set;
 @Table(name = "crachaOpt", schema = "public")
 //No teste 7, retirar comentários da linha seguinte,
 // Nos restantes, comentar
-//@OptimisticLocking(cascade=true,type=OptimisticLockingType.CHANGED_COLUMNS)
+@OptimisticLocking(cascade=true,type= OptimisticLockingType.CHANGED_COLUMNS)
 public class CrachaOpt {
     @EmbeddedId
     private CrachaId id;

@@ -68,13 +68,15 @@ public class Utils {
                     Object value = field.get(clazz.cast(instance));
 
                     // Format the output with a fixed width of 10 characters
-                    String formattedValue = String.format("%-10s", value);
+                    String formattedValue = String.format("%-9s", value);
                     System.out.print(formattedValue);
+                    System.out.print("\t\t");
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
             System.out.println();
+
         }
     }
 }
