@@ -1,16 +1,28 @@
 package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.LinkedHashSet;
+import java.util.List;
+
 
 @Entity
 @Table(name = "regiao", schema = "public")
 public class Regiao {
     @Id
-    @Column(name = "nome", nullable = false, length = 10)
+    @Column(name = "nome")
     private String nome;
+
+    @OneToMany(mappedBy = "nomeregiao")
+    private List<Jogador> jogadors;
+
+    public List<Jogador> getJogadors() {
+        return jogadors;
+    }
+//, nullable = false, length = 10
+    public void setJogadors(List<Jogador> jogadors) {
+        this.jogadors = jogadors;
+    }
 
     public String getNome() {
         return nome;

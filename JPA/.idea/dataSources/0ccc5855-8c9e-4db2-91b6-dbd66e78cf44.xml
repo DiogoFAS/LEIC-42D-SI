@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.45">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.48">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>4381</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4686</IntrospectionStateNumber>
       <ServerVersion>15.2</ServerVersion>
-      <StartupTime>1683794059</StartupTime>
+      <StartupTime>1686427887</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -800,7 +800,6 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>3842</IntrospectionStateNumber>
       <ObjectId>22081</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -814,7 +813,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>4381</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4686</IntrospectionStateNumber>
       <ObjectId>16867</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -834,7 +833,6 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>3839</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4247,7 +4245,6 @@ false Zulu
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>3842</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -9270,7 +9267,7 @@ false Zulu
     <schema id="508" parent="3" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>4381</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4686</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -9296,12 +9293,16 @@ false Zulu
     <sequence id="512" parent="264" name="cacifos_numcac_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>22082</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
       <StateNumber>3838</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="513" parent="264" name="eventos_idev_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>22131</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
       <StateNumber>3838</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
@@ -9440,7 +9441,17 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="531" parent="508" name="iniciarconversa">
+    <routine id="531" parent="508" name="fun_opt_lock">
+      <ObjectId>22499</ObjectId>
+      <PgRoutineKind>pg-trigger</PgRoutineKind>
+      <ResultsDefinition>trigger</ResultsDefinition>
+      <Rows>0.0</Rows>
+      <SourceTextLength>177</SourceTextLength>
+      <StateNumber>4676</StateNumber>
+      <LanguageName>plpgsql</LanguageName>
+      <OwnerName>postgres</OwnerName>
+    </routine>
+    <routine id="532" parent="508" name="iniciarconversa">
       <ArgumentsDefinition>IN idjogador integer, IN nomeconversa character varying, OUT res integer</ArgumentsDefinition>
       <ObjectId>21611</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
@@ -9450,7 +9461,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="532" parent="508" name="iniciarconversa_test1">
+    <routine id="533" parent="508" name="iniciarconversa_test1">
       <ObjectId>21118</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9459,7 +9470,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="533" parent="508" name="iniciarconversa_test2">
+    <routine id="534" parent="508" name="iniciarconversa_test2">
       <ObjectId>21119</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9468,7 +9479,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="534" parent="508" name="iniciarconversalogic">
+    <routine id="535" parent="508" name="iniciarconversalogic">
       <ArgumentsDefinition>IN idjogador integer, IN nomeconversa character varying, OUT res integer</ArgumentsDefinition>
       <ObjectId>21612</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
@@ -9478,7 +9489,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="535" parent="508" name="iniciarconversatrans">
+    <routine id="536" parent="508" name="iniciarconversatrans">
       <ArgumentsDefinition>IN idjogador integer, IN nomeconversa character varying, OUT res integer</ArgumentsDefinition>
       <ObjectId>21613</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
@@ -9488,7 +9499,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="536" parent="508" name="juntarconversa">
+    <routine id="537" parent="508" name="juntarconversa">
       <ArgumentsDefinition>IN idjogador integer, IN idconversa integer</ArgumentsDefinition>
       <ObjectId>18936</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
@@ -9498,7 +9509,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="537" parent="508" name="juntarconversa_test1">
+    <routine id="538" parent="508" name="juntarconversa_test1">
       <ObjectId>21120</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9507,7 +9518,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="538" parent="508" name="juntarconversa_test2">
+    <routine id="539" parent="508" name="juntarconversa_test2">
       <ObjectId>21127</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9516,7 +9527,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="539" parent="508" name="juntarconversa_test3">
+    <routine id="540" parent="508" name="juntarconversa_test3">
       <ObjectId>21128</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9525,7 +9536,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="540" parent="508" name="juntarconversa_test4">
+    <routine id="541" parent="508" name="juntarconversa_test4">
       <ObjectId>21129</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9534,7 +9545,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="541" parent="508" name="pontosjogoporjogador">
+    <routine id="542" parent="508" name="pontosjogoporjogador">
       <ArgumentsDefinition>jogonome character varying</ArgumentsDefinition>
       <ObjectId>20908</ObjectId>
       <ResultsDefinition>TABLE(idjogador integer, totalpontos integer)</ResultsDefinition>
@@ -9544,7 +9555,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="542" parent="508" name="test_iniciarconversa1">
+    <routine id="543" parent="508" name="test_iniciarconversa1">
       <ObjectId>21114</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9553,7 +9564,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="543" parent="508" name="test_iniciarconversa2">
+    <routine id="544" parent="508" name="test_iniciarconversa2">
       <ObjectId>21115</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9562,7 +9573,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="544" parent="508" name="totaljogosjogador">
+    <routine id="545" parent="508" name="totaljogosjogador">
       <ArgumentsDefinition>jogadorid integer</ArgumentsDefinition>
       <ObjectId>22162</ObjectId>
       <ResultsDefinition>integer</ResultsDefinition>
@@ -9572,7 +9583,17 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="545" parent="508" name="totalpontosjogador">
+    <routine id="546" parent="508" name="totalpartidasjogador">
+      <ArgumentsDefinition>jogadorid integer</ArgumentsDefinition>
+      <ObjectId>22501</ObjectId>
+      <ResultsDefinition>integer</ResultsDefinition>
+      <Rows>0.0</Rows>
+      <SourceTextLength>577</SourceTextLength>
+      <StateNumber>4682</StateNumber>
+      <LanguageName>plpgsql</LanguageName>
+      <OwnerName>postgres</OwnerName>
+    </routine>
+    <routine id="547" parent="508" name="totalpontosjogador">
       <ArgumentsDefinition>jogadorid integer</ArgumentsDefinition>
       <ObjectId>21596</ObjectId>
       <ResultsDefinition>integer</ResultsDefinition>
@@ -9582,7 +9603,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="546" parent="508" name="totalpontosjogador_test1">
+    <routine id="548" parent="508" name="totalpontosjogador_test1">
       <ObjectId>21597</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9591,7 +9612,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="547" parent="508" name="totalpontosjogador_test2">
+    <routine id="549" parent="508" name="totalpontosjogador_test2">
       <ObjectId>21598</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9600,7 +9621,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="548" parent="508" name="totalpontosjogador_test3">
+    <routine id="550" parent="508" name="totalpontosjogador_test3">
       <ObjectId>21599</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9609,7 +9630,7 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="549" parent="508" name="totalpontosjogador_test4">
+    <routine id="551" parent="508" name="totalpontosjogador_test4">
       <ObjectId>21600</ObjectId>
       <PgRoutineKind>pg-procedure</PgRoutineKind>
       <Rows>0.0</Rows>
@@ -9618,134 +9639,146 @@ false Zulu
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <sequence id="550" parent="508" name="conversa_id_seq">
+    <sequence id="552" parent="508" name="conversa_id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>21413</ObjectId>
+      <SequenceIdentity>1(49)</SequenceIdentity>
+      <StartValue>1</StartValue>
       <StateNumber>2273</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="551" parent="508" name="jogador_id_seq">
+    <sequence id="553" parent="508" name="jogador_id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>21391</ObjectId>
+      <SequenceIdentity>1(202)</SequenceIdentity>
+      <StartValue>1</StartValue>
       <StateNumber>2271</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="552" parent="508" name="mensagem_id_seq">
+    <sequence id="554" parent="508" name="mensagem_id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>21433</ObjectId>
+      <SequenceIdentity>1(4)</SequenceIdentity>
+      <StartValue>1</StartValue>
       <StateNumber>2275</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="553" parent="508" name="adicionar">
+    <table id="555" parent="508" name="adicionar">
       <ObjectId>21561</ObjectId>
-      <StateNumber>2288</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="554" parent="508" name="comprar">
+    <table id="556" parent="508" name="comprar">
       <ObjectId>21521</ObjectId>
-      <StateNumber>2284</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="555" parent="508" name="conversa">
+    <table id="557" parent="508" name="conversa">
       <ObjectId>21414</ObjectId>
-      <StateNumber>2273</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="556" parent="508" name="cracha">
+    <table id="558" parent="508" name="cracha">
       <ObjectId>21446</ObjectId>
-      <StateNumber>2276</StateNumber>
+      <StateNumber>4656</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="557" parent="508" name="estatisticajogador">
+    <table id="559" parent="508" name="estatisticajogador">
       <ObjectId>21576</ObjectId>
-      <StateNumber>2289</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="558" parent="508" name="estatisticajogo">
+    <table id="560" parent="508" name="estatisticajogo">
       <ObjectId>21586</ObjectId>
-      <StateNumber>2290</StateNumber>
+      <StateNumber>4566</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="559" parent="508" name="jogador">
+    <table id="561" parent="508" name="jogador">
       <ObjectId>21392</ObjectId>
-      <StateNumber>2271</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="560" parent="508" name="jogar">
+    <table id="562" parent="508" name="jogar">
       <ObjectId>21506</ObjectId>
-      <StateNumber>2283</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="561" parent="508" name="jogo">
+    <table id="563" parent="508" name="jogo">
       <ObjectId>21408</ObjectId>
-      <StateNumber>2276</StateNumber>
+      <StateNumber>4566</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="562" parent="508" name="mensagem">
+    <table id="564" parent="508" name="mensagem">
       <ObjectId>21434</ObjectId>
-      <StateNumber>2275</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="563" parent="508" name="multijogador">
+    <table id="565" parent="508" name="multijogador">
       <ObjectId>21468</ObjectId>
-      <StateNumber>2278</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="564" parent="508" name="normal">
+    <table id="566" parent="508" name="normal">
       <ObjectId>21484</ObjectId>
-      <StateNumber>2279</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="565" parent="508" name="partida">
+    <table id="567" parent="508" name="partida">
       <ObjectId>21456</ObjectId>
-      <StateNumber>2277</StateNumber>
+      <StateNumber>4566</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="566" parent="508" name="regiao">
+    <table id="568" parent="508" name="regiao">
       <ObjectId>21386</ObjectId>
-      <StateNumber>2271</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="567" parent="508" name="tem">
+    <table id="569" parent="508" name="tem">
       <ObjectId>21546</ObjectId>
-      <StateNumber>2287</StateNumber>
+      <StateNumber>4568</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="568" parent="514" name="numal">
+    <view id="570" parent="508" name="jogadortotalinfo">
+      <ObjectId>22502</ObjectId>
+      <SourceTextLength>317</SourceTextLength>
+      <StateNumber>4684</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </view>
+    <column id="571" parent="514" name="numal">
       <DasType>numeric(6)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="569" parent="514" name="nomeal">
+    <column id="572" parent="514" name="nomeal">
       <DasType>varchar(80)|0s</DasType>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="570" parent="514" name="aluga_cac">
+    <column id="573" parent="514" name="aluga_cac">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="571" parent="514" name="alunos_aluga_cac_fkey">
+    <foreign-key id="574" parent="514" name="alunos_aluga_cac_fkey">
       <ColNames>aluga_cac</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22095</ObjectId>
@@ -9756,7 +9789,7 @@ false Zulu
       <RefTableName>cacifos</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="572" parent="514" name="alunos_pkey">
+    <index id="575" parent="514" name="alunos_pkey">
       <ColNames>numal</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22091</ObjectId>
@@ -9765,7 +9798,7 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="573" parent="514" name="alunos_aluga_cac_key">
+    <index id="576" parent="514" name="alunos_aluga_cac_key">
       <ColNames>aluga_cac</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22093</ObjectId>
@@ -9773,20 +9806,20 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="574" parent="514" name="alunos_pkey">
+    <key id="577" parent="514" name="alunos_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22092</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22091</UnderlyingIndexId>
     </key>
-    <key id="575" parent="514" name="alunos_aluga_cac_key">
+    <key id="578" parent="514" name="alunos_aluga_cac_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22094</ObjectId>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22093</UnderlyingIndexId>
     </key>
-    <column id="576" parent="515" name="numcac">
+    <column id="579" parent="515" name="numcac">
       <DasType>integer|0s</DasType>
       <IdentityKind>always</IdentityKind>
       <NotNull>1</NotNull>
@@ -9795,13 +9828,13 @@ false Zulu
       <SequenceId>22082</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="577" parent="515" name="descrcac">
+    <column id="580" parent="515" name="descrcac">
       <DasType>varchar(80)|0s</DasType>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="578" parent="515" name="cacifos_pkey">
+    <index id="581" parent="515" name="cacifos_pkey">
       <ColNames>numcac</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22086</ObjectId>
@@ -9810,27 +9843,27 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="579" parent="515" name="cacifos_pkey">
+    <key id="582" parent="515" name="cacifos_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22087</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22086</UnderlyingIndexId>
     </key>
-    <column id="580" parent="516" name="coddisc">
+    <column id="583" parent="516" name="coddisc">
       <DasType>char(6)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1042</TypeId>
     </column>
-    <column id="581" parent="516" name="descrdisc">
+    <column id="584" parent="516" name="descrdisc">
       <DasType>varchar(80)|0s</DasType>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="582" parent="516" name="disciplinas_pkey">
+    <index id="585" parent="516" name="disciplinas_pkey">
       <ColNames>coddisc</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22113</ObjectId>
@@ -9842,28 +9875,28 @@ false Zulu
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="583" parent="516" name="disciplinas_pkey">
+    <key id="586" parent="516" name="disciplinas_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22114</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22113</UnderlyingIndexId>
     </key>
-    <column id="584" parent="517" name="numprof">
+    <column id="587" parent="517" name="numprof">
       <DasType>numeric(5)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="585" parent="517" name="coddisc">
+    <column id="588" parent="517" name="coddisc">
       <DasType>char(6)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1042</TypeId>
     </column>
-    <foreign-key id="586" parent="517" name="ensina_numprof_fkey">
+    <foreign-key id="589" parent="517" name="ensina_numprof_fkey">
       <ColNames>numprof</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22152</ObjectId>
@@ -9874,7 +9907,7 @@ false Zulu
       <RefTableName>professores</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="587" parent="517" name="ensina_coddisc_fkey">
+    <foreign-key id="590" parent="517" name="ensina_coddisc_fkey">
       <ColNames>coddisc</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22157</ObjectId>
@@ -9885,7 +9918,7 @@ false Zulu
       <RefTableName>disciplinas</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="588" parent="517" name="ensina_pkey">
+    <index id="591" parent="517" name="ensina_pkey">
       <ColNames>numprof
 coddisc</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -9901,14 +9934,14 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="589" parent="517" name="ensina_pkey">
+    <key id="592" parent="517" name="ensina_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22151</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22150</UnderlyingIndexId>
     </key>
-    <column id="590" parent="518" name="idev">
+    <column id="593" parent="518" name="idev">
       <DasType>integer|0s</DasType>
       <IdentityKind>always</IdentityKind>
       <NotNull>1</NotNull>
@@ -9917,25 +9950,25 @@ default</CollationNames>
       <SequenceId>22131</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="591" parent="518" name="descrev">
+    <column id="594" parent="518" name="descrev">
       <DasType>varchar(80)|0s</DasType>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="592" parent="518" name="numal">
+    <column id="595" parent="518" name="numal">
       <DasType>numeric(6)|0s</DasType>
       <Position>3</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="593" parent="518" name="coddisc">
+    <column id="596" parent="518" name="coddisc">
       <DasType>char(6)|0s</DasType>
       <Position>4</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1042</TypeId>
     </column>
-    <foreign-key id="594" parent="518" name="eventos_numal_coddisc_fkey">
+    <foreign-key id="597" parent="518" name="eventos_numal_coddisc_fkey">
       <ColNames>numal
 coddisc</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -9948,7 +9981,7 @@ coddisc</RefColNames>
       <RefTableName>inscr</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="595" parent="518" name="eventos_pkey">
+    <index id="598" parent="518" name="eventos_pkey">
       <ColNames>idev</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22135</ObjectId>
@@ -9957,34 +9990,34 @@ coddisc</RefColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="596" parent="518" name="eventos_pkey">
+    <key id="599" parent="518" name="eventos_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22136</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22135</UnderlyingIndexId>
     </key>
-    <column id="597" parent="519" name="numal">
+    <column id="600" parent="519" name="numal">
       <DasType>numeric(6)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="598" parent="519" name="numhb">
+    <column id="601" parent="519" name="numhb">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="599" parent="519" name="descr">
+    <column id="602" parent="519" name="descr">
       <DasType>varchar(100)|0s</DasType>
       <Position>3</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="600" parent="519" name="hobbies_numal_fkey">
+    <foreign-key id="603" parent="519" name="hobbies_numal_fkey">
       <ColNames>numal</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22105</ObjectId>
@@ -9995,7 +10028,7 @@ coddisc</RefColNames>
       <RefTableName>alunos</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="601" parent="519" name="hobbies_pkey">
+    <index id="604" parent="519" name="hobbies_pkey">
       <ColNames>numal
 numhb</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -10005,40 +10038,40 @@ numhb</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="602" parent="519" name="hobbies_pkey">
+    <key id="605" parent="519" name="hobbies_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22104</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22103</UnderlyingIndexId>
     </key>
-    <check id="603" parent="520" name="inscr_nota_check">
+    <check id="606" parent="520" name="inscr_nota_check">
       <ColNames>nota</ColNames>
       <ObjectId>22118</ObjectId>
       <Predicate>(nota &gt;= 0) AND (nota &lt;= 20)</Predicate>
       <StateNumber>3838</StateNumber>
     </check>
-    <column id="604" parent="520" name="numal">
+    <column id="607" parent="520" name="numal">
       <DasType>numeric(6)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="605" parent="520" name="coddisc">
+    <column id="608" parent="520" name="coddisc">
       <DasType>char(6)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1042</TypeId>
     </column>
-    <column id="606" parent="520" name="nota">
+    <column id="609" parent="520" name="nota">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="607" parent="520" name="inscr_numal_fkey">
+    <foreign-key id="610" parent="520" name="inscr_numal_fkey">
       <ColNames>numal</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22121</ObjectId>
@@ -10049,7 +10082,7 @@ numhb</ColNames>
       <RefTableName>alunos</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="608" parent="520" name="inscr_coddisc_fkey">
+    <foreign-key id="611" parent="520" name="inscr_coddisc_fkey">
       <ColNames>coddisc</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22126</ObjectId>
@@ -10060,7 +10093,7 @@ numhb</ColNames>
       <RefTableName>disciplinas</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="609" parent="520" name="inscr_pkey">
+    <index id="612" parent="520" name="inscr_pkey">
       <ColNames>numal
 coddisc</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -10076,27 +10109,27 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="610" parent="520" name="inscr_pkey">
+    <key id="613" parent="520" name="inscr_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22120</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22119</UnderlyingIndexId>
     </key>
-    <column id="611" parent="521" name="numprof">
+    <column id="614" parent="521" name="numprof">
       <DasType>numeric(5)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="612" parent="521" name="nomeprof">
+    <column id="615" parent="521" name="nomeprof">
       <DasType>varchar(80)|0s</DasType>
       <Position>2</Position>
       <StateNumber>3838</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="613" parent="521" name="professores_pkey">
+    <index id="616" parent="521" name="professores_pkey">
       <ColNames>numprof</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22145</ObjectId>
@@ -10105,147 +10138,159 @@ default</CollationNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="614" parent="521" name="professores_pkey">
+    <key id="617" parent="521" name="professores_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>22146</ObjectId>
       <Primary>1</Primary>
       <StateNumber>3838</StateNumber>
       <UnderlyingIndexId>22145</UnderlyingIndexId>
     </key>
-    <argument id="615" parent="522" name="jogadorid">
+    <argument id="618" parent="522" name="jogadorid">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="616" parent="522" name="idjogo">
+    <argument id="619" parent="522" name="idjogo">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="617" parent="522" name="crachanome">
+    <argument id="620" parent="522" name="crachanome">
       <DasType>varchar|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="618" parent="526">
+    <argument id="621" parent="526">
       <ArgumentDirection>R</ArgumentDirection>
       <DasType>trigger|0s</DasType>
     </argument>
-    <argument id="619" parent="527" name="jogadorid">
+    <argument id="622" parent="527" name="jogadorid">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="620" parent="528" name="nomejogador">
+    <argument id="623" parent="528" name="nomejogador">
       <DasType>varchar|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="621" parent="528" name="emailjogador">
+    <argument id="624" parent="528" name="emailjogador">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="622" parent="528" name="regiaojogador">
+    <argument id="625" parent="528" name="regiaojogador">
       <DasType>varchar|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="623" parent="529" name="jogadorid">
+    <argument id="626" parent="529" name="jogadorid">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="624" parent="530" name="jogadorid">
+    <argument id="627" parent="530" name="jogadorid">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="625" parent="530" name="conversaid">
+    <argument id="628" parent="530" name="conversaid">
       <DasType>integer|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="626" parent="530" name="textomensagem">
+    <argument id="629" parent="530" name="textomensagem">
       <DasType>varchar|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="627" parent="531" name="idjogador">
+    <argument id="630" parent="531">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DasType>trigger|0s</DasType>
+    </argument>
+    <argument id="631" parent="532" name="idjogador">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="628" parent="531" name="nomeconversa">
+    <argument id="632" parent="532" name="nomeconversa">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="629" parent="531" name="res">
+    <argument id="633" parent="532" name="res">
       <ArgumentDirection>O</ArgumentDirection>
       <DasType>integer|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="630" parent="534" name="idjogador">
+    <argument id="634" parent="535" name="idjogador">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="631" parent="534" name="nomeconversa">
+    <argument id="635" parent="535" name="nomeconversa">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="632" parent="534" name="res">
+    <argument id="636" parent="535" name="res">
       <ArgumentDirection>O</ArgumentDirection>
       <DasType>integer|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="633" parent="535" name="idjogador">
+    <argument id="637" parent="536" name="idjogador">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="634" parent="535" name="nomeconversa">
+    <argument id="638" parent="536" name="nomeconversa">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="635" parent="535" name="res">
+    <argument id="639" parent="536" name="res">
       <ArgumentDirection>O</ArgumentDirection>
       <DasType>integer|0s</DasType>
       <Position>3</Position>
     </argument>
-    <argument id="636" parent="536" name="idjogador">
+    <argument id="640" parent="537" name="idjogador">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="637" parent="536" name="idconversa">
+    <argument id="641" parent="537" name="idconversa">
       <DasType>integer|0s</DasType>
       <Position>2</Position>
     </argument>
-    <argument id="638" parent="541">
+    <argument id="642" parent="542">
       <ArgumentDirection>T</ArgumentDirection>
       <DasType>table(&quot;idjogador&quot; integer, &quot;totalpontos&quot; integer)|0v</DasType>
     </argument>
-    <argument id="639" parent="541" name="jogonome">
+    <argument id="643" parent="542" name="jogonome">
       <DasType>varchar|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="640" parent="544">
+    <argument id="644" parent="545">
       <ArgumentDirection>R</ArgumentDirection>
       <DasType>integer|0s</DasType>
     </argument>
-    <argument id="641" parent="544" name="jogadorid">
+    <argument id="645" parent="545" name="jogadorid">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <argument id="642" parent="545">
+    <argument id="646" parent="546">
       <ArgumentDirection>R</ArgumentDirection>
       <DasType>integer|0s</DasType>
     </argument>
-    <argument id="643" parent="545" name="jogadorid">
+    <argument id="647" parent="546" name="jogadorid">
       <DasType>integer|0s</DasType>
       <Position>1</Position>
     </argument>
-    <column id="644" parent="553" name="idjogador">
+    <argument id="648" parent="547">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DasType>integer|0s</DasType>
+    </argument>
+    <argument id="649" parent="547" name="jogadorid">
+      <DasType>integer|0s</DasType>
+      <Position>1</Position>
+    </argument>
+    <column id="650" parent="555" name="idjogador">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2288</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="645" parent="553" name="idjogadoramigo">
+    <column id="651" parent="555" name="idjogadoramigo">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2288</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="646" parent="553" name="adicionar_idjogador_fkey">
+    <foreign-key id="652" parent="555" name="adicionar_idjogador_fkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21566</ObjectId>
@@ -10256,7 +10301,7 @@ default</CollationNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="647" parent="553" name="adicionar_idjogadoramigo_fkey">
+    <foreign-key id="653" parent="555" name="adicionar_idjogadoramigo_fkey">
       <ColNames>idjogadoramigo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21571</ObjectId>
@@ -10267,50 +10312,50 @@ default</CollationNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="648" parent="553" name="adicionar_pkey">
+    <index id="654" parent="555" name="adicionar_pkey">
       <ColNames>idjogador
 idjogadoramigo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21564</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2288</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="649" parent="553" name="adicionar_pkey">
+    <key id="655" parent="555" name="adicionar_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21565</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2288</StateNumber>
       <UnderlyingIndexId>21564</UnderlyingIndexId>
     </key>
-    <column id="650" parent="554" name="idjogador">
+    <column id="656" parent="556" name="idjogador">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2284</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="651" parent="554" name="nomejogo">
+    <column id="657" parent="556" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2284</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="652" parent="554" name="preco">
+    <column id="658" parent="556" name="preco">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
       <StateNumber>2284</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="653" parent="554" name="datacompra">
+    <column id="659" parent="556" name="datacompra">
       <DasType>timestamp|0s</DasType>
       <Position>4</Position>
       <StateNumber>2284</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="654" parent="554" name="comprar_idjogador_fkey">
+    <foreign-key id="660" parent="556" name="comprar_idjogador_fkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21526</ObjectId>
@@ -10321,7 +10366,7 @@ idjogadoramigo</ColNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="655" parent="554" name="comprar_nomejogo_fkey">
+    <foreign-key id="661" parent="556" name="comprar_nomejogo_fkey">
       <ColNames>nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21531</ObjectId>
@@ -10332,13 +10377,13 @@ idjogadoramigo</ColNames>
       <RefTableName>jogo</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="656" parent="554" name="comprar_pkey">
+    <index id="662" parent="556" name="comprar_pkey">
       <ColNames>idjogador
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21524</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2284</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -10348,14 +10393,14 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="657" parent="554" name="comprar_pkey">
+    <key id="663" parent="556" name="comprar_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21525</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2284</StateNumber>
       <UnderlyingIndexId>21524</UnderlyingIndexId>
     </key>
-    <column id="658" parent="555" name="id">
+    <column id="664" parent="557" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;conversa_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -10364,20 +10409,20 @@ default</CollationNames>
       <SequenceId>21413</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="659" parent="555" name="idjogador">
+    <column id="665" parent="557" name="idjogador">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2273</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="660" parent="555" name="nome">
+    <column id="666" parent="557" name="nome">
       <DasType>varchar(20)|0s</DasType>
       <Position>3</Position>
       <StateNumber>2273</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="661" parent="555" name="conversa_idjogador_fkey">
+    <foreign-key id="667" parent="557" name="conversa_idjogador_fkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21420</ObjectId>
@@ -10388,50 +10433,57 @@ default</CollationNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="662" parent="555" name="conversa_pkey">
+    <index id="668" parent="557" name="conversa_pkey">
       <ColNames>id
 idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21418</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2273</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="663" parent="555" name="conversa_pkey">
+    <key id="669" parent="557" name="conversa_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21419</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2273</StateNumber>
       <UnderlyingIndexId>21418</UnderlyingIndexId>
     </key>
-    <column id="664" parent="556" name="nome">
+    <column id="670" parent="558" name="nome">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2276</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="665" parent="556" name="nomejogo">
+    <column id="671" parent="558" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2276</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="666" parent="556" name="limitedepontos">
+    <column id="672" parent="558" name="limitedepontos">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
       <StateNumber>2276</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="667" parent="556" name="url">
+    <column id="673" parent="558" name="url">
       <DasType>varchar(50)|0s</DasType>
       <Position>4</Position>
       <StateNumber>2276</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="668" parent="556" name="cracha_nomejogo_fkey">
+    <column id="674" parent="558" name="vers">
+      <DasType>integer|0s</DasType>
+      <DefaultExpression>0</DefaultExpression>
+      <Position>5</Position>
+      <StateNumber>4656</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <foreign-key id="675" parent="558" name="cracha_nomejogo_fkey">
       <ColNames>nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21451</ObjectId>
@@ -10442,13 +10494,13 @@ idjogador</ColNames>
       <RefTableName>jogo</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="669" parent="556" name="cracha_pkey">
+    <index id="676" parent="558" name="cracha_pkey">
       <ColNames>nome
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21449</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2276</StateNumber>
+      <StateNumber>4566</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>100
@@ -10458,39 +10510,46 @@ default</CollationNames>
       <CollationParentNames>pg_catalog
 pg_catalog</CollationParentNames>
     </index>
-    <key id="670" parent="556" name="cracha_pkey">
+    <key id="677" parent="558" name="cracha_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21450</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2276</StateNumber>
       <UnderlyingIndexId>21449</UnderlyingIndexId>
     </key>
-    <column id="671" parent="557" name="idjogador">
+    <trigger id="678" parent="558" name="gl_opt">
+      <Events>IU</Events>
+      <ObjectId>22500</ObjectId>
+      <StateNumber>4678</StateNumber>
+      <Turn>before-row</Turn>
+      <CallRoutineId>22499</CallRoutineId>
+    </trigger>
+    <column id="679" parent="559" name="idjogador">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2289</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="672" parent="557" name="nrpartidas">
+    <column id="680" parent="559" name="nrpartidas">
       <DasType>integer|0s</DasType>
       <Position>2</Position>
       <StateNumber>2289</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="673" parent="557" name="nrjogos">
+    <column id="681" parent="559" name="nrjogos">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
       <StateNumber>2289</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="674" parent="557" name="totalpontosjogos">
+    <column id="682" parent="559" name="totalpontosjogos">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>2289</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="675" parent="557" name="estatisticajogador_idjogador_fkey">
+    <foreign-key id="683" parent="559" name="estatisticajogador_idjogador_fkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21581</ObjectId>
@@ -10501,48 +10560,48 @@ pg_catalog</CollationParentNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="676" parent="557" name="estatisticajogador_pkey">
+    <index id="684" parent="559" name="estatisticajogador_pkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21579</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2289</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="677" parent="557" name="estatisticajogador_pkey">
+    <key id="685" parent="559" name="estatisticajogador_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21580</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2289</StateNumber>
       <UnderlyingIndexId>21579</UnderlyingIndexId>
     </key>
-    <column id="678" parent="558" name="nomejogo">
+    <column id="686" parent="560" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2290</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="679" parent="558" name="nrpartidas">
+    <column id="687" parent="560" name="nrpartidas">
       <DasType>integer|0s</DasType>
       <Position>2</Position>
       <StateNumber>2290</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="680" parent="558" name="nrjogadores">
+    <column id="688" parent="560" name="nrjogadores">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
       <StateNumber>2290</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="681" parent="558" name="totalpontos">
+    <column id="689" parent="560" name="totalpontos">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>2290</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="682" parent="558" name="estatisticajogo_nomejogo_fkey">
+    <foreign-key id="690" parent="560" name="estatisticajogo_nomejogo_fkey">
       <ColNames>nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21591</ObjectId>
@@ -10553,32 +10612,32 @@ pg_catalog</CollationParentNames>
       <RefTableName>jogo</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="683" parent="558" name="estatisticajogo_pkey">
+    <index id="691" parent="560" name="estatisticajogo_pkey">
       <ColNames>nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21589</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2290</StateNumber>
+      <StateNumber>4566</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="684" parent="558" name="estatisticajogo_pkey">
+    <key id="692" parent="560" name="estatisticajogo_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21590</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2290</StateNumber>
       <UnderlyingIndexId>21589</UnderlyingIndexId>
     </key>
-    <check id="685" parent="559" name="jogador_estado_check">
+    <check id="693" parent="561" name="jogador_estado_check">
       <ColNames>estado</ColNames>
       <ObjectId>21396</ObjectId>
       <Predicate>((estado)::text = &apos;Ativo&apos;::text) OR ((estado)::text = &apos;Inativo&apos;::text) OR ((estado)::text = &apos;Banido&apos;::text)</Predicate>
       <StateNumber>2271</StateNumber>
     </check>
-    <column id="686" parent="559" name="id">
+    <column id="694" parent="561" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;jogador_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -10587,31 +10646,31 @@ pg_catalog</CollationParentNames>
       <SequenceId>21391</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="687" parent="559" name="estado">
+    <column id="695" parent="561" name="estado">
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
       <StateNumber>2271</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="688" parent="559" name="username">
+    <column id="696" parent="561" name="username">
       <DasType>varchar(20)|0s</DasType>
       <Position>3</Position>
       <StateNumber>2271</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="689" parent="559" name="email">
+    <column id="697" parent="561" name="email">
       <DasType>varchar(30)|0s</DasType>
       <Position>4</Position>
       <StateNumber>2271</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="690" parent="559" name="nomeregiao">
+    <column id="698" parent="561" name="nomeregiao">
       <DasType>varchar(10)|0s</DasType>
       <Position>5</Position>
       <StateNumber>2271</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="691" parent="559" name="jogador_nomeregiao_fkey">
+    <foreign-key id="699" parent="561" name="jogador_nomeregiao_fkey">
       <ColNames>nomeregiao</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21403</ObjectId>
@@ -10622,84 +10681,84 @@ pg_catalog</CollationParentNames>
       <RefTableName>regiao</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="692" parent="559" name="jogador_pkey">
+    <index id="700" parent="561" name="jogador_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21397</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2271</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="693" parent="559" name="jogador_username_key">
+    <index id="701" parent="561" name="jogador_username_key">
       <ColNames>username</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21399</ObjectId>
-      <StateNumber>2271</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <index id="694" parent="559" name="jogador_email_key">
+    <index id="702" parent="561" name="jogador_email_key">
       <ColNames>email</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21401</ObjectId>
-      <StateNumber>2271</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="695" parent="559" name="jogador_pkey">
+    <key id="703" parent="561" name="jogador_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21398</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2271</StateNumber>
       <UnderlyingIndexId>21397</UnderlyingIndexId>
     </key>
-    <key id="696" parent="559" name="jogador_username_key">
+    <key id="704" parent="561" name="jogador_username_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21400</ObjectId>
       <StateNumber>2271</StateNumber>
       <UnderlyingIndexId>21399</UnderlyingIndexId>
     </key>
-    <key id="697" parent="559" name="jogador_email_key">
+    <key id="705" parent="561" name="jogador_email_key">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21402</ObjectId>
       <StateNumber>2271</StateNumber>
       <UnderlyingIndexId>21401</UnderlyingIndexId>
     </key>
-    <column id="698" parent="560" name="idpartida">
+    <column id="706" parent="562" name="idpartida">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2283</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="699" parent="560" name="nomejogo">
+    <column id="707" parent="562" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2283</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="700" parent="560" name="idjogador">
+    <column id="708" parent="562" name="idjogador">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>2283</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="701" parent="560" name="pontuacao">
+    <column id="709" parent="562" name="pontuacao">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>2283</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="702" parent="560" name="jogar_idpartida_nomejogo_fkey">
+    <foreign-key id="710" parent="562" name="jogar_idpartida_nomejogo_fkey">
       <ColNames>idpartida
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -10712,7 +10771,7 @@ nomejogo</RefColNames>
       <RefTableName>partida</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="703" parent="560" name="jogar_idjogador_fkey">
+    <foreign-key id="711" parent="562" name="jogar_idjogador_fkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21516</ObjectId>
@@ -10723,14 +10782,14 @@ nomejogo</RefColNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="704" parent="560" name="jogar_pkey">
+    <index id="712" parent="562" name="jogar_pkey">
       <ColNames>idpartida
 nomejogo
 idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21509</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2283</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -10740,52 +10799,52 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="705" parent="560" name="jogar_pkey">
+    <key id="713" parent="562" name="jogar_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21510</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2283</StateNumber>
       <UnderlyingIndexId>21509</UnderlyingIndexId>
     </key>
-    <column id="706" parent="561" name="nome">
+    <column id="714" parent="563" name="nome">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2272</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="707" parent="561" name="id">
+    <column id="715" parent="563" name="id">
       <DasType>varchar(10)|0s</DasType>
       <Position>2</Position>
       <StateNumber>2272</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="708" parent="561" name="url">
+    <column id="716" parent="563" name="url">
       <DasType>varchar(50)|0s</DasType>
       <Position>3</Position>
       <StateNumber>2272</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="709" parent="561" name="jogo_pkey">
+    <index id="717" parent="563" name="jogo_pkey">
       <ColNames>nome</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21411</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2272</StateNumber>
+      <StateNumber>4566</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="710" parent="561" name="jogo_pkey">
+    <key id="718" parent="563" name="jogo_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21412</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2272</StateNumber>
       <UnderlyingIndexId>21411</UnderlyingIndexId>
     </key>
-    <column id="711" parent="562" name="id">
+    <column id="719" parent="564" name="id">
       <DasType>integer|0s</DasType>
       <DefaultExpression>nextval(&apos;mensagem_id_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
@@ -10794,34 +10853,34 @@ default</CollationNames>
       <SequenceId>21433</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="712" parent="562" name="idconversa">
+    <column id="720" parent="564" name="idconversa">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2275</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="713" parent="562" name="idjogador">
+    <column id="721" parent="564" name="idjogador">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>2275</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="714" parent="562" name="texto">
+    <column id="722" parent="564" name="texto">
       <DasType>varchar(200)|0s</DasType>
       <Position>4</Position>
       <StateNumber>2275</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="715" parent="562" name="datadeenvio">
+    <column id="723" parent="564" name="datadeenvio">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>now()</DefaultExpression>
       <Position>5</Position>
       <StateNumber>2275</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="716" parent="562" name="mensagem_idconversa_idjogador_fkey">
+    <foreign-key id="724" parent="564" name="mensagem_idconversa_idjogador_fkey">
       <ColNames>idconversa
 idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -10834,57 +10893,57 @@ idjogador</RefColNames>
       <RefTableName>conversa</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="717" parent="562" name="mensagem_pkey">
+    <index id="725" parent="564" name="mensagem_pkey">
       <ColNames>id
 idconversa
 idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21439</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2275</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="718" parent="562" name="mensagem_pkey">
+    <key id="726" parent="564" name="mensagem_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21440</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2275</StateNumber>
       <UnderlyingIndexId>21439</UnderlyingIndexId>
     </key>
-    <check id="719" parent="563" name="multijogador_estado_check">
+    <check id="727" parent="565" name="multijogador_estado_check">
       <ColNames>estado</ColNames>
       <ObjectId>21471</ObjectId>
       <Predicate>((estado)::text = &apos;Por Iniciar&apos;::text) OR ((estado)::text = &apos;A aguardar jogadores&apos;::text) OR ((estado)::text = &apos;Em curso&apos;::text) OR ((estado)::text = &apos;Terminada&apos;::text)</Predicate>
       <StateNumber>2278</StateNumber>
     </check>
-    <column id="720" parent="563" name="idpartida">
+    <column id="728" parent="565" name="idpartida">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2278</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="721" parent="563" name="nomejogo">
+    <column id="729" parent="565" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="722" parent="563" name="estado">
+    <column id="730" parent="565" name="estado">
       <DasType>varchar(30)|0s</DasType>
       <Position>3</Position>
       <StateNumber>2278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="723" parent="563" name="nomeregiao">
+    <column id="731" parent="565" name="nomeregiao">
       <DasType>varchar(10)|0s</DasType>
       <Position>4</Position>
       <StateNumber>2278</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="724" parent="563" name="multijogador_idpartida_nomejogo_fkey">
+    <foreign-key id="732" parent="565" name="multijogador_idpartida_nomejogo_fkey">
       <ColNames>idpartida
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -10897,7 +10956,7 @@ nomejogo</RefColNames>
       <RefTableName>partida</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="725" parent="563" name="multijogador_nomeregiao_fkey">
+    <foreign-key id="733" parent="565" name="multijogador_nomeregiao_fkey">
       <ColNames>nomeregiao</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21479</ObjectId>
@@ -10908,13 +10967,13 @@ nomejogo</RefColNames>
       <RefTableName>regiao</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="726" parent="563" name="multijogador_pkey">
+    <index id="734" parent="565" name="multijogador_pkey">
       <ColNames>idpartida
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21472</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2278</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -10924,14 +10983,14 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="727" parent="563" name="multijogador_pkey">
+    <key id="735" parent="565" name="multijogador_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21473</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2278</StateNumber>
       <UnderlyingIndexId>21472</UnderlyingIndexId>
     </key>
-    <trigger id="728" parent="563" name="atribuicaocrachas">
+    <trigger id="736" parent="565" name="atribuicaocrachas">
       <ColumnIndices>3</ColumnIndices>
       <Events>U</Events>
       <ObjectId>21625</ObjectId>
@@ -10940,45 +10999,45 @@ default</CollationNames>
       <WhenCondition>new.estado::text = &apos;Terminada&apos;::text</WhenCondition>
       <CallRoutineId>20897</CallRoutineId>
     </trigger>
-    <check id="729" parent="564" name="normal_dificuldade_check">
+    <check id="737" parent="566" name="normal_dificuldade_check">
       <ColNames>dificuldade</ColNames>
       <ObjectId>21487</ObjectId>
       <Predicate>(dificuldade &gt; 0) AND (dificuldade &lt;= 5)</Predicate>
       <StateNumber>2279</StateNumber>
     </check>
-    <column id="730" parent="564" name="idpartida">
+    <column id="738" parent="566" name="idpartida">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2279</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="731" parent="564" name="nomejogo">
+    <column id="739" parent="566" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2279</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="732" parent="564" name="dificuldade">
+    <column id="740" parent="566" name="dificuldade">
       <DasType>integer|0s</DasType>
       <Position>3</Position>
       <StateNumber>2279</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="733" parent="564" name="idjogador">
+    <column id="741" parent="566" name="idjogador">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>2279</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="734" parent="564" name="pontuacao">
+    <column id="742" parent="566" name="pontuacao">
       <DasType>integer|0s</DasType>
       <Position>5</Position>
       <StateNumber>2279</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="735" parent="564" name="normal_idpartida_nomejogo_fkey">
+    <foreign-key id="743" parent="566" name="normal_idpartida_nomejogo_fkey">
       <ColNames>idpartida
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -10991,7 +11050,7 @@ nomejogo</RefColNames>
       <RefTableName>partida</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="736" parent="564" name="normal_idjogador_fkey">
+    <foreign-key id="744" parent="566" name="normal_idjogador_fkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21495</ObjectId>
@@ -11002,13 +11061,13 @@ nomejogo</RefColNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="737" parent="564" name="normal_pkey">
+    <index id="745" parent="566" name="normal_pkey">
       <ColNames>idpartida
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21488</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2279</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -11018,55 +11077,55 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="738" parent="564" name="normal_pkey">
+    <key id="746" parent="566" name="normal_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21489</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2279</StateNumber>
       <UnderlyingIndexId>21488</UnderlyingIndexId>
     </key>
-    <trigger id="739" parent="564" name="atribuicaocrachas">
+    <trigger id="747" parent="566" name="atribuicaocrachas">
       <Events>I</Events>
       <ObjectId>21623</ObjectId>
       <StateNumber>2921</StateNumber>
       <Turn>after-row</Turn>
       <CallRoutineId>20897</CallRoutineId>
     </trigger>
-    <check id="740" parent="565" name="partida_check">
+    <check id="748" parent="567" name="partida_check">
       <ColNames>datafim
 datainicio</ColNames>
       <ObjectId>21460</ObjectId>
       <Predicate>datafim &gt; datainicio</Predicate>
       <StateNumber>2277</StateNumber>
     </check>
-    <column id="741" parent="565" name="id">
+    <column id="749" parent="567" name="id">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2277</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="742" parent="565" name="nomejogo">
+    <column id="750" parent="567" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2277</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="743" parent="565" name="datainicio">
+    <column id="751" parent="567" name="datainicio">
       <DasType>timestamp|0s</DasType>
       <DefaultExpression>now()</DefaultExpression>
       <Position>3</Position>
       <StateNumber>2277</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="744" parent="565" name="datafim">
+    <column id="752" parent="567" name="datafim">
       <DasType>timestamp|0s</DasType>
       <Position>4</Position>
       <StateNumber>2277</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <foreign-key id="745" parent="565" name="partida_nomejogo_fkey">
+    <foreign-key id="753" parent="567" name="partida_nomejogo_fkey">
       <ColNames>nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21463</ObjectId>
@@ -11077,13 +11136,13 @@ datainicio</ColNames>
       <RefTableName>jogo</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="746" parent="565" name="partida_pkey">
+    <index id="754" parent="567" name="partida_pkey">
       <ColNames>id
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21461</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2277</StateNumber>
+      <StateNumber>4566</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -11093,61 +11152,61 @@ pg_catalog</CollationParentNames>
       <CollationNames>
 default</CollationNames>
     </index>
-    <key id="747" parent="565" name="partida_pkey">
+    <key id="755" parent="567" name="partida_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21462</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2277</StateNumber>
       <UnderlyingIndexId>21461</UnderlyingIndexId>
     </key>
-    <column id="748" parent="566" name="nome">
+    <column id="756" parent="568" name="nome">
       <DasType>varchar(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2270</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="749" parent="566" name="regiao_pkey">
+    <index id="757" parent="568" name="regiao_pkey">
       <ColNames>nome</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21389</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2270</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="750" parent="566" name="regiao_pkey">
+    <key id="758" parent="568" name="regiao_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21390</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2270</StateNumber>
       <UnderlyingIndexId>21389</UnderlyingIndexId>
     </key>
-    <column id="751" parent="567" name="idjogador">
+    <column id="759" parent="569" name="idjogador">
       <DasType>integer|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>2287</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="752" parent="567" name="nomecracha">
+    <column id="760" parent="569" name="nomecracha">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>2287</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="753" parent="567" name="nomejogo">
+    <column id="761" parent="569" name="nomejogo">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>2287</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="754" parent="567" name="tem_idjogador_fkey">
+    <foreign-key id="762" parent="569" name="tem_idjogador_fkey">
       <ColNames>idjogador</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21551</ObjectId>
@@ -11158,7 +11217,7 @@ default</CollationNames>
       <RefTableName>jogador</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <foreign-key id="755" parent="567" name="tem_nomecracha_nomejogo_fkey">
+    <foreign-key id="763" parent="569" name="tem_nomecracha_nomejogo_fkey">
       <ColNames>nomecracha
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -11171,14 +11230,14 @@ nomejogo</RefColNames>
       <RefTableName>cracha</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="756" parent="567" name="tem_pkey">
+    <index id="764" parent="569" name="tem_pkey">
       <ColNames>idjogador
 nomecracha
 nomejogo</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21549</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2287</StateNumber>
+      <StateNumber>4568</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationIds>
@@ -11191,12 +11250,47 @@ default</CollationNames>
 pg_catalog
 pg_catalog</CollationParentNames>
     </index>
-    <key id="757" parent="567" name="tem_pkey">
+    <key id="765" parent="569" name="tem_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>21550</ObjectId>
       <Primary>1</Primary>
       <StateNumber>2287</StateNumber>
       <UnderlyingIndexId>21549</UnderlyingIndexId>
     </key>
+    <column id="766" parent="570" name="id">
+      <DasType>integer|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>4684</StateNumber>
+    </column>
+    <column id="767" parent="570" name="estado">
+      <DasType>varchar(10)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>4684</StateNumber>
+    </column>
+    <column id="768" parent="570" name="username">
+      <DasType>varchar(20)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>4684</StateNumber>
+    </column>
+    <column id="769" parent="570" name="email">
+      <DasType>varchar(30)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>4684</StateNumber>
+    </column>
+    <column id="770" parent="570" name="totaljogosjogador">
+      <DasType>integer|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>4684</StateNumber>
+    </column>
+    <column id="771" parent="570" name="totalpontosjogador">
+      <DasType>integer|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>4684</StateNumber>
+    </column>
+    <column id="772" parent="570" name="totalpartidasjogador">
+      <DasType>integer|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>4684</StateNumber>
+    </column>
   </database-model>
 </dataSource>

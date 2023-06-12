@@ -3,11 +3,15 @@ package business_logic;
 import annotations.Description;
 import annotations.Function;
 import annotations.ReturnsTable;
+import dataManagement.DataScope;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jpa_routines.AssociarCracha;
 import jpa_routines.AssociarCrachaBaseline;
 import jpa_routines.AssociarCrachaJPA;
 import routine_manager.routine.RoutineRegisters;
 import table_returns.JogadorPontos;
+import table_returns.JogadorTotalInfo;
 
 
 import java.util.List;
@@ -85,5 +89,18 @@ public class BLService {
     public void associarCrachaJPA(int jogadorId, String idJogo, String crachaNome) throws Exception {
         AssociarCracha s = new AssociarCrachaJPA();
         s.associarCracha(jogadorId, idJogo, crachaNome);
+    }
+
+    @ReturnsTable
+    @Description("Retrieve a view with all the information of each player")
+    public List jogadorTotalInfo() throws Exception {
+        try (DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
+            Query q = em.createNamedQuery("jogadorTotalInfo", JogadorTotalInfo.class);
+            return q.getResultList();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 }

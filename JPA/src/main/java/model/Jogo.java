@@ -16,24 +16,20 @@ public class Jogo {
 
     @Column(name = "id", length = 10)
     private String id;
-
     @Column(name = "url", length = 50)
     private String url;
-
-    //@OneToMany//(mappedBy = "jogo")
-    //private List<Comprar> comprars; //= new LinkedHashSet<>(); // deveria ser list?
 
     @ManyToMany
     private Set<Jogador> jogadors = new LinkedHashSet<>();
 
-    @OneToMany//(mappedBy = "jogo")
-    private List<Cracha> crachas;// = new LinkedHashSet<>();
+    @OneToMany
+    private List<Cracha> crachas;
 
-    //@OneToOne(mappedBy = "jogo")
-    //private Estatisticajogo estatisticajogo;
+    @OneToOne(mappedBy = "jogo")
+    private Estatisticajogo estatisticajogo;
 
-    @OneToMany//(mappedBy = "jogo")
-    private List<Partida> partidas;// = new LinkedHashSet<>();
+    @OneToMany
+    private List<Partida> partidas;
 
     public String getNome() {
         return nome;
@@ -59,17 +55,9 @@ public class Jogo {
         this.url = url;
     }
 
-    /*public List<Comprar> getComprars() {
-        return comprars;
-    }*/
-
     public Set<Jogador> getJogadors () {
         return jogadors;
     }
-
-    /*public void setComprars(List<Comprar> comprars) {
-        this.comprars = comprars;
-    }*/
 
     public void setJogadors(Set<Jogador> jogadors) {
         this.jogadors = jogadors;
@@ -83,13 +71,13 @@ public class Jogo {
         this.crachas = crachas;
     }
 
-    /*public Estatisticajogo getEstatisticajogo() {
+    public Estatisticajogo getEstatisticajogo() {
         return estatisticajogo;
     }
 
     public void setEstatisticajogo(Estatisticajogo estatisticajogo) {
         this.estatisticajogo = estatisticajogo;
-    }*/
+    }
 
     public List<Partida> getPartidas() {
         return partidas;

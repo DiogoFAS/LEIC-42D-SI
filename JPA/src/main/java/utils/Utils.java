@@ -1,7 +1,5 @@
 package utils;
 
-import table_returns.JogadorPontos;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
