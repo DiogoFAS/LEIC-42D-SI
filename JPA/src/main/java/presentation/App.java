@@ -4,11 +4,14 @@ package presentation;
 import business_logic.BLService;
 import jakarta.persistence.LockModeType;
 import jpa_routines.AssociarCracha;
+import jpa_routines.AssociarCrachaFactory;
 import routine_manager.routine.RoutineControllers;
 import utils.CrachaOptFunctions;
 import utils.Utils;
 
 import java.util.Scanner;
+
+import jpa_routines.AssociarCrachaFactory.Implementations;
 
 /**
  * The program needs to be compiled using "-parameters" java compiling option, so it can preserve the params' names.
@@ -37,12 +40,9 @@ public class App {
             }
         }*/
 
-        scanner.nextLine();
-        AssociarCracha s = new AssociarCracha();
-        //s.associarCrachaJPA(6, "Tetris", "TetrisRank4"); // AssociarCrachaJPA
-        s.associarCrachaBaseline(6, "Tetris", "TetrisRank4");   // AssociarCrachaBaseline
+        AssociarCracha s = AssociarCrachaFactory.getAssociarCracha(Implementations.JPA);
+        s.associarCracha(6, "Xadrez", "XadrezRank4");
 
-        //CrachaOptFunctions.increaseCrachaPontos("TetrisRank4", "Tetris", LockModeType.OPTIMISTIC);
-        System.out.println(":: end ::");
+        System.out.println(":: END ::");
     }
 }
