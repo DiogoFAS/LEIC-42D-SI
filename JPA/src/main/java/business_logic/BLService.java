@@ -41,7 +41,6 @@ public class BLService {
     public int iniciarConversa(int idjogador, String nomeconversa) throws Exception {
         // TODO: return from procedure, will have to make a SQL function using alternative 2
         int res = callRoutine("iniciarConversa", idjogador, nomeconversa);
-        System.out.println("my res is " + res);
         return res;
     }
 
@@ -62,7 +61,7 @@ public class BLService {
     }
 
     @Function
-    @Description("Retrieve the total number of games played by a specific player")
+    @Description("Retrieve the total number of different games played by a specific player")
     public int totalJogosJogador(int jogadorId) throws Exception {
         return callRoutine("totalJogosJogador", jogadorId);
     }

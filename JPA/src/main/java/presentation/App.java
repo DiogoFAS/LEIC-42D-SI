@@ -2,8 +2,10 @@ package presentation;
 
 
 import business_logic.BLService;
+import jakarta.persistence.LockModeType;
 import jpa_routines.AssociarCracha;
 import routine_manager.routine.RoutineControllers;
+import utils.CrachaOptFunctions;
 import utils.Utils;
 
 import java.util.Scanner;
@@ -19,26 +21,28 @@ public class App {
         RoutineControllers controllers = new RoutineControllers(services);
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            Utils.clearConsole();
-            System.out.println("Welcome to GameOn's DB Management\n");
-            controllers.printOptions();
-            System.out.print("Your option: ");
-            String option = scanner.nextLine();
-            if(option.equalsIgnoreCase("exit")) break;
-            if (option.isBlank() || !Utils.isNumeric(option)) continue;
-            controllers.chooseRoutine(Integer.parseInt(option));
-            scanner.nextLine();
-        }
+        /*while (true) {
+            try {
+                Utils.clearConsole();
+                System.out.println("Welcome to GameOn's DB Management\n");
+                controllers.printOptions();
+                System.out.print("Your option: ");
+                String option = scanner.nextLine();
+                if (option.isBlank() || !Utils.isNumeric(option)) continue;
+                controllers.chooseRoutine(Integer.parseInt(option));
+                scanner.nextLine();
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
+                scanner.nextLine();
+            }
+        }*/
 
-        // AssociarCracha s = new AssociarCracha();
+        scanner.nextLine();
+        AssociarCracha s = new AssociarCracha();
+        //s.associarCrachaJPA(6, "Tetris", "TetrisRank4"); // AssociarCrachaJPA
+        s.associarCrachaBaseline(6, "Tetris", "TetrisRank4");   // AssociarCrachaBaseline
 
-        // s.associarCrachaJPA(6, "Xadrez", "XadrezRank4"); // AssociarCrachJPA
-        // s.associarCrachaBaseline(6, "Xadrez", "XadrezRank4");   // AssociarCrachaBaseline
-
-        for (int i = 0; i < 3; i++) {
-            Thread.sleep(100 * (i+1));
-            System.out.print("BYE!!\t\t");
-        }
+        //CrachaOptFunctions.increaseCrachaPontos("TetrisRank4", "Tetris", LockModeType.OPTIMISTIC);
+        System.out.println(":: end ::");
     }
 }
