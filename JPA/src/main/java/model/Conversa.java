@@ -8,11 +8,11 @@ import java.util.Set;
 @Entity
 @Table(name = "conversa", schema = "public")
 public class Conversa {
+
     @EmbeddedId
     private ConversaId id;
 
-    //@MapsId("idjogador")
-    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "idjogador", insertable=false, updatable=false)
     private Jogador idjogador;
 

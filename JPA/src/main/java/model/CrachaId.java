@@ -8,7 +8,9 @@ import java.util.Objects;
 
 @Embeddable
 public class CrachaId implements Serializable {
+
     private static final long serialVersionUID = -4666862235538601739L;
+
     @Column(name = "nome", nullable = false, length = 20)
     private String nome;
 

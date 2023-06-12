@@ -3,6 +3,9 @@ package business_logic;
 import annotations.Description;
 import annotations.Function;
 import annotations.ReturnsTable;
+import jpa_routines.AssociarCracha;
+import jpa_routines.AssociarCrachaBaseline;
+import jpa_routines.AssociarCrachaJPA;
 import routine_manager.routine.RoutineRegisters;
 import table_returns.JogadorPontos;
 
@@ -39,7 +42,6 @@ public class BLService {
 
     @Description("Start a conversation")
     public int iniciarConversa(int idjogador, String nomeconversa) throws Exception {
-        // TODO: return from procedure, will have to make a SQL function using alternative 2
         int res = callRoutine("iniciarConversa", idjogador, nomeconversa);
         return res;
     }
@@ -71,5 +73,17 @@ public class BLService {
     @Description("Retrieve a table containing the points of all players in a specific game")
     public List<JogadorPontos> PontosJogoPorJogador(String jogoNome) throws Exception {
         return callRoutine("PontosJogoPorJogador", jogoNome);
+    }
+
+    @Description("Give a badge to player (BaseLine)")
+    public void associarCrachaBaseLine(int jogadorId, String idJogo, String crachaNome) throws Exception {
+        AssociarCracha s = new AssociarCrachaBaseline();
+        s.associarCracha(jogadorId, idJogo, crachaNome);
+    }
+
+    @Description("Give a badge to player (JPA)")
+    public void associarCrachaJPA(int jogadorId, String idJogo, String crachaNome) throws Exception {
+        AssociarCracha s = new AssociarCrachaJPA();
+        s.associarCracha(jogadorId, idJogo, crachaNome);
     }
 }

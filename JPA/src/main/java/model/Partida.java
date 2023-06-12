@@ -9,11 +9,11 @@ import java.util.Set;
 @Entity
 @Table(name = "partida", schema = "public")
 public class Partida {
+
     @EmbeddedId
     private PartidaId id;
 
-    //@MapsId("nomejogo")
-    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "nomejogo", insertable=false, updatable=false)
     private Jogo nomejogo;
 

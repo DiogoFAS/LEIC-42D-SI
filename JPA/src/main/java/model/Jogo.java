@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "jogo", schema = "public")
 public class Jogo {
+
     @Id
     @Column(name = "nome", nullable = false, length = 20)
     private String nome;

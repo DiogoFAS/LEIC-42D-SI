@@ -8,7 +8,9 @@ import java.util.Objects;
 
 @Embeddable
 public class TemId implements Serializable {
+
     private static final long serialVersionUID = -2998472726943497717L;
+
     @Column(name = "idjogador", nullable = false)
     private Integer idjogador;
 

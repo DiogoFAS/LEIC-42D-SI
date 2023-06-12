@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "jogador", schema = "public")
 public class Jogador {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -23,29 +24,29 @@ public class Jogador {
     @Column(name = "email", length = 30)
     private String email;
 
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "nomeregiao")
     private Regiao nomeregiao;
 
-    @ManyToMany//(mappedBy = "idjogador")
+    @ManyToMany
     private Set<Jogador> jogadors = new LinkedHashSet<>();
 
-    @ManyToMany//(mappedBy = "jogador")
+    @ManyToMany
     private Set<Comprar> comprars = new LinkedHashSet<>();
 
-    @OneToMany//(mappedBy = "jogador")
+    @OneToMany
     private List<Conversa> conversas;// = new LinkedHashSet<>();
 
     //@OneToOne//(mappedBy = "jogador")
     //private Estatisticajogador estatisticajogador;
 
-    @ManyToMany//(mappedBy = "jogador")
+    @ManyToMany
     private Set<Multijogador> multijogadors = new LinkedHashSet<>();
 
-    @OneToMany//(mappedBy = "idjogador")
+    @OneToMany
     private List<Normal> normals;// = new LinkedHashSet<>();
 
-    @ManyToMany//(mappedBy = "jogador")
+    @ManyToMany
     private Set<Cracha> crachas = new LinkedHashSet<>();
 
     public Integer getId() {

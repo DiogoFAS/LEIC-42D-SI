@@ -8,7 +8,9 @@ import java.util.Objects;
 
 @Embeddable
 public class MensagemId implements Serializable {
+
     private static final long serialVersionUID = -171149935804992878L;
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

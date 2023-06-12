@@ -7,11 +7,11 @@ import java.time.Instant;
 @Entity
 @Table(name = "mensagem", schema = "public")
 public class Mensagem {
+
     @EmbeddedId
     private MensagemId id;
 
-    //@MapsId
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumns({
             @JoinColumn(name = "idconversa", referencedColumnName = "id", insertable=false, updatable=false),
             @JoinColumn(name = "idjogador", referencedColumnName = "idjogador", insertable=false, updatable=false)

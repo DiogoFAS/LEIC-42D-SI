@@ -41,6 +41,7 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
             EntityManager em = scope.getEntityManager();
             if (em.contains(e)) throw new java.lang.IllegalAccessException("Entity not found.");
             em.merge(e);
+            scope.validateWork();
         } catch (Exception ex) {
             throw ex;
         }
@@ -52,7 +53,7 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
             EntityManager em = scope.getEntityManager();
             if (em.contains(e)) throw new java.lang.IllegalAccessException("Entity not found.");
             em.remove(e);
-            em.getTransaction().commit();
+            scope.validateWork();
         } catch (Exception ex) {
             throw ex;
         }

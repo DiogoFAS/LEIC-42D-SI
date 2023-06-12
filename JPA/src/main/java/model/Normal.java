@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "normal", schema = "public")
 public class Normal {
+
     @EmbeddedId
     private NormalId id;
 
-    //@MapsId
-    @OneToOne// (fetch = FetchType.LAZY, optional = false)
+    @OneToOne
     @JoinColumns({
             @JoinColumn(name = "idpartida", referencedColumnName = "id", insertable=false, updatable=false),
             @JoinColumn(name = "nomejogo", referencedColumnName = "nomejogo", insertable=false, updatable=false)
@@ -19,7 +19,7 @@ public class Normal {
     @Column(name = "dificuldade")
     private Integer dificuldade;
 
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idjogador")
     private Jogador jogador;
 

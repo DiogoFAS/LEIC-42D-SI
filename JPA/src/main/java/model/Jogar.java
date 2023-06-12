@@ -5,19 +5,18 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "jogar", schema = "public")
 public class Jogar {
+
     @EmbeddedId
     private JogarId id;
 
-    //@MapsId
-    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumns({
             @JoinColumn(name = "idpartida", referencedColumnName = "id", insertable=false, updatable=false),
             @JoinColumn(name = "nomejogo", referencedColumnName = "nomejogo", insertable=false, updatable=false)
     })
-    private Multijogador multiJogador; // private Partida partida;
+    private Multijogador multiJogador;
 
-    //@MapsId("idjogador")
-    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "idjogador", insertable=false, updatable=false)
     private Jogador jogador;
 

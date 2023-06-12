@@ -5,12 +5,13 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "estatisticajogo", schema = "public")
 public class Estatisticajogo {
+
     @Id
     @Column(name = "nomejogo", nullable = false, length = 20)
     private String nomejogo;
 
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne
     @JoinColumn(name = "nomejogo", nullable = false)
     private Jogo jogo;
 

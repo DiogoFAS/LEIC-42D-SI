@@ -8,7 +8,9 @@ import java.util.Objects;
 
 @Embeddable
 public class MultijogadorId implements Serializable {
+
     private static final long serialVersionUID = 2127478480021349954L;
+
     @Column(name = "idpartida", nullable = false)
     private Integer idpartida;
 

@@ -1,10 +1,13 @@
 package business_logic;
 
 import annotations.Description;
+import dataManagement.DataScope;
+import dataManagement.Mapper;
 import jakarta.persistence.*;
 import model.Cracha;
 import model.CrachaId;
-import model.CrachaOpt;
+
+import javax.xml.crypto.Data;
 
 class GameOnAppExc extends Exception {
     public GameOnAppExc(String msg) {
@@ -17,11 +20,8 @@ public class BLService_Tests {
     @Description("Test the manages conection and transactions")
     public void teste1() throws Exception {
         // ****************** Teste 1 ****************
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
-        EntityManager em = emf.createEntityManager();
-
-        try {
+        try(DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
             CrachaId crachaKeys = new CrachaId();
             //insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('TetrisRank1', 'Tetris', 1000, 'http:/XadrezRank1.jpg');
             crachaKeys.setNome("TetrisRank1");
@@ -30,14 +30,10 @@ public class BLService_Tests {
             Cracha c = em.find(Cracha.class, crachaKeys);
             if (c == null) throw new Exception("Count find cracha.");
             System.out.println("teste1 success!");
+            scope.validateWork();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
-        } finally {
-            em.close();
-            //release unit of work
-            emf.close();
-            //disconnect
         }
     }
 
@@ -46,26 +42,20 @@ public class BLService_Tests {
         // ****************** Teste 2 ****************
 
         //Verificar início e fim de transações na BD
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
+        try(DataScope scope =  new DataScope()) {
+            EntityManager em = scope.getEntityManager();
             CrachaId crachaKeys = new CrachaId();
             crachaKeys.setNome("TetrisRank1");
             crachaKeys.setNomejogo("Tetris");
             //acquire unit of work
             //Conta a = em.find(Conta.class, Long.valueOf(1111),LockModeType.PESSIMISTIC_WRITE);
 
-
             Cracha c = em.find(Cracha.class, crachaKeys);
             c.setLimitedepontos((int) (c.getLimitedepontos() + (c.getLimitedepontos() * 0.2)));
-            em.getTransaction().commit();
+            scope.validateWork();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
-        } finally {
-            em.close();
-            emf.close();
         }
     }
 
@@ -74,12 +64,9 @@ public class BLService_Tests {
     public void teste3() throws Exception {
         // ****************** Teste 3 ****************
 
-        //Verificar iníocio e fim de transações na BD
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.flush();
+        //Verificar início e fim de transações na BD
+        try(DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
 
             CrachaId crachaKeys = new CrachaId();
             crachaKeys.setNome("TetrisRank1");
@@ -90,43 +77,33 @@ public class BLService_Tests {
             Cracha c = em.find(Cracha.class, crachaKeys);
             c.setLimitedepontos((int) (c.getLimitedepontos() + (c.getLimitedepontos() * 0.2)));
             em.flush();
-            em.getTransaction().commit();
+            scope.validateWork();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
-        } finally {
-            em.close();
-            emf.close();
         }
     }
 
     @Description("Test concurrency control")
     public void teste4() throws Exception {
         // ****************** Teste 4 ****************
-
         //Verificar problemas de conssistência
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            em.getTransaction().begin();
+        try(DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
 
             CrachaId crachaKeys = new CrachaId();
-            crachaKeys.setNome("XadrezRank1");
-            crachaKeys.setNomejogo("Xadrez");
+            crachaKeys.setNome("TetrisRank1");
+            crachaKeys.setNomejogo("Tetris");
 
             Cracha c = em.find(Cracha.class, crachaKeys);
 
             if (c.getLimitedepontos() >= 600) {
-                c.setLimitedepontos((int) (c.getLimitedepontos() - 600));
+                c.setLimitedepontos( (c.getLimitedepontos() - 600));
                 em.getTransaction().commit();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
-        } finally {
-            em.close();
-            emf.close();
         }
     }
 
@@ -135,33 +112,28 @@ public class BLService_Tests {
         // ****************** Teste 5 ****************
 
         //Controlo de concorrência pessimista
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            em.getTransaction().begin();
+         try(DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
 
             CrachaId crachaKeys1 = new CrachaId();
-            crachaKeys1.setNome("XadrezRank1");
-            crachaKeys1.setNomejogo("Xadrez");
+            crachaKeys1.setNome("TetrisRank1");
+            crachaKeys1.setNomejogo("Tetris");
 
             Cracha c1 = em.find(Cracha.class, crachaKeys1, LockModeType.PESSIMISTIC_READ);
 
             CrachaId crachaKeys2 = new CrachaId();
             // insert into Cracha (nome, nomeJogo, limiteDePontos, URL) values ('DamasRank1', 'Damas', 1000, 'http://DamasRank1.jpg');
-            crachaKeys2.setNome("DamasRank1");
-            crachaKeys2.setNomejogo("Damas");
+            crachaKeys2.setNome("SpaceInv");
+            crachaKeys2.setNomejogo("SpaceInvRank1");
 
             Cracha c2 = em.find(Cracha.class, crachaKeys2, LockModeType.PESSIMISTIC_WRITE);
 
             c1.setLimitedepontos((int) (c1.getLimitedepontos() + (c1.getLimitedepontos() * 0.2)));
-
+            em.flush();
+            scope.validateWork();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
-        } finally {
-            em.close();
-            emf.close();
         }
     }
 
@@ -174,22 +146,23 @@ public class BLService_Tests {
         //
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
         EntityManager em = emf.createEntityManager();
-
         try {
             em.getTransaction().begin();
-            CrachaId crachaKeys = new CrachaId();
-            crachaKeys.setNome("XadrezRank1");
-            crachaKeys.setNomejogo("Xadrez");
+            Mapper<Cracha, CrachaId> map = new Mapper<>(Cracha.class, CrachaId.class);
 
-            CrachaOpt c = em.find(CrachaOpt.class, crachaKeys, LockModeType.OPTIMISTIC);
+            CrachaId crachaKeys = new CrachaId();
+            crachaKeys.setNome("TetrisRank1");
+            crachaKeys.setNomejogo("Tetris");
+
+            Cracha c = em.find(Cracha.class, crachaKeys, LockModeType.OPTIMISTIC);
 
             c.setLimitedepontos((int) (c.getLimitedepontos() + (c.getLimitedepontos() * 0.2)));
+            map.update(c);
+            em.flush();
+            em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
-        } finally {
-            em.close();
-            emf.close();
         }
     }
 
@@ -204,13 +177,13 @@ public class BLService_Tests {
             em.getTransaction().begin();
 
             CrachaId crachaKeys = new CrachaId();
-            crachaKeys.setNome("XadrezRank1");
-            crachaKeys.setNomejogo("Xadrez");
+            crachaKeys.setNome("TetrisRank1");
+            crachaKeys.setNomejogo("Tetris");
 
-            CrachaOpt c = em.find(CrachaOpt.class, crachaKeys);
+            Cracha c = em.find(Cracha.class, crachaKeys);
 
-
-            c.setLimitedepontos((int) (c.getLimitedepontos() + (c.getLimitedepontos() * 0.2)));
+            c.setLimitedepontos((int) (c.getLimitedepontos() * 1.2));
+            em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
@@ -223,31 +196,27 @@ public class BLService_Tests {
     @Description("Test optimistic concurrency control")
     public void teste8(int nreps) throws Exception {
         // ****************** Teste 8 ****************
+        Cracha c = null;
+        Cracha ent;
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
-        EntityManager em = emf.createEntityManager();
-
-        CrachaOpt c = null;
-        CrachaOpt ent;
-
-        try {
+        try(DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
             do {
                 try {
                     --nreps;
-                    em.getTransaction().begin();
                     CrachaId crachaKeys = new CrachaId();
                     crachaKeys.setNome("TetrisRank1");
                     crachaKeys.setNomejogo("Tetris");
-                    c = em.find(CrachaOpt.class, crachaKeys, LockModeType.OPTIMISTIC);
+                    c = em.find(Cracha.class, crachaKeys, LockModeType.OPTIMISTIC);
                     if (c == null)
-                        throw new GameOnAppExc("conta inexistente");
+                        throw new GameOnAppExc("cracha inexistente");
 
                     c.setLimitedepontos((int) (c.getLimitedepontos() + (c.getLimitedepontos() * 0.2)));
                     // experimentar com flush e com commit
                     //em.flush();
-                    em.getTransaction().commit();
 
                     nreps = 0;
+                    scope.validateWork();
                 } catch (RollbackException | OptimisticLockException e) {
                     if (e.getCause() instanceof OptimisticLockException || e instanceof OptimisticLockException) {
                         if (em.getTransaction().isActive())
@@ -256,27 +225,10 @@ public class BLService_Tests {
                             throw new GameOnAppExc("erro de concorrência");
                     } else throw e;
                 }
-// 		    catch (RollbackException|OptimisticLockException e) {
-//		    	if(e.getCause() instanceof OptimisticLockException || e instanceof OptimisticLockException) {
-//		    		if(e instanceof OptimisticLockException) //nesta
-//		    			ent =  (ContaOpt)((OptimisticLockException) e).getEntity(); // devolve null
-//		    		else
-//		    			ent=(ContaOpt)((OptimisticLockException) e.getCause()).getEntity(); // devolve null
-//		    		System.out.printf("Erro de concorrência com a conta: %d\n",ent.getId());
-//		    		if (em.getTransaction().isActive())
-//		    	        em.getTransaction().rollback();
-//		    	   if(nreps == 0)
-//    		    	    throw new BankAppExc("erro de concorrência");
-//		       }
-//		      else throw e;
-//		    }
             } while (nreps > 0);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             throw e;
-        } finally {
-            em.close();
-            emf.close();
         }
 
     }

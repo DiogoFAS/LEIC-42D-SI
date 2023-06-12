@@ -8,7 +8,9 @@ import java.util.Objects;
 
 @Embeddable
 public class NormalId implements Serializable {
+
     private static final long serialVersionUID = 2579069721280809922L;
+
     @Column(name = "idpartida", nullable = false)
     private Integer idpartida;
 

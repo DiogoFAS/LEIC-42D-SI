@@ -9,7 +9,9 @@ import java.util.Objects;
 
 @Embeddable
 public class AdicionarId implements Serializable {
+
     private static final long serialVersionUID = 4872046109907949656L;
+
     @Column(name = "idjogador", nullable = false)
     private Integer idjogador;
 

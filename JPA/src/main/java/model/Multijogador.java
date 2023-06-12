@@ -8,11 +8,11 @@ import java.util.Set;
 @Entity
 @Table(name = "multijogador", schema = "public")
 public class Multijogador {
+
     @EmbeddedId
     private MultijogadorId id;
 
-    //@MapsId
-    @OneToOne//(fetch = FetchType.LAZY, optional = false)
+    @OneToOne
     @JoinColumns({
             @JoinColumn(name = "idpartida", referencedColumnName = "id", insertable=false, updatable=false),
             @JoinColumn(name = "nomejogo", referencedColumnName = "nomejogo", insertable=false, updatable=false)
@@ -22,7 +22,7 @@ public class Multijogador {
     @Column(name = "estado", length = 30)
     private String estado;
 
-    @ManyToOne//(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "nomeregiao")
     private Regiao nomeregiao;
 

@@ -1,1 +1,3 @@
 *.pdf
+JPA/.idea
+JPA/src/main/resources/META-INF/persistence.xml

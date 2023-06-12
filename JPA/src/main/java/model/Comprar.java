@@ -7,16 +7,15 @@ import java.time.Instant;
 @Entity
 @Table(name = "comprar", schema = "public")
 public class Comprar {
+
     @EmbeddedId
     private ComprarId id;
 
-    //@MapsId("idjogador")
-    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "idjogador", insertable=false, updatable=false)
     private Jogador idjogador;
 
-    //@MapsId("nomejogo")
-    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "nomejogo", insertable=false, updatable=false)
     private Jogo nomejogo;
 

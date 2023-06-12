@@ -8,7 +8,9 @@ import java.util.Objects;
 
 @Embeddable
 public class PartidaId implements Serializable {
+
     private static final long serialVersionUID = -6103477046051504193L;
+
     @Column(name = "id", nullable = false)
     private Integer id;
 

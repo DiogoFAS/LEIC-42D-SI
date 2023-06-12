@@ -1,18 +1,21 @@
 package model;
 
 import jakarta.persistence.*;
+import org.eclipse.persistence.annotations.OptimisticLocking;
+import org.eclipse.persistence.annotations.OptimisticLockingType;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "cracha", schema = "public")
+@OptimisticLocking(type= OptimisticLockingType.CHANGED_COLUMNS)
 public class Cracha {
+
     @EmbeddedId
     private CrachaId id;
 
-    //@MapsId("nomejogo")
-    @ManyToOne//(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "nomejogo",insertable=false, updatable=false)
     private Jogo nomejogo;
 
@@ -23,11 +26,22 @@ public class Cracha {
     private String url;
 
     @ManyToMany
-    // isto está comentado porque dá erro e não sei corrigir.
-    /*@JoinTable(name = "tem",
-            joinColumns = @JoinColumn(name = "crachaId", referencedColumnName = "nomecracha"),
-            inverseJoinColumns = @JoinColumn(name = "idjogador", referencedColumnName = "idjogador"))*/
+    @JoinColumns({
+            @JoinColumn(name = "crachaId", referencedColumnName = "nomecracha", insertable=false, updatable=false),
+            @JoinColumn(name = "idJogador", referencedColumnName = "idJogador", insertable=false, updatable=false)
+    })
     private Set<Jogador> jogadors = new LinkedHashSet<>();
+
+    @Column(name = "vers")
+    private Integer vers;
+
+    public Integer getVers() {
+        return vers;
+    }
+
+    public void setVers(Integer vers) {
+        this.vers = vers;
+    }
 
     public CrachaId getId() {
         return id;
