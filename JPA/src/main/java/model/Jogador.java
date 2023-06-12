@@ -11,10 +11,13 @@ import java.util.Set;
 public class Jogador {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @ManyToMany
+    private Set<Jogo> jogos =
+            new LinkedHashSet<>();
+//@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "estado", length = 10)
     private String estado;
 
@@ -31,20 +34,17 @@ public class Jogador {
     @ManyToMany
     private Set<Jogador> jogadors = new LinkedHashSet<>();
 
-    @ManyToMany
-    private Set<Comprar> comprars = new LinkedHashSet<>();
-
     @OneToMany
-    private List<Conversa> conversas;// = new LinkedHashSet<>();
+    private List<Conversa> conversas;
 
-    //@OneToOne//(mappedBy = "jogador")
-    //private Estatisticajogador estatisticajogador;
+    @OneToOne
+    private Estatisticajogador estatisticajogador;
 
     @ManyToMany
     private Set<Multijogador> multijogadors = new LinkedHashSet<>();
 
     @OneToMany
-    private List<Normal> normals;// = new LinkedHashSet<>();
+    private List<Normal> normals;
 
     @ManyToMany
     private Set<Cracha> crachas = new LinkedHashSet<>();
@@ -97,12 +97,12 @@ public class Jogador {
         this.jogadors = jogadors;
     }
 
-    public Set<Comprar> getComprars() {
-        return comprars;
+    public Set<Jogo> getComprars() {
+        return jogos;
     }
 
-    public void setComprars(Set<Comprar> comprars) {
-        this.comprars = comprars;
+    public void setComprars(Set<Jogo> jogos) {
+        this.jogos = jogos;
     }
 
     public List<Conversa> getConversas() {
@@ -113,13 +113,13 @@ public class Jogador {
         this.conversas = conversas;
     }
 
-    /*public Estatisticajogador getEstatisticajogador() {
+    public Estatisticajogador getEstatisticajogador() {
         return estatisticajogador;
     }
 
     public void setEstatisticajogador(Estatisticajogador estatisticajogador) {
         this.estatisticajogador = estatisticajogador;
-    }*/
+    }
 
     public Set<Multijogador> getMultijogadors() {
         return multijogadors;

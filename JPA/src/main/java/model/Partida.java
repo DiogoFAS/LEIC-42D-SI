@@ -23,9 +23,6 @@ public class Partida {
     @Column(name = "datafim")
     private Instant datafim;
 
-    //@OneToMany//(mappedBy = "partida")
-    //private Set<Jogar> jogars = new LinkedHashSet<>();
-
     @OneToOne(mappedBy = "partida")
     private Multijogador multijogador;
 
@@ -63,14 +60,6 @@ public class Partida {
     public void setDatafim(Instant datafim) {
         this.datafim = datafim;
     }
-
-    /*public Set<Jogar> getJogars() {
-        return jogars;
-    }
-
-    public void setJogars(Set<Jogar> jogars) {
-        this.jogars = jogars;
-    }*/
 
     public Multijogador getMultijogador() {
         return multijogador;

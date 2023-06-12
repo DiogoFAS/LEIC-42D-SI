@@ -49,7 +49,7 @@ public class ProcedureManager {
     private static String arrayToArgs(Object[] arr) {
         StringBuilder res = new StringBuilder("(");
         for (int i = 0; i < arr.length; i++) {
-            res.append("?"); //+ (i + 1)
+            res.append("?");
             if (arr[arr.length - 1] != arr[i]) res.append(",");
         }
         res.append(")");

@@ -42,8 +42,6 @@ abstract class AbstractDataScope implements AutoCloseable {
             threadLocal.get().em.close();
             threadLocal.get().ef.close();
             threadLocal.remove();
-            //ou:
-            //threadLocal.set(null);
         } else if (!voted)
             cancelWork();
     }

@@ -2,9 +2,6 @@ package presentation;
 
 
 import business_logic.BLService;
-import jpa_routines.AssociarCracha;
-import jpa_routines.AssociarCrachaBaseline;
-import jpa_routines.AssociarCrachaJPA;
 import routine_manager.routine.RoutineControllers;
 import utils.Utils;
 

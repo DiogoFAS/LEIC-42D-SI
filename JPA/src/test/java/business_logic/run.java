@@ -1,26 +1,14 @@
 package business_logic;
 
-import annotations.Description;
-import dataManagement.DataScope;
-import dataManagement.Mapper;
-import jakarta.persistence.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import model.Cracha;
 import model.CrachaId;
 
-import javax.xml.crypto.Data;
-
-class GameOnAppExc extends Exception {
-    public GameOnAppExc(String msg) {
-        super(msg);
-    }
-}
-
-public class BLService_Tests {
-
-    @Description("Test optimistic concurrency control")
-    public void teste1() throws Exception {
-        // ****************** Teste 1 ****************
-
+public class run implements Runnable {
+    @Override
+    public void run() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SI");
         EntityManager em = emf.createEntityManager();
 
@@ -31,12 +19,10 @@ public class BLService_Tests {
             crachaKeys.setNome("TetrisRank1");
             crachaKeys.setNomejogo("Tetris");
 
-            Cracha c = em.find(Cracha.class, crachaKeys, LockModeType.OPTIMISTIC);
-
-            Runnable run = new run();
-            Thread t1 =new Thread(run);
+            Cracha c = em.find(Cracha.class, crachaKeys);
 
             c.setLimitedepontos((int) (c.getLimitedepontos() * 1.2));
+            System.out.println("Thread committed!");
             em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -46,5 +32,4 @@ public class BLService_Tests {
             emf.close();
         }
     }
-
 }
