@@ -6,8 +6,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "pontosJogoPorJogador", query = "select n.jogador.id, n.pontuacao from Normal n where :jogoNome = n.id.nomejogo union all select j.jogador.id, j.pontuacao from Jogar j inner join Partida p where :jogoNome = p.id.nomejogo" )
+@NamedQuery(name = "pontosJogoPorJogador", query =
+        "select new table_returns.JogadorPontos (n.jogador.id, n.pontuacao) " +
+                "from Normal n where :jogoNome = n.id.nomejogo " +
+                "union all " +
+                "select j.jogador.id, j.pontuacao from Jogar j " +
+                "inner join Partida p where :jogoNome = p.id.nomejogo")
 public class JogadorPontos {
+
+    public JogadorPontos(Integer idJogador, Integer totalPontos) {
+        this.idJogador = idJogador;
+        this.totalPontos = totalPontos;
+    }
 
     @Id
     @Column(name = "idjogador", nullable = false)
@@ -15,6 +25,9 @@ public class JogadorPontos {
 
     @Column(name = "totalpontos", nullable = false)
     public Integer totalPontos;
+
+    public JogadorPontos() {
+    }
 
     @Override
     public String toString() {

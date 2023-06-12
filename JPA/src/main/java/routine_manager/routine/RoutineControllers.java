@@ -29,7 +29,7 @@ public class RoutineControllers {
     public void registerControllers() {
         Arrays.stream(srv.getClass().getDeclaredMethods())
                 .filter(method -> method.isAnnotationPresent(Description.class))
-                .sorted(Comparator.comparing(method -> method.getName()))
+                .sorted(Comparator.comparing(Method::getName))
                 .forEach(method -> {
                     controllers.put(controllers.size() + 1,
                             new FunctionController(method, method.getAnnotation(Description.class).value())

@@ -22,7 +22,6 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
             scope.validateWork();
             return getPK(e);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
             throw ex;
         }
     }
@@ -32,7 +31,6 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
         try (DataScope scope = new DataScope()) {
             return scope.getEntityManager().find(tClass, id);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
             throw ex;
         }
     }
@@ -44,7 +42,6 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
             if (em.contains(e)) throw new java.lang.IllegalAccessException("Entity not found.");
             em.merge(e);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
             throw ex;
         }
     }
@@ -57,7 +54,6 @@ public class Mapper<T, TId> implements IMapper<T, TId> {
             em.remove(e);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
             throw ex;
         }
     }

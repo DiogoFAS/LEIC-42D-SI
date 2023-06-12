@@ -1,0 +1,26 @@
+package routine_manager.query;
+
+import dataManagement.DataScope;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import routine_manager.function.FunctionManager;
+import table_returns.JogadorPontos;
+
+import java.util.logging.Logger;
+
+public class QueryManager {
+
+    private static final Logger logger = Logger.getLogger(FunctionManager.class.getName());
+
+    public static<T> T executeNamedQuery(Object[] args) throws Exception {
+        try (DataScope scope = new DataScope()) {
+            EntityManager em = scope.getEntityManager();
+            Query res = em.createNamedQuery("pontosJogoPorJogador", JogadorPontos.class)
+                    .setParameter("jogoNome", args[0]);
+            return (T) res.getResultList();
+        } catch (Exception e) {
+            logger.severe(e.getMessage());
+            throw e;
+        }
+    }
+}

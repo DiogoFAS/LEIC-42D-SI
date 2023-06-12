@@ -6,6 +6,7 @@ import annotations.ReturnsTable;
 import business_logic.BLService;
 import dataManagement.DataScope;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.RollbackException;
 import jakarta.persistence.StoredProcedureQuery;
 import routine_manager.routine.RoutineParameter;
 import routine_manager.routine.RoutineRegisters;
@@ -14,9 +15,11 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class FunctionManager {
 
+    private static final Logger logger = Logger.getLogger(FunctionManager.class.getName());
 
     public static<T> T executeFunction(String funName, Class<?> returnClass, Object[] args) {
         try (DataScope scope = new DataScope()) {
@@ -35,7 +38,7 @@ public class FunctionManager {
             }
             return (T) f.getOutputParameterValue(args.length + 1);
         } catch (Exception e) {
-            System.out.println(e.getCause().getMessage());
+            logger.severe(e.getMessage());
             throw new RuntimeException(e);
         }
     }
