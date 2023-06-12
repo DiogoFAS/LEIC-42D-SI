@@ -9,6 +9,7 @@ import jakarta.persistence.Query;
 import jpa_routines.AssociarCracha;
 import jpa_routines.AssociarCrachaBaseline;
 import jpa_routines.AssociarCrachaJPA;
+import routine_manager.query.QueryManager;
 import routine_manager.routine.RoutineRegisters;
 import table_returns.JogadorPontos;
 import table_returns.JogadorTotalInfo;
@@ -18,9 +19,9 @@ import java.util.List;
 
 import static routine_manager.routine.RoutineControllers.callRoutine;
 
-public class BLService {
+public class BLServices {
 
-    public BLService() throws Exception {
+    public BLServices() throws Exception {
         RoutineRegisters.registerAllRoutines();
     }
 
@@ -80,27 +81,20 @@ public class BLService {
     }
 
     @Description("Give a badge to player (BaseLine)")
-    public void associarCrachaBaseLine(int jogadorId, String idJogo, String crachaNome) throws Exception {
+    public void associarCrachaBaseLine(int jogadorId, String nomeJogo, String crachaNome) throws Exception {
         AssociarCracha s = new AssociarCrachaBaseline();
-        s.associarCracha(jogadorId, idJogo, crachaNome);
+        s.associarCracha(jogadorId, nomeJogo, crachaNome);
     }
 
     @Description("Give a badge to player (JPA)")
-    public void associarCrachaJPA(int jogadorId, String idJogo, String crachaNome) throws Exception {
+    public void associarCrachaJPA(int jogadorId, String nomeJogo, String crachaNome) throws Exception {
         AssociarCracha s = new AssociarCrachaJPA();
-        s.associarCracha(jogadorId, idJogo, crachaNome);
+        s.associarCracha(jogadorId, nomeJogo, crachaNome);
     }
 
     @ReturnsTable
     @Description("Retrieve a view with all the information of each player")
-    public List jogadorTotalInfo() throws Exception {
-        try (DataScope scope = new DataScope()) {
-            EntityManager em = scope.getEntityManager();
-            Query q = em.createNamedQuery("jogadorTotalInfo", JogadorTotalInfo.class);
-            return q.getResultList();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw e;
-        }
+    public List<JogadorTotalInfo> jogadorTotalInfo() throws Exception {
+        return QueryManager.executeNamedQuery("jogadorTotalInfo", JogadorTotalInfo.class);
     }
 }

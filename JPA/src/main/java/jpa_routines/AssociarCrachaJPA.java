@@ -10,6 +10,6 @@ public class AssociarCrachaJPA extends AssociarCracha {
     // This implementation doesn't access any stored procedure
     @Override
     public List<JogadorPontos> pontosJogoPorJogador(Object[] args) throws Exception {
-        return QueryManager.executeNamedQuery(args, JogadorPontos.class);
+        return QueryManager.executeNamedQuery("pontosJogoPorJogador", JogadorPontos.class, args);
     }
 }

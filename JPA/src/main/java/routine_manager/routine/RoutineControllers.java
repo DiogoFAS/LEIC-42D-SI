@@ -2,7 +2,7 @@ package routine_manager.routine;
 
 import annotations.Description;
 import annotations.ReturnsTable;
-import business_logic.BLService;
+import business_logic.BLServices;
 import routine_manager.procedure.ProcedureManager;
 import routine_manager.function.FunctionManager;
 import table_returns.JogadorPontos;
@@ -19,9 +19,9 @@ import static utils.Utils.printTable;
 public class RoutineControllers {
 
     public Map<Integer, FunctionController> controllers = new HashMap<>();
-    BLService srv;
+    BLServices srv;
 
-    public RoutineControllers(BLService srv) {
+    public RoutineControllers(BLServices srv) {
         this.srv = srv;
         registerControllers();
     }
@@ -71,13 +71,13 @@ public class RoutineControllers {
 
         Object result = method.invoke(srv, args);
         Type returnType = method.getGenericReturnType();
-        if (returnType == void.class){
+        if (returnType == void.class || result == null){
             System.out.println(name + " success!");
             return;
         }
         if(method.isAnnotationPresent(ReturnsTable.class)) {
             Class<?> tableClass = (Class<?>) ((ParameterizedType) returnType).getActualTypeArguments()[0];
-            printTable((List<JogadorPontos>) result, tableClass);
+            printTable((List<Object>) result, tableClass);
         }
         else System.out.println(name + ": " + result);
     }

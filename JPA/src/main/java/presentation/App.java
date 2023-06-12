@@ -1,7 +1,7 @@
 package presentation;
 
 
-import business_logic.BLService;
+import business_logic.BLServices;
 import routine_manager.routine.RoutineControllers;
 import utils.Utils;
 
@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        BLService services = new BLService();
+        BLServices services = new BLServices();
         RoutineControllers controllers = new RoutineControllers(services);
         Scanner scanner = new Scanner(System.in);
 
@@ -29,7 +29,7 @@ public class App {
                 if (option.isBlank() || !Utils.isNumeric(option)) continue;
                 controllers.chooseRoutine(Integer.parseInt(option));
                 scanner.nextLine();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 scanner.nextLine();
             }

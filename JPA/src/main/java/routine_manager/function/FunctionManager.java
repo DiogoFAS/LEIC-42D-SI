@@ -3,10 +3,9 @@ package routine_manager.function;
 
 import annotations.Function;
 import annotations.ReturnsTable;
-import business_logic.BLService;
+import business_logic.BLServices;
 import dataManagement.DataScope;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.RollbackException;
 import jakarta.persistence.StoredProcedureQuery;
 import routine_manager.routine.RoutineParameter;
 import routine_manager.routine.RoutineRegisters;
@@ -44,7 +43,7 @@ public class FunctionManager {
     }
 
     public static Boolean isFunction(String funName) {
-        for (Method method : BLService.class.getDeclaredMethods()) {
+        for (Method method : BLServices.class.getDeclaredMethods()) {
             String methodName = method.getName();
             if (methodName.equals(funName)) return method.isAnnotationPresent(Function.class);
         }
@@ -52,7 +51,7 @@ public class FunctionManager {
     }
 
     public static Boolean returnsTable(String funName) {
-        for (Method method : BLService.class.getDeclaredMethods()) {
+        for (Method method : BLServices.class.getDeclaredMethods()) {
             String methodName = method.getName();
             if (methodName.equals(funName)) return method.isAnnotationPresent(ReturnsTable.class);
         }
@@ -60,7 +59,7 @@ public class FunctionManager {
     }
 
     public static Class<?> getReturnType(String funName) throws NoSuchMethodException {
-        for (Method method : BLService.class.getDeclaredMethods()) {
+        for (Method method : BLServices.class.getDeclaredMethods()) {
             String methodName = method.getName();
             if (methodName.equals(funName)) {
                 Class<?> returnType = method.getReturnType();

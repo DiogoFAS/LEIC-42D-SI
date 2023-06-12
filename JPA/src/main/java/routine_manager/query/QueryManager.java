@@ -12,10 +12,10 @@ public class QueryManager {
 
     private static final Logger logger = Logger.getLogger(FunctionManager.class.getName());
 
-    public static<T> T executeNamedQuery(Object[] args, Class<?> returnClass) throws Exception {
+    public static<T> T executeNamedQuery(String queryName, Class<?> returnClass, Object ...args) throws Exception {
         try (DataScope scope = new DataScope()) {
             EntityManager em = scope.getEntityManager();
-            Query res = em.createNamedQuery("pontosJogoPorJogador", returnClass);
+            Query res = em.createNamedQuery(queryName, returnClass);
             for (int i = 0; i < args.length; i++) {
                 res.setParameter(i + 1, args[i]);
             }

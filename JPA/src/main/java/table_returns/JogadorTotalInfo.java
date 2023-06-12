@@ -1,13 +1,30 @@
 package table_returns;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.*;
 
 @Entity
-@NamedQuery(name = "jogadorTotalInfo", query = "select j from jogadorTotalInfo j")
+@NamedQuery(name = "jogadorTotalInfo", query =
+        "select new table_returns.JogadorTotalInfo(j.id, j.estado, j.username, j.email, j.totaljogosjogador, j.totalpontosjogador, j.totalpartidasjogador) " +
+                "from JogadorTotalInfo j")
 public class JogadorTotalInfo {
+
+    public JogadorTotalInfo(
+            Integer id,
+            String estado,
+            String username,
+            String email,
+            Integer totaljogosjogador,
+            Integer totalpontosjogador,
+            Integer totalpartidasjogador
+    ) {
+        this.id = id;
+        this.estado = estado;
+        this.username = username;
+        this.email = email;
+        this.totaljogosjogador = totaljogosjogador;
+        this.totalpontosjogador = totalpontosjogador;
+        this.totalpartidasjogador = totalpartidasjogador;
+    }
 
     @Id
     @Column(name = "id", nullable = false)
