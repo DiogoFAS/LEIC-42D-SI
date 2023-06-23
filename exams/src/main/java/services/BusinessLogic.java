@@ -18,7 +18,7 @@ public class BusinessLogic {
             }
             scope.validateWork();
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
 }
