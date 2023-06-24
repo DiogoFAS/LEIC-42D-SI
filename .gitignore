@@ -3,3 +3,4 @@ JPA/.idea/
 JPA/src/main/resources/META-INF/persistence.xml
 JPA/target/
 *.class
+.idea
