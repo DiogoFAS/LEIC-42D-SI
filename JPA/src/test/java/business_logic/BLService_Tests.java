@@ -56,6 +56,11 @@ public class BLService_Tests {
                     em.getTransaction().rollback();
             } else throw e;
         }
+        finally
+        {
+            em.close();
+            emf.close();
+        }
     }
 
     @Description("Test pessimistic concurrency control")
@@ -83,6 +88,7 @@ public class BLService_Tests {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            em.getTransaction().rollback();
             throw e;
         }
     }
