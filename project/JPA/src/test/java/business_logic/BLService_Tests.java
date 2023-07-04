@@ -24,7 +24,7 @@ public class BLService_Tests {
         Cracha c;
         Cracha ent;
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SI");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
         EntityManager em = emf.createEntityManager();
 
         try {
@@ -63,7 +63,7 @@ public class BLService_Tests {
         // ****************** Teste 2 ****************
 
         // Mudar nome da base de dados
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("SI");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -83,6 +83,7 @@ public class BLService_Tests {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            em.getTransaction().rollback();
             throw e;
         }
     }

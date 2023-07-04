@@ -19,7 +19,7 @@ abstract class AbstractDataScope implements AutoCloseable {
     public AbstractDataScope() {
         if (threadLocal.get() == null) {
             EntityManagerFactory emf =
-                    Persistence.createEntityManagerFactory("SI");
+                    Persistence.createEntityManagerFactory("postgres");
             EntityManager em = emf.createEntityManager();
             Session s = new Session();
             s.ef = emf;
