@@ -1,9 +1,9 @@
-package services;
+package exam1.src.main.java.services;
 
 import data_manager.DataScope;
 import jakarta.persistence.EntityManager;
-import model.Funcionario;
-import repo.FuncionarioRep;
+import exam1.src.main.java.model.Funcionario;
+import exam1.src.main.java.repo.FuncionarioRep;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package exam1.src.main.java;
 
-import model.Funcionario;
-import repo.FuncionarioRep;
-import services.BusinessLogic;
+import exam1.src.main.java.model.Funcionario;
+import exam1.src.main.java.repo.FuncionarioRep;
+import exam1.src.main.java.services.BusinessLogic;
 
 import java.util.ArrayList;
 import java.util.Arrays;

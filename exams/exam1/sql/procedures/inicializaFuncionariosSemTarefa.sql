@@ -3,7 +3,7 @@ language plpgSQL as
 $$
 declare
 idTarefa int;
-    funcionario record;
+funcionario record;
 begin
 
     if not exists(select * from tarefa where nome = 'Sem tarefa') then
@@ -21,3 +21,7 @@ insert into funcionario_tarefa (num_func, id_tarefa) VALUES (funcionario.num, id
 end loop;
 end;
 $$;
+
+call inicializaFuncionariosSemTarefas();
+
+select * from funcionario_tarefa

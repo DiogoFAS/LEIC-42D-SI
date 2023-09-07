@@ -1,4 +1,4 @@
-package model;
+package exam1.src.main.java.model;
 
 import jakarta.persistence.*;
 
@@ -7,8 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "Tarefa")
 public class Tarefa {
-
-    @OneToMany(mappedBy = "Tarefa")
+    @OneToMany(mappedBy = "tarefa")
     private List<Funcionario_Tarefa> fts;
 
     @Id

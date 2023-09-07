@@ -1,4 +1,4 @@
-package model;
+package exam1.src.main.java.model;
 
 import jakarta.persistence.*;
 
@@ -15,7 +15,7 @@ public class Funcionario {
         this.idade = idade;
     }
 
-    @OneToMany(mappedBy = "Funcionario", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.PERSIST)
     private List<Funcionario_Tarefa> fts = new ArrayList<>();
 
     @Id

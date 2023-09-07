@@ -1,4 +1,4 @@
-package model;
+package exam1.src.main.java.model;
 
 import jakarta.persistence.*;
 

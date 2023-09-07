@@ -1,13 +1,13 @@
-package repo;
+package exam1.src.main.java.repo;
 
 import data_manager.DataScope;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import model.Funcionario;
-import model.Funcionario_Tarefa;
-import model.Funcionario_TarefaPK;
-import model.Tarefa;
+import exam1.src.main.java.model.Funcionario;
+import exam1.src.main.java.model.Funcionario_Tarefa;
+import exam1.src.main.java.model.Funcionario_TarefaPK;
+import exam1.src.main.java.model.Tarefa;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -43,7 +43,7 @@ public class FuncionarioRep {
         EntityManager em = emf.createEntityManager();
         try {
             return em.createQuery(
-                    "select new model.Funcionario(f.num, f.nome, f.idade) " +
+                    "select new Funcionario(f.num, f.nome, f.idade) " +
                             "from Funcionario f " +
                             "join Funcionario_Tarefa ft on ft.funcionario = f " +
                             "join Tarefa t on ft.tarefa = t " +
